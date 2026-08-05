@@ -16,6 +16,8 @@ Precisa do secret ANTHROPIC_API_KEY no repositorio.
 import json
 import html
 import re
+import hashlib
+import unicodedata
 import pathlib
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
@@ -42,7 +44,9 @@ DATA = ROOT / "data"
 SEEN_FILE = DATA / "seen.json"
 ARTICLES_FILE = DATA / "articles.json"
 TEMPLATE = ROOT / "feed_template.html"
+ARTICLE_TEMPLATE = ROOT / "article_template.html"
 OUTPUT = ROOT / "acesso-jornal" / "index.html"
+NOTICIAS_DIR = ROOT / "acesso-jornal" / "noticia"
 
 SYSTEM = (
     "Você é editor do Jornal da Pátria, um jornal digital brasileiro com linha "
@@ -52,11 +56,16 @@ SYSTEM = (
     "1) Reescreva um TÍTULO original, forte, estilo manchete de jornal, sem copiar o título da fonte.\n"
     "2) Escreva um RESUMO (dek) ORIGINAL de 1 a 2 frases, com suas próprias palavras, "
     "mantendo os FATOS exatos (quem, o quê, quando, números, declarações).\n"
+    "3) Escreva o CORPO da matéria (campo 'corpo'): uma lista de 3 a 5 parágrafos ORIGINAIS, "
+    "com suas próprias palavras. Os primeiros parágrafos apresentam os FATOS apurados (apenas os "
+    "que estão no material recebido). O último parágrafo pode ser análise/comentário editorial de "
+    "direita, deixando claro que é interpretação. Cada parágrafo tem 2 a 4 frases.\n"
     "Regras invioláveis: aplique o enquadramento editorial de direita, mas NUNCA invente "
-    "fato, número, data ou declaração; não copie frases da fonte; não exagere nem distorça o fato. "
-    "Português do Brasil, direto ao ponto.\n"
+    "fato, número, data, nome ou declaração que não esteja no material recebido; não copie frases da "
+    "fonte (reescreva tudo); não exagere nem distorça o fato. Se o material for curto, escreva um corpo "
+    "mais curto em vez de inventar. Português do Brasil, direto ao ponto.\n"
     'Responda SOMENTE com um objeto JSON, sem nenhum texto fora dele, no formato exato: '
-    '{"titulo": "...", "dek": "..."}'
+    '{"titulo": "...", "dek": "...", "corpo": ["parágrafo 1", "parágrafo 2", "parágrafo 3"]}'
 )
 
 CAT_LABEL = {
@@ -84,6 +93,15 @@ def clean(text):
     text = re.sub(r"<[^>]+>", "", text or "")
     text = html.unescape(text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def slugify(titulo, link):
+    base = unicodedata.normalize("NFKD", titulo or "")
+    base = base.encode("ascii", "ignore").decode("ascii").lower()
+    base = re.sub(r"[^a-z0-9]+", "-", base).strip("-")
+    base = "-".join(base.split("-")[:8]) or "noticia"
+    h = hashlib.sha1((link or titulo).encode("utf-8")).hexdigest()[:6]
+    return f"{base}-{h}"
 
 
 def to_iso(entry):
@@ -167,7 +185,15 @@ def rewrite(client, item):
     if not match:
         raise ValueError("resposta sem JSON")
     data = json.loads(match.group(0))
-    return data["titulo"].strip(), data["dek"].strip()
+    corpo = data.get("corpo") or []
+    if isinstance(corpo, str):
+        corpo = [p.strip() for p in corpo.split("\n") if p.strip()]
+    corpo = [clean(p) for p in corpo if clean(p)]
+    return data["titulo"].strip(), data["dek"].strip(), corpo
+
+
+def article_slug(a):
+    return a.get("slug") or slugify(a.get("titulo", ""), a.get("link", ""))
 
 
 def render_article(a, lead=False):
@@ -177,25 +203,59 @@ def render_article(a, lead=False):
     titulo = html.escape(a["titulo"])
     dek = html.escape(a["dek"])
     fonte = html.escape(a["fonte"])
-    url = html.escape(a["link"], quote=True)
+    inner = html.escape(f"/acesso-jornal/noticia/{article_slug(a)}", quote=True)
     img = a.get("image", "")
     htag = "h2" if lead else "h3"
     extra = ' style="border-top:0;padding-top:0"' if lead else ""
     imghtml = ""
     if img:
         safe_img = html.escape(img, quote=True)
-        imghtml = (f'\n  <a href="{url}" target="_blank" rel="noopener">'
+        imghtml = (f'\n  <a href="{inner}">'
                    f'<img class="thumb" src="{safe_img}" alt="" loading="lazy"></a>')
     return (
         f'<article class="story{" lead" if lead else ""}" data-cat="{cat}" '
         f'data-published="{a["published"]}"{extra}>\n'
         f'  <div class="tagrow"><span class="{tagclass}">{label}</span><span class="ago"></span></div>\n'
-        f'  <a class="headline" href="{url}" target="_blank" rel="noopener"><{htag}>{titulo}</{htag}></a>{imghtml}\n'
+        f'  <a class="headline" href="{inner}"><{htag}>{titulo}</{htag}></a>{imghtml}\n'
         f'  <p class="dek">{dek}</p>\n'
-        f'  <div class="src smallcaps">Fonte: <a href="{url}" target="_blank" rel="noopener">{fonte}</a> · '
-        f'<a class="readmore" href="{url}" target="_blank" rel="noopener">Ler notícia completa →</a></div>\n'
+        f'  <div class="src smallcaps">Fonte: {fonte} · '
+        f'<a class="readmore" href="{inner}">Ler matéria completa →</a></div>\n'
         f'</article>'
     )
+
+
+def render_article_page(a, template):
+    cat = a["cat"]
+    label = CAT_LABEL.get(cat, cat.title())
+    tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo") else "tag"
+    titulo = html.escape(a["titulo"])
+    dek = html.escape(a["dek"])
+    fonte = html.escape(a["fonte"])
+    url = html.escape(a["link"], quote=True)
+    img = a.get("image", "")
+    corpo = a.get("corpo") or []
+    if corpo:
+        body_html = "\n".join(f"      <p>{html.escape(p)}</p>" for p in corpo)
+    else:
+        # notícia antiga sem corpo gerado: mostra só o resumo, sem repetir
+        body_html = ('      <p class="smallcaps" style="color:var(--ink-soft)">'
+                     'Matéria completa em atualização. Confira o resumo acima e a apuração da fonte abaixo.</p>')
+    hero_html = ""
+    if img:
+        safe_img = html.escape(img, quote=True)
+        hero_html = (f'    <img class="hero" src="{safe_img}" alt="" loading="lazy">\n'
+                     f'    <div class="caption smallcaps">Imagem: {fonte}</div>')
+    out = template
+    out = out.replace("<!--TITLE-->", titulo)
+    out = out.replace("<!--DEK-->", dek)
+    out = out.replace("<!--TAGCLASS-->", tagclass)
+    out = out.replace("<!--CATLABEL-->", label)
+    out = out.replace("<!--PUBLISHED-->", a["published"])
+    out = out.replace("<!--HERO-->", hero_html)
+    out = out.replace("<!--BODY-->", body_html)
+    out = out.replace("<!--URL-->", url)
+    out = out.replace("<!--FONTE-->", fonte)
+    return out
 
 
 def main():
@@ -210,14 +270,14 @@ def main():
         client = anthropic.Anthropic()  # usa ANTHROPIC_API_KEY do ambiente
         for it in novos:
             try:
-                titulo, dek = rewrite(client, it)
+                titulo, dek, corpo = rewrite(client, it)
             except Exception as e:
                 print(f"[pulado] {it['title'][:60]}... -> {e}")
                 continue
             articles.insert(0, {
-                "titulo": titulo, "dek": dek, "cat": it["cat"],
+                "titulo": titulo, "dek": dek, "corpo": corpo, "cat": it["cat"],
                 "fonte": it["fonte"], "link": it["link"], "published": it["published"],
-                "image": it.get("image", ""),
+                "image": it.get("image", ""), "slug": slugify(titulo, it["link"]),
             })
             seen.add(it["link"])
             print(f"[ok] {titulo[:70]}")
@@ -227,13 +287,19 @@ def main():
     articles = articles[:MAX_ARTICLES]
     seen = set(list(seen)[-500:])  # nao deixa o seen crescer sem limite
 
+    # garante slug em toda notícia (inclui antigas sem slug)
+    for a in articles:
+        if not a.get("slug"):
+            a["slug"] = slugify(a.get("titulo", ""), a.get("link", ""))
+
     save_json(ARTICLES_FILE, articles)
     save_json(SEEN_FILE, sorted(seen))
 
-    # gera edicao.html
     if not articles:
         print("Sem artigos ainda; nada a gerar.")
         return
+
+    # gera o feed (index)
     blocks = [render_article(articles[0], lead=True)]
     blocks += [render_article(a) for a in articles[1:]]
     tpl = TEMPLATE.read_text(encoding="utf-8")
@@ -241,7 +307,26 @@ def main():
     tpl = tpl.replace("<!--UPDATED-->", datetime.now(timezone.utc).isoformat())
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(tpl, encoding="utf-8")
-    print(f"edicao.html gerado com {len(articles)} notícias.")
+
+    # gera uma página completa por notícia (tudo dentro do nosso domínio)
+    art_tpl = ARTICLE_TEMPLATE.read_text(encoding="utf-8")
+    NOTICIAS_DIR.mkdir(parents=True, exist_ok=True)
+    slugs_atuais = set()
+    for a in articles:
+        slug = a["slug"]
+        slugs_atuais.add(slug)
+        page_dir = NOTICIAS_DIR / slug
+        page_dir.mkdir(parents=True, exist_ok=True)
+        (page_dir / "index.html").write_text(render_article_page(a, art_tpl), encoding="utf-8")
+    # remove páginas de notícias que sairam do feed
+    if NOTICIAS_DIR.exists():
+        for d in NOTICIAS_DIR.iterdir():
+            if d.is_dir() and d.name not in slugs_atuais:
+                for f in d.iterdir():
+                    f.unlink()
+                d.rmdir()
+
+    print(f"Feed + {len(articles)} páginas de notícia geradas.")
 
 
 if __name__ == "__main__":
