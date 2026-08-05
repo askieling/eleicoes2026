@@ -29,6 +29,8 @@
   .statusbar .smallcaps{color:var(--paper)}
   .edition{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
   .edition .fleuron{color:var(--gold)}
+  .edition .back{color:var(--navy);text-decoration:none}
+  .edition .back:hover{color:var(--green);text-decoration:underline}
   @media(max-width:600px){.edition .cities{display:none}}
   .masthead{text-align:center;padding:10px 0 6px}
   .masthead h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:66px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
@@ -52,6 +54,11 @@
   .story .src{margin-top:9px;font-size:12px}
   .story .src a{color:var(--green);text-decoration:none}
   .story .src a:hover{text-decoration:underline}
+  .story a.headline{text-decoration:none;color:inherit;display:block}
+  .story a.headline:hover h2,.story a.headline:hover h3{color:var(--green)}
+  .thumb{display:block;width:100%;max-height:200px;object-fit:cover;border:1px solid var(--ink);margin:2px 0 10px;background:var(--paper-edge)}
+  .story.lead .thumb{max-height:360px}
+  .readmore{color:var(--green);font-weight:700}
   @media(max-width:720px){.story h2{font-size:28px}}
   .colophon{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--ink);gap:12px}
   .colophon .legal{max-width:680px}
@@ -64,13 +71,13 @@
   <div class="statusbar">
     <div class="live">
       <span class="dotlive"></span>
-      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-05T18:13:28.425347+00:00">agora</span></span>
+      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-05T18:26:00.696879+00:00">agora</span></span>
     </div>
     <span class="smallcaps cities" id="fullDate"></span>
   </div>
 
   <div class="edition">
-    <span class="smallcaps">Sua edição diária</span>
+    <a href="/" class="smallcaps back">← Página principal</a>
     <span class="fleuron">❧</span>
     <span class="smallcaps cities">Os fatos, sem filtro</span>
   </div>
@@ -94,39 +101,39 @@
   <div class="main" id="feed">
 <article class="story lead" data-cat="politica" data-published="2026-08-05T18:09:07+00:00" style="border-top:0;padding-top:0">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h2>Lula se reconcilia com Alcolumbre em encontro mediado por ministros do Supremo</h2>
+  <a class="headline" href="https://www.poder360.com.br/poder-governo/lula-e-alcolumbre-tem-reuniao-mediada-por-ministro-do-stf/" target="_blank" rel="noopener"><h2>Lula se reconcilia com Alcolumbre em encontro mediado por ministros do Supremo</h2></a>
   <p class="dek">Depois de meses de tensão provocada pela rejeição de Jorge Messias ao STF, presidente e ex-presidente do Senado se encontraram na residência de Alexandre de Moraes para buscar distensão entre os Poderes.</p>
-  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-governo/lula-e-alcolumbre-tem-reuniao-mediada-por-ministro-do-stf/" target="_blank" rel="noopener">Poder360</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-governo/lula-e-alcolumbre-tem-reuniao-mediada-por-ministro-do-stf/" target="_blank" rel="noopener">Poder360</a> · <a class="readmore" href="https://www.poder360.com.br/poder-governo/lula-e-alcolumbre-tem-reuniao-mediada-por-ministro-do-stf/" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T18:05:16+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h3>SpaceX causa impacto controlado na Lua em experimento científico inédito</h3>
+  <a class="headline" href="https://www.poder360.com.br/poder-tech/foguete-da-spacex-colide-com-a-lua-em-impacto-monitorado/" target="_blank" rel="noopener"><h3>SpaceX causa impacto controlado na Lua em experimento científico inédito</h3></a>
   <p class="dek">Estágio superior do foguete Falcon 9 colidiu com a superfície lunar de forma monitorada, gerando dados valiosos para pesquisadores estudarem a formação de crateras e a composição do satélite natural.</p>
-  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-tech/foguete-da-spacex-colide-com-a-lua-em-impacto-monitorado/" target="_blank" rel="noopener">Poder360</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-tech/foguete-da-spacex-colide-com-a-lua-em-impacto-monitorado/" target="_blank" rel="noopener">Poder360</a> · <a class="readmore" href="https://www.poder360.com.br/poder-tech/foguete-da-spacex-colide-com-a-lua-em-impacto-monitorado/" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T18:04:30+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h3>Lobista com acesso privilegiado fez 41 visitas não documentadas a ministérios do governo Lula</h3>
+  <a class="headline" href="https://www.poder360.com.br/poder-justica/amiga-de-lulinha-fez-41-visitas-fora-da-agenda-a-ministerios-de-lula/" target="_blank" rel="noopener"><h3>Lobista com acesso privilegiado fez 41 visitas não documentadas a ministérios do governo Lula</h3></a>
   <p class="dek">Investigações apontam que Roberta Luchsinger, ligada a círculos próximos ao presidente, visitou órgãos federais sem registro na agenda, violando a Lei de Acesso à Informação; ela é investigada por suspeitas envolvendo fraudes na Previdência Social.</p>
-  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-justica/amiga-de-lulinha-fez-41-visitas-fora-da-agenda-a-ministerios-de-lula/" target="_blank" rel="noopener">Poder360</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-justica/amiga-de-lulinha-fez-41-visitas-fora-da-agenda-a-ministerios-de-lula/" target="_blank" rel="noopener">Poder360</a> · <a class="readmore" href="https://www.poder360.com.br/poder-justica/amiga-de-lulinha-fez-41-visitas-fora-da-agenda-a-ministerios-de-lula/" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T17:55:44+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h3>Luxemburgo sai do banco para disputa ao Senado em Tocantins</h3>
+  <a class="headline" href="https://www.poder360.com.br/poder-eleicoes-2026/vanderlei-luxemburgo-confirma-candidatura-ao-senado-de-tocantins/" target="_blank" rel="noopener"><h3>Luxemburgo sai do banco para disputa ao Senado em Tocantins</h3></a>
   <p class="dek">Ex-técnico de futebol oficializa candidatura pelo Podemos em convenção em Palmas, ocupando a quinta posição nas pesquisas eleitorais para o Estado.</p>
-  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-eleicoes-2026/vanderlei-luxemburgo-confirma-candidatura-ao-senado-de-tocantins/" target="_blank" rel="noopener">Poder360</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-eleicoes-2026/vanderlei-luxemburgo-confirma-candidatura-ao-senado-de-tocantins/" target="_blank" rel="noopener">Poder360</a> · <a class="readmore" href="https://www.poder360.com.br/poder-eleicoes-2026/vanderlei-luxemburgo-confirma-candidatura-ao-senado-de-tocantins/" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T17:53:04+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h3>MDB oficializa Renan Filho como pré-candidato ao governo de Alagoas pela terceira vez</h3>
+  <a class="headline" href="https://g1.globo.com/politica/eleicoes/2026/noticia/2026/08/05/mdb-lanca-renan-filho-como-candidato-ao-governo-de-alagoas.ghtml" target="_blank" rel="noopener"><h3>MDB oficializa Renan Filho como pré-candidato ao governo de Alagoas pela terceira vez</h3></a>
   <p class="dek">O partido confirmou na convenção desta quarta-feira a candidatura do senador e ex-ministro dos Transportes, que já governou o estado em dois mandatos (2014-2018) e agora tenta retornar ao cargo.</p>
-  <div class="src smallcaps">Fonte: <a href="https://g1.globo.com/politica/eleicoes/2026/noticia/2026/08/05/mdb-lanca-renan-filho-como-candidato-ao-governo-de-alagoas.ghtml" target="_blank" rel="noopener">G1 Política</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://g1.globo.com/politica/eleicoes/2026/noticia/2026/08/05/mdb-lanca-renan-filho-como-candidato-ao-governo-de-alagoas.ghtml" target="_blank" rel="noopener">G1 Política</a> · <a class="readmore" href="https://g1.globo.com/politica/eleicoes/2026/noticia/2026/08/05/mdb-lanca-renan-filho-como-candidato-ao-governo-de-alagoas.ghtml" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T17:51:02+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <h3>PL oficializa Roscoe como candidato ao governo de Minas após saída de Cleitinho</h3>
+  <a class="headline" href="https://www.gazetadopovo.com.br/eleicoes/2026/minas-gerais/flavio-anuncia-roscoe-ao-governo-de-minas-apos-desistencia-de-cleitinho/" target="_blank" rel="noopener"><h3>PL oficializa Roscoe como candidato ao governo de Minas após saída de Cleitinho</h3></a>
   <p class="dek">Flávio Bolsonaro anunciou Flávio Roscoe, ex-presidente da Fiemg, como candidato do PL ao governo mineiro, substituindo Cleitinho que desistiu da disputa.</p>
-  <div class="src smallcaps">Fonte: <a href="https://www.gazetadopovo.com.br/eleicoes/2026/minas-gerais/flavio-anuncia-roscoe-ao-governo-de-minas-apos-desistencia-de-cleitinho/" target="_blank" rel="noopener">Gazeta do Povo</a></div>
+  <div class="src smallcaps">Fonte: <a href="https://www.gazetadopovo.com.br/eleicoes/2026/minas-gerais/flavio-anuncia-roscoe-ao-governo-de-minas-apos-desistencia-de-cleitinho/" target="_blank" rel="noopener">Gazeta do Povo</a> · <a class="readmore" href="https://www.gazetadopovo.com.br/eleicoes/2026/minas-gerais/flavio-anuncia-roscoe-ao-governo-de-minas-apos-desistencia-de-cleitinho/" target="_blank" rel="noopener">Ler notícia completa →</a></div>
 </article>
   </div>
 

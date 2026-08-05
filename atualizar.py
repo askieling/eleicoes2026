@@ -42,7 +42,7 @@ DATA = ROOT / "data"
 SEEN_FILE = DATA / "seen.json"
 ARTICLES_FILE = DATA / "articles.json"
 TEMPLATE = ROOT / "feed_template.html"
-OUTPUT = ROOT / "edicao.html"
+OUTPUT = ROOT / "acesso-jornal" / "index.html"
 
 SYSTEM = (
     "Você é editor do Jornal da Pátria, um jornal digital brasileiro com linha "
@@ -104,6 +104,28 @@ def to_iso(entry):
     return datetime.now(timezone.utc).isoformat()
 
 
+def get_image(entry):
+    for m in (entry.get("media_content") or []):
+        u = m.get("url")
+        if u:
+            return u
+    for m in (entry.get("media_thumbnail") or []):
+        u = m.get("url")
+        if u:
+            return u
+    for l in (entry.get("links") or []):
+        if l.get("rel") == "enclosure" and str(l.get("type", "")).startswith("image"):
+            return l.get("href")
+    blob = entry.get("summary", "") or ""
+    if entry.get("content"):
+        try:
+            blob += entry["content"][0].get("value", "")
+        except Exception:
+            pass
+    m = re.search(r'<img[^>]+src=["\']([^"\']+)', blob)
+    return m.group(1) if m else ""
+
+
 def collect():
     items = []
     for fonte, url, cat in FEEDS:
@@ -121,6 +143,7 @@ def collect():
             items.append({
                 "link": link, "title": title, "summary": summary,
                 "fonte": fonte, "cat": cat, "published": to_iso(e),
+                "image": get_image(e),
             })
     # mais recentes primeiro
     items.sort(key=lambda x: x["published"], reverse=True)
@@ -155,15 +178,22 @@ def render_article(a, lead=False):
     dek = html.escape(a["dek"])
     fonte = html.escape(a["fonte"])
     url = html.escape(a["link"], quote=True)
+    img = a.get("image", "")
     htag = "h2" if lead else "h3"
     extra = ' style="border-top:0;padding-top:0"' if lead else ""
+    imghtml = ""
+    if img:
+        safe_img = html.escape(img, quote=True)
+        imghtml = (f'\n  <a href="{url}" target="_blank" rel="noopener">'
+                   f'<img class="thumb" src="{safe_img}" alt="" loading="lazy"></a>')
     return (
         f'<article class="story{" lead" if lead else ""}" data-cat="{cat}" '
         f'data-published="{a["published"]}"{extra}>\n'
         f'  <div class="tagrow"><span class="{tagclass}">{label}</span><span class="ago"></span></div>\n'
-        f'  <{htag}>{titulo}</{htag}>\n'
+        f'  <a class="headline" href="{url}" target="_blank" rel="noopener"><{htag}>{titulo}</{htag}></a>{imghtml}\n'
         f'  <p class="dek">{dek}</p>\n'
-        f'  <div class="src smallcaps">Fonte: <a href="{url}" target="_blank" rel="noopener">{fonte}</a></div>\n'
+        f'  <div class="src smallcaps">Fonte: <a href="{url}" target="_blank" rel="noopener">{fonte}</a> · '
+        f'<a class="readmore" href="{url}" target="_blank" rel="noopener">Ler notícia completa →</a></div>\n'
         f'</article>'
     )
 
@@ -187,6 +217,7 @@ def main():
             articles.insert(0, {
                 "titulo": titulo, "dek": dek, "cat": it["cat"],
                 "fonte": it["fonte"], "link": it["link"], "published": it["published"],
+                "image": it.get("image", ""),
             })
             seen.add(it["link"])
             print(f"[ok] {titulo[:70]}")
@@ -208,6 +239,7 @@ def main():
     tpl = TEMPLATE.read_text(encoding="utf-8")
     tpl = tpl.replace("<!--ARTICLES-->", "\n".join(blocks))
     tpl = tpl.replace("<!--UPDATED-->", datetime.now(timezone.utc).isoformat())
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(tpl, encoding="utf-8")
     print(f"edicao.html gerado com {len(articles)} notícias.")
 
