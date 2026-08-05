@@ -3,96 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <title>Jornal da Pátria</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;
-    --navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d;
-  }
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d}
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
   body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
   body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-
-  .sheet{max-width:1280px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
+  .sheet{max-width:1080px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
   @media(max-width:720px){.sheet{padding:0 15px}}
-
   .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600}
   .anton{font-family:"Anton",sans-serif;text-transform:uppercase;font-weight:400;line-height:1;letter-spacing:.01em}
   .serif-italic{font-family:"Playfair Display",serif;font-style:italic}
   .rule{border:0;border-top:1px solid var(--ink)}
   .double{border:0;border-top:3px double var(--ink);height:0}
-
-  /* ---------- STATUS BAR (relógio de atualização) ---------- */
   .statusbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
   @media(max-width:720px){.statusbar{margin:0 -15px}}
   .statusbar .live{display:flex;align-items:center;gap:9px}
   .dotlive{width:9px;height:9px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 0 0 rgba(224,182,74,.7);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,182,74,.7)}70%{box-shadow:0 0 0 8px rgba(224,182,74,0)}100%{box-shadow:0 0 0 0 rgba(224,182,74,0)}}
   .statusbar .smallcaps{color:var(--paper)}
-  .statusbar .next{color:var(--gold-bright)}
-  @media(max-width:600px){.statusbar .next{display:none}}
-
-  /* ---------- EDITION BAR + MASTHEAD ---------- */
   .edition{display:flex;justify-content:space-between;align-items:center;padding:8px 0}
   .edition .fleuron{color:var(--gold)}
   @media(max-width:600px){.edition .cities{display:none}}
   .masthead{text-align:center;padding:10px 0 6px}
-  .masthead h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:68px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
+  .masthead h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:66px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
   .masthead .sub{margin-top:8px;color:var(--green)}
   @media(max-width:720px){.masthead h1{font-size:38px}}
-
-  nav.rules-row{display:flex;justify-content:center;gap:28px;flex-wrap:wrap;padding:9px 0}
+  nav.rules-row{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;padding:9px 0}
   nav.rules-row a{color:var(--ink);text-decoration:none;cursor:pointer}
   nav.rules-row a:hover,nav.rules-row a.on{text-decoration:underline;color:var(--green)}
   @media(max-width:720px){nav.rules-row{gap:14px}}
-
-  /* ---------- LAYOUT: main + aside ---------- */
-  .wrap{display:grid;grid-template-columns:2.1fr 1fr;gap:0;margin-top:6px}
-  .main{padding:22px 30px 26px 0;border-right:1px solid var(--ink)}
-  .aside{padding:22px 0 26px 26px}
-  @media(max-width:840px){.wrap{grid-template-columns:1fr}.main{border-right:0;padding:20px 0}.aside{padding:6px 0 24px;border-top:1px solid var(--ink)}}
-
-  /* ---------- LEAD STORY ---------- */
-  .lead .tagrow{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+  .main{padding:22px 0 26px}
+  .story{padding:18px 0;border-top:1px solid var(--ink)}
+  .story .tagrow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
   .tag{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--paper);background:var(--green);padding:3px 9px}
   .tag.urgente{background:var(--red)}
   .tag.economia{background:var(--navy)}
   .tag.mundo{background:var(--gold);color:var(--ink)}
   .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
-  .lead h2{font-size:46px;line-height:1.02;color:var(--ink);margin-bottom:12px}
-  .lead .img{height:300px;background:var(--navy);filter:grayscale(1);display:flex;align-items:center;justify-content:center;margin:6px 0 8px}
-  .lead .img span{font-family:"Anton",sans-serif;color:#8ea0b5;font-size:18px;text-transform:uppercase;letter-spacing:.1em}
-  .lead .dek{font-size:19px;color:var(--ink-soft)}
-  .lead .src{margin-top:10px}
-  @media(max-width:720px){.lead h2{font-size:32px}.lead .img{height:190px}}
-
-  /* ---------- STORY LIST ---------- */
-  .story{padding:18px 0;border-top:1px solid var(--ink);display:grid;grid-template-columns:1fr;gap:6px}
-  .story .tagrow{display:flex;align-items:center;gap:10px}
-  .story h3{font-family:"Playfair Display",serif;font-weight:800;font-size:23px;line-height:1.12;color:var(--ink)}
-  .story .dek{color:var(--ink-soft);font-size:16px}
-  .story .src{font-size:12px}
-
-  /* ---------- ASIDE: mais lidas ---------- */
-  .aside h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:20px;color:var(--navy);padding-bottom:8px;border-bottom:3px double var(--ink);margin-bottom:6px}
-  .most{counter-reset:m}
-  .most .m{display:flex;gap:14px;padding:14px 0;border-top:1px solid #d8d1c2}
-  .most .m:first-child{border-top:0}
-  .most .m::before{counter-increment:m;content:counter(m);font-family:"Anton",sans-serif;font-size:30px;color:var(--gold);line-height:.9;min-width:34px}
-  .most .m h5{font-family:"Playfair Display",serif;font-weight:700;font-size:16px;line-height:1.2}
-  .most .m .ago{display:block;margin-top:4px}
-  .boxcta{border:3px double var(--ink);padding:18px;margin-top:24px;text-align:center}
-  .boxcta .smallcaps{color:var(--green)}
-  .boxcta p{font-size:14px;color:var(--ink-soft);margin:8px 0 12px}
-  .btn{display:inline-block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.12em;font-weight:700;font-size:13px;background:var(--navy);color:var(--gold-bright);padding:12px 22px;text-decoration:none;border:1px solid var(--ink)}
-  .btn:hover{background:#081a34}
-
-  /* ---------- COLOPHON ---------- */
+  .story h2{font-size:40px;line-height:1.03;color:var(--ink);margin-bottom:10px}
+  .story h3{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.12;color:var(--ink);margin-bottom:6px}
+  .story .dek{color:var(--ink-soft);font-size:17px}
+  .story .src{margin-top:9px;font-size:12px}
+  .story .src a{color:var(--green);text-decoration:none}
+  .story .src a:hover{text-decoration:underline}
+  @media(max-width:720px){.story h2{font-size:28px}}
   .colophon{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--ink);gap:12px}
   .colophon .legal{max-width:680px}
   @media(max-width:600px){.colophon{flex-direction:column;text-align:center}}
@@ -101,107 +61,77 @@
 <body>
 <div class="sheet">
 
-  <!-- STATUS BAR: relógio de atualização -->
   <div class="statusbar">
     <div class="live">
       <span class="dotlive"></span>
-      <span class="smallcaps">Edição atualizada <span id="lastUpdate">agora</span></span>
+      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-05T18:13:28.425347+00:00">agora</span></span>
     </div>
+    <span class="smallcaps cities" id="fullDate"></span>
   </div>
 
-  <!-- EDITION BAR -->
   <div class="edition">
     <span class="smallcaps">Sua edição diária</span>
     <span class="fleuron">❧</span>
-    <span class="smallcaps cities" id="fullDate"></span>
+    <span class="smallcaps cities">Os fatos, sem filtro</span>
   </div>
   <hr class="rule">
 
-  <!-- MASTHEAD -->
   <div class="masthead">
     <h1>Jornal da Pátria</h1>
     <div class="smallcaps sub">Os fatos, sem filtro · Edição do dia</div>
   </div>
   <hr class="double">
 
-  <!-- NAV editorias (filtro) -->
   <nav class="rules-row smallcaps">
     <a data-filter="todas" class="on">Todas</a>
     <a data-filter="politica">Política</a>
     <a data-filter="economia">Economia</a>
-    <a data-filter="bastidores">Bastidores</a>
     <a data-filter="mundo">Mundo</a>
     <a data-filter="urgente">Última Hora</a>
   </nav>
   <hr class="rule">
 
-  <div class="wrap">
-    <!-- MAIN -->
-    <div class="main" id="feed">
-
-      <!-- LEAD -->
-      <article class="story lead" data-cat="politica" data-time="-14" style="border-top:0;padding-top:0">
-        <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-        <h2>[Manchete principal do dia entra aqui, gerada pela pipeline]</h2>
-        <div class="img"><span>[ Foto P&B da matéria ]</span></div>
-        <p class="dek">[Linha de apoio da manchete: o resumo direto do fato mais importante do dia, com a leitura editorial da casa. A pipeline preenche este bloco a cada atualização.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B] — cruzadas</div>
-      </article>
-
-      <!-- STORIES -->
-      <article class="story" data-cat="urgente" data-time="-33">
-        <div class="tagrow"><span class="tag urgente">Última Hora</span><span class="ago"></span></div>
-        <h3>[Título da notícia de última hora]</h3>
-        <p class="dek">[Resumo em duas linhas do que acabou de acontecer e por que importa pra quem pensa como você.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B]</div>
-      </article>
-
-      <article class="story" data-cat="economia" data-time="-78">
-        <div class="tagrow"><span class="tag economia">Economia</span><span class="ago"></span></div>
-        <h3>[Título sobre imposto, gasto público ou o seu bolso]</h3>
-        <p class="dek">[O que a decisão faz com o seu dinheiro no fim do mês, sem economês.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B]</div>
-      </article>
-
-      <article class="story" data-cat="bastidores" data-time="-125">
-        <div class="tagrow"><span class="tag">Bastidores</span><span class="ago"></span></div>
-        <h3>[Título sobre o jogo por trás da manchete em Brasília]</h3>
-        <p class="dek">[Quem articula, quem trai, quem manda de verdade. A leitura que a imprensa velha não dá.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B]</div>
-      </article>
-
-      <article class="story" data-cat="mundo" data-time="-190">
-        <div class="tagrow"><span class="tag mundo">Mundo</span><span class="ago"></span></div>
-        <h3>[Título sobre a direita global: Trump, Milei, Europa]</h3>
-        <p class="dek">[A virada conservadora lá fora, sem o verniz da imprensa internacional.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B]</div>
-      </article>
-
-      <article class="story" data-cat="politica" data-time="-260">
-        <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-        <h3>[Título sobre pauta no Congresso ou no STF]</h3>
-        <p class="dek">[O que está em jogo e o que muda na sua vida se passar.]</p>
-        <div class="src smallcaps">Fontes: [Fonte A] · [Fonte B]</div>
-      </article>
-
-    </div>
-
-    <!-- ASIDE -->
-    <aside class="aside">
-      <h4>Mais Lidas</h4>
-      <div class="most">
-        <div class="m"><div><h5>[Título da mais lida nº 1]</h5><span class="ago smallcaps" data-time="-45"></span></div></div>
-        <div class="m"><div><h5>[Título da mais lida nº 2]</h5><span class="ago smallcaps" data-time="-160"></span></div></div>
-        <div class="m"><div><h5>[Título da mais lida nº 3]</h5><span class="ago smallcaps" data-time="-320"></span></div></div>
-        <div class="m"><div><h5>[Título da mais lida nº 4]</h5><span class="ago smallcaps" data-time="-540"></span></div></div>
-      </div>
-
-    </aside>
+  <div class="main" id="feed">
+<article class="story lead" data-cat="politica" data-published="2026-08-05T18:09:07+00:00" style="border-top:0;padding-top:0">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h2>Lula se reconcilia com Alcolumbre em encontro mediado por ministros do Supremo</h2>
+  <p class="dek">Depois de meses de tensão provocada pela rejeição de Jorge Messias ao STF, presidente e ex-presidente do Senado se encontraram na residência de Alexandre de Moraes para buscar distensão entre os Poderes.</p>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-governo/lula-e-alcolumbre-tem-reuniao-mediada-por-ministro-do-stf/" target="_blank" rel="noopener">Poder360</a></div>
+</article>
+<article class="story" data-cat="politica" data-published="2026-08-05T18:05:16+00:00">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h3>SpaceX causa impacto controlado na Lua em experimento científico inédito</h3>
+  <p class="dek">Estágio superior do foguete Falcon 9 colidiu com a superfície lunar de forma monitorada, gerando dados valiosos para pesquisadores estudarem a formação de crateras e a composição do satélite natural.</p>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-tech/foguete-da-spacex-colide-com-a-lua-em-impacto-monitorado/" target="_blank" rel="noopener">Poder360</a></div>
+</article>
+<article class="story" data-cat="politica" data-published="2026-08-05T18:04:30+00:00">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h3>Lobista com acesso privilegiado fez 41 visitas não documentadas a ministérios do governo Lula</h3>
+  <p class="dek">Investigações apontam que Roberta Luchsinger, ligada a círculos próximos ao presidente, visitou órgãos federais sem registro na agenda, violando a Lei de Acesso à Informação; ela é investigada por suspeitas envolvendo fraudes na Previdência Social.</p>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-justica/amiga-de-lulinha-fez-41-visitas-fora-da-agenda-a-ministerios-de-lula/" target="_blank" rel="noopener">Poder360</a></div>
+</article>
+<article class="story" data-cat="politica" data-published="2026-08-05T17:55:44+00:00">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h3>Luxemburgo sai do banco para disputa ao Senado em Tocantins</h3>
+  <p class="dek">Ex-técnico de futebol oficializa candidatura pelo Podemos em convenção em Palmas, ocupando a quinta posição nas pesquisas eleitorais para o Estado.</p>
+  <div class="src smallcaps">Fonte: <a href="https://www.poder360.com.br/poder-eleicoes-2026/vanderlei-luxemburgo-confirma-candidatura-ao-senado-de-tocantins/" target="_blank" rel="noopener">Poder360</a></div>
+</article>
+<article class="story" data-cat="politica" data-published="2026-08-05T17:53:04+00:00">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h3>MDB oficializa Renan Filho como pré-candidato ao governo de Alagoas pela terceira vez</h3>
+  <p class="dek">O partido confirmou na convenção desta quarta-feira a candidatura do senador e ex-ministro dos Transportes, que já governou o estado em dois mandatos (2014-2018) e agora tenta retornar ao cargo.</p>
+  <div class="src smallcaps">Fonte: <a href="https://g1.globo.com/politica/eleicoes/2026/noticia/2026/08/05/mdb-lanca-renan-filho-como-candidato-ao-governo-de-alagoas.ghtml" target="_blank" rel="noopener">G1 Política</a></div>
+</article>
+<article class="story" data-cat="politica" data-published="2026-08-05T17:51:02+00:00">
+  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+  <h3>PL oficializa Roscoe como candidato ao governo de Minas após saída de Cleitinho</h3>
+  <p class="dek">Flávio Bolsonaro anunciou Flávio Roscoe, ex-presidente da Fiemg, como candidato do PL ao governo mineiro, substituindo Cleitinho que desistiu da disputa.</p>
+  <div class="src smallcaps">Fonte: <a href="https://www.gazetadopovo.com.br/eleicoes/2026/minas-gerais/flavio-anuncia-roscoe-ao-governo-de-minas-apos-desistencia-de-cleitinho/" target="_blank" rel="noopener">Gazeta do Povo</a></div>
+</article>
   </div>
 
-  <!-- COLOPHON -->
   <div class="colophon">
-    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada. Edição demonstrativa — os títulos entre colchetes são preenchidos automaticamente pela pipeline.</div>
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada. Resumos originais; fatos apurados de fontes citadas.</div>
     <div class="smallcaps">Página Um de Um</div>
   </div>
   <hr class="rule">
@@ -209,9 +139,10 @@
 </div>
 
 <script>
-  // ---------- tempo relativo "há X" ----------
-  function haQuanto(min){
-    min = Math.abs(min);
+  function ha(iso){
+    var t = new Date(iso).getTime();
+    if(isNaN(t)) return "";
+    var min = Math.floor((Date.now()-t)/60000);
     if(min < 1) return "agora mesmo";
     if(min < 60) return "há " + min + " min";
     var h = Math.floor(min/60);
@@ -219,34 +150,34 @@
     var d = Math.floor(h/24);
     return "há " + d + (d===1?" dia":" dias");
   }
-  // aplica em tudo que tem data-time (minutos negativos = passado)
-  document.querySelectorAll("[data-time]").forEach(function(el){
-    var m = parseInt(el.getAttribute("data-time"),10);
-    var alvo = el.matches(".ago") ? el : el.querySelector(".ago");
-    if(alvo) alvo.textContent = haQuanto(m);
-    else el.textContent = haQuanto(m);
+  // tempo relativo em cada notícia
+  document.querySelectorAll("#feed [data-published]").forEach(function(el){
+    var ago = el.querySelector(".ago");
+    if(ago) ago.textContent = ha(el.getAttribute("data-published"));
   });
-
-  // ---------- data completa em pt-BR ----------
-  var d = new Date();
-  var meses = ["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
-  var dias = ["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
-  document.getElementById("fullDate").textContent =
-    dias[d.getDay()] + ", " + d.getDate() + " de " + meses[d.getMonth()] + " de " + d.getFullYear();
-
-  // ---------- relógio de atualização ----------
-  // última atualização = 2 horas atrás (bate com a lead).
-  document.getElementById("lastUpdate").textContent = haQuanto(-120);
-
-  // ---------- filtro de editoria ----------
-  var links = document.querySelectorAll("nav.rules-row a");
+  // relógio de atualização
+  (function(){
+    var el = document.getElementById("lastUpdate");
+    var iso = el ? el.getAttribute("data-updated") : "";
+    if(el && iso && iso.indexOf("UPDATED")===-1) el.textContent = ha(iso);
+  })();
+  // data completa pt-BR
+  (function(){
+    var d = new Date();
+    var meses=["janeiro","fevereiro","março","abril","maio","junho","julho","agosto","setembro","outubro","novembro","dezembro"];
+    var dias=["domingo","segunda","terça","quarta","quinta","sexta","sábado"];
+    var el=document.getElementById("fullDate");
+    if(el) el.textContent = dias[d.getDay()]+", "+d.getDate()+" de "+meses[d.getMonth()]+" de "+d.getFullYear();
+  })();
+  // filtro por editoria
+  var links=document.querySelectorAll("nav.rules-row a");
   links.forEach(function(a){
-    a.addEventListener("click", function(){
+    a.addEventListener("click",function(){
       links.forEach(function(x){x.classList.remove("on")});
       a.classList.add("on");
-      var f = a.getAttribute("data-filter");
+      var f=a.getAttribute("data-filter");
       document.querySelectorAll("#feed .story").forEach(function(s){
-        s.style.display = (f==="todas" || s.getAttribute("data-cat")===f) ? "" : "none";
+        s.style.display=(f==="todas"||s.getAttribute("data-cat")===f)?"":"none";
       });
     });
   });
