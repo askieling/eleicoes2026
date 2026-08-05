@@ -1,0 +1,45 @@
+name: Atualizar edição
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"   # a cada ~15 min (o GitHub pode atrasar alguns minutos)
+  workflow_dispatch: {}       # botão "Run workflow" para rodar na hora
+
+permissions:
+  contents: write
+
+concurrency:
+  group: atualizar-edicao
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Instalar dependências
+        run: pip install -r requirements.txt
+
+      - name: Gerar edição
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python atualizar.py
+
+      - name: Commitar mudanças
+        run: |
+          git config user.name "jornal-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add edicao.html data/
+          if git diff --staged --quiet; then
+            echo "Nada mudou nesta rodada."
+          else
+            git commit -m "Atualiza edição [skip ci]"
+            git push
+          fi
