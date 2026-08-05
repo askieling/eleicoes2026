@@ -40,6 +40,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "Nada mudou nesta rodada."
           else
-            git commit -m "Atualiza edição [skip ci]"
+            git commit -m "Atualiza edição"
             git push
           fi
