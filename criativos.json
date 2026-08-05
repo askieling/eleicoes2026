@@ -1,0 +1,145 @@
+{
+  "projeto": "Jornal da Pátria",
+  "descricao": "Pack de criativos para tráfego pago (Meta/Instagram/Facebook). Cada item traz o texto que vai na arte, a copy do anúncio e um image_prompt pronto para colar no Grok Imagine ou ChatGPT (GPT Image). CTA padrão do botão: 'Saiba mais'. Preço-âncora: R$ 22.",
+  "marca": {
+    "nome": "Jornal da Pátria",
+    "tom": "combativo, patriota, direto ao ponto, autoridade jornalistica",
+    "paleta": "papel-jornal off-white (#f4f1ea), tinta quase-preta (#181410), azul-marinho (#0b2545), verde-bandeira (#1b5e3f), ouro sobrio (#b5892a). Verde+amarelo+azul usados de forma editorial e elegante, nunca carnavalizado.",
+    "tipografia": "manchete condensada estilo jornal (Anton), titulo serifado classico (Playfair Display), corpo serifado legivel",
+    "estilo_visual": "primeira pagina de jornal impresso encontrando design moderno; fios/linhas divisorias finas, fotografia realista, textura de papel sutil"
+  },
+  "formatos_recomendados": {
+    "feed": "1080x1350 (4:5)",
+    "story_reels": "1080x1920 (9:16)",
+    "quadrado": "1080x1080 (1:1)"
+  },
+  "regras_de_conteudo": "Angulo editorial de direita e legitimo. Enquadrar fato com opiniao, sim. Nao afirmar fato inventado, nao prometer resultado eleitoral, nao usar logo/nome de veiculo ou politico real. Depoimentos so com pessoas reais.",
+  "criativos": [
+    {
+      "id": 1,
+      "angulo": "Curiosidade / o que escondem",
+      "hook": "O QUE A IMPRENSA VELHA NAO TE CONTA",
+      "texto_na_arte": {
+        "linha_superior": "JORNAL DA PATRIA",
+        "manchete": "O QUE A IMPRENSA VELHA NAO TE CONTA",
+        "apoio": "Os fatos do seu lado, todo dia no seu e-mail",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Enquanto os grandes portais escolhem o que voce pode saber, tem gente lendo os fatos sem filtro em 5 minutos por dia. Chega de descobrir tarde o que importava. Por R$ 22 voce vira a chave. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Primeira pagina de um jornal impresso vintage sobre fundo de papel off-white com textura sutil, iluminacao dramatica lateral. Manchete gigante em fonte condensada preta 'O QUE A IMPRENSA VELHA NAO TE CONTA', com a palavra 'NAO TE CONTA' em verde-bandeira escuro. Fios/linhas divisorias finas pretas, cabecalho serifado classico 'JORNAL DA PATRIA' em azul-marinho no topo. Um selo circular dourado no canto com 'R$ 22'. Estilo editorial premium, cores patriotas sobrias (verde, amarelo-ouro, azul-marinho), nada carnavalizado. Formato retrato 4:5, alta nitidez, realista.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 2,
+      "angulo": "Economia de tempo",
+      "hook": "5 MINUTOS. E VOCE JA SABE TUDO.",
+      "texto_na_arte": {
+        "manchete": "5 MINUTOS POR DIA",
+        "apoio": "Toda a politica que importa, resumida e do seu lado",
+        "selo_preco": "R$ 22 / mes",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Voce nao tem tempo pra abrir dez sites e sair mais confuso. A gente le, cruza e resume. Voce abre o e-mail, le em 5 minutos e sai na frente da conversa. Tudo por R$ 22. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Foto realista de uma xicara de cafe sobre uma mesa de madeira ao lado de um celular mostrando um jornal digital limpo, luz da manha suave. Sobreposicao editorial estilo jornal: manchete condensada preta '5 MINUTOS POR DIA' e subtitulo serifado 'toda a politica que importa'. Fios finos pretos, textura de papel off-white nas bordas. Selo dourado 'R$ 22/mes'. Paleta patriota sobria (marinho, verde, ouro). Formato retrato 4:5, realista, premium.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 3,
+      "angulo": "Raiva / cansaco da midia",
+      "hook": "CANSADO DE SER ENGANADO TODO DIA?",
+      "texto_na_arte": {
+        "manchete": "CANSADO DE SER ENGANADO?",
+        "apoio": "Um jornal que le a politica do seu lado, sem pedir desculpa",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Manchete torta, fato escondido, narrativa pronta. Voce sabe que te enganam, e ainda pagam pra isso. Agora tem um jornal que joga do seu lado. Assine por R$ 22 e leia os fatos sem filtro. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Retrato realista de um homem brasileiro comum de meia-idade franzindo a testa, cansado, olhando o celular, fundo neutro escuro, luz dramatica. Sobreposicao estilo jornal com faixa preta e manchete condensada branca 'CANSADO DE SER ENGANADO?'. Detalhe em vermelho sobrio na palavra 'ENGANADO'. Cabecalho serifado 'JORNAL DA PATRIA' em ouro. Selo 'R$ 22'. Textura de papel nas bordas. Paleta patriota sobria. Formato retrato 4:5, fotografico, alto contraste.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 4,
+      "angulo": "Urgencia eleicao 2026",
+      "hook": "2026 JA COMECOU. E VOCE ESTA POR FORA.",
+      "texto_na_arte": {
+        "manchete": "2026 JA COMECOU",
+        "apoio": "Acompanhe a corrida de perto, sem o viés da midia militante",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "A corrida rumo a 2026 ja esta rolando, e quem controla a narrativa ja largou na frente. Fique a frente tambem: os bastidores e os fatos, do seu lado, por R$ 22. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Montagem editorial estilo capa de jornal sobre papel off-white texturizado. Manchete condensada preta gigante '2026 JA COMECOU' com '2026' em azul-marinho. Ao fundo, silhueta sutil do mapa do Brasil em tom de tinta desbotada. Fios finos, cabecalho serifado 'JORNAL DA PATRIA'. Selo dourado 'R$ 22'. Detalhes patriotas sobrios em verde e ouro. Sensacao de urgencia jornalistica. Formato retrato 4:5, premium, realista.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 5,
+      "angulo": "Preco / ancoragem",
+      "hook": "MENOS QUE UM CAFE POR SEMANA",
+      "texto_na_arte": {
+        "manchete": "R$ 22 POR MES",
+        "apoio": "Um jornal inteiro do seu lado por menos que um cafezinho por semana",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Um cafe na padaria some em 5 minutos. Por R$ 22 no mes voce leva o jornal inteiro, todo dia, do seu lado. Informacao que fica, no lugar do troco que voce nem sente. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Foto realista de uma nota e moedas ao lado de uma xicara de cafe pequena sobre balcao de padaria, luz quente. Sobreposicao editorial: numero gigante em fonte condensada 'R$ 22' em verde-bandeira, subtitulo serifado preto 'por mes, um jornal inteiro do seu lado'. Textura de papel jornal, fios finos pretos, cabecalho 'JORNAL DA PATRIA' em marinho. Paleta patriota sobria. Formato retrato 4:5, fotografico, premium.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 6,
+      "angulo": "FOMO / prova social",
+      "hook": "SEU VIZINHO JA SABE. E VOCE?",
+      "texto_na_arte": {
+        "manchete": "SEU VIZINHO JA SABE",
+        "apoio": "2.400 leitores acordam informados. Falta voce.",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Enquanto voce rola o feed, 2.400 pessoas ja leram os fatos do dia e formaram a propria opiniao. Entra pra lista de quem chega informado. Por R$ 22. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Foto realista de um grupo de vizinhos brasileiros conversando na rua de um bairro, um deles segurando o celular sorrindo confiante, luz natural. Sobreposicao editorial estilo jornal: manchete condensada preta 'SEU VIZINHO JA SABE' e selo dourado 'R$ 22'. Fios finos, cabecalho serifado 'JORNAL DA PATRIA' em marinho, textura de papel nas bordas. Paleta patriota sobria. Formato retrato 4:5, fotografico, premium.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 7,
+      "angulo": "Identidade / manifesto",
+      "hook": "CHEGA DE ENGOLIR A NARRATIVA DELES",
+      "texto_na_arte": {
+        "manchete": "CHEGA DE NARRATIVA",
+        "apoio": "Os fatos, sem filtro. Do seu lado.",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Familia, fe, patria e liberdade nao cabem na pauta deles. Cabem na nossa. Um jornal que respeita o que voce acredita e te entrega o fato, nao a versao. Por R$ 22. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Primeira pagina de jornal impresso vintage sobre papel off-white texturizado, iluminacao editorial. Manchete condensada preta gigante 'CHEGA DE NARRATIVA', linha de apoio serifada 'os fatos, sem filtro, do seu lado'. Uma bandeira do Brasil pequena e sobria desenhada como vinheta de jornal (traco de tinta, nao colorida forte). Fios finos, cabecalho 'JORNAL DA PATRIA' em marinho, selo dourado 'R$ 22'. Paleta patriota elegante. Formato retrato 4:5, premium, realista.",
+      "formato": "1080x1350"
+    },
+    {
+      "id": 8,
+      "angulo": "Story vertical / direto",
+      "hook": "PARE DE ABRIR 10 SITES",
+      "texto_na_arte": {
+        "manchete": "PARE DE ABRIR 10 SITES",
+        "apoio": "Tudo que importa, em 1 e-mail, do seu lado",
+        "selo_preco": "R$ 22",
+        "cta": "SAIBA MAIS"
+      },
+      "copy_anuncio": "Dez abas abertas, meia hora perdida e no fim a mesma narrativa. Troca tudo por um e-mail que chega pronto, checado e do seu lado. R$ 22. Saiba mais.",
+      "cta": "Saiba mais",
+      "image_prompt": "Formato vertical de story. Foto realista de uma tela de celular com varias abas de navegador abertas e confusas, mao segurando, fundo escuro. Grande faixa editorial na parte de baixo com textura de papel off-white, manchete condensada preta 'PARE DE ABRIR 10 SITES' e selo dourado 'R$ 22'. Cabecalho serifado 'JORNAL DA PATRIA' no topo em marinho. Espaco reservado embaixo para o botao SAIBA MAIS. Paleta patriota sobria. Formato 9:16, realista, premium.",
+      "formato": "1080x1920"
+    }
+  ],
+  "dicas_de_uso": [
+    "Gere de 2 a 3 variacoes de imagem por criativo e teste no mesmo conjunto de anuncio.",
+    "Se o modelo escrever o texto errado na imagem, gere sem o texto e adicione a manchete depois num editor (Canva/Photoshop) para nitidez.",
+    "Mantenha o selo 'R$ 22' sempre visivel e o botao 'Saiba mais' no anuncio, nao dentro da arte, quando possivel.",
+    "Angulos 1, 3 e 7 costumam ter hook mais forte para topo de funil; 5 e 6 funcionam bem para remarketing."
+  ]
+}

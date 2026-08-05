@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Jornal da Pátria</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4f1ea;        /* newsprint */
+    --paper-edge:#e7e2d6;   /* page ground, slightly darker */
+    --ink:#181410;          /* near-black ink */
+    --ink-soft:#3a352c;
+    --navy:#0b2545;         /* authority */
+    --green:#1b5e3f;        /* bandeira */
+    --gold:#b5892a;         /* ouro sóbrio p/ acento (não estourar) */
+    --gold-bright:#e0b64a;
+    --red:#8f2d2d;          /* alarme/urgência sóbrio */
+    --rule:#181410;
+    --frame:1px solid var(--ink);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper-edge);
+    color:var(--ink);
+    font-family:"PT Serif",Georgia,serif;
+    font-size:18px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    padding-top:80px;
+  }
+  section[id]{scroll-margin-top:66px}
+  @media(max-width:600px){body{padding-top:100px}}
+  /* ---------- reveal ao scrollar ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.6,.2,1),transform .7s cubic-bezier(.2,.6,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- SHEET ---------- */
+  .sheet{
+    max-width:1280px;margin:0 auto;background:var(--paper);
+    border:var(--frame);padding:0 34px 0;
+  }
+  @media(max-width:720px){.sheet{padding:0 16px}}
+
+  /* ---------- shared type ---------- */
+  .smallcaps{
+    font-family:"Playfair Display",serif;text-transform:uppercase;
+    letter-spacing:.22em;font-size:12px;font-weight:600;
+  }
+  .kicker{
+    font-family:"Playfair Display",serif;text-transform:uppercase;
+    letter-spacing:.28em;font-size:13px;font-weight:600;text-align:center;color:var(--ink-soft);
+  }
+  .anton{font-family:"Anton",sans-serif;text-transform:uppercase;font-weight:400;line-height:.98;letter-spacing:.01em}
+  .serif-italic{font-family:"Playfair Display",serif;font-style:italic}
+
+  .rule{border:0;border-top:1px solid var(--rule)}
+
+  /* ---------- EDITION BAR ---------- */
+  .edition{display:flex;justify-content:space-between;align-items:center;padding:9px 0}
+  .edition .fleuron{font-size:15px;color:var(--gold)}
+  @media(max-width:600px){.edition .cities{display:none}}
+
+  /* ---------- MASTHEAD ---------- */
+  .masthead{text-align:center;padding:14px 0 8px}
+  .masthead h1{
+    font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;
+    font-size:96px;letter-spacing:.03em;line-height:.92;color:var(--navy);
+  }
+  .masthead .sub{margin-top:10px;color:var(--green)}
+  @media(max-width:720px){.masthead h1{font-size:46px}}
+
+  /* double rule under masthead */
+  .double{border:0;border-top:3px double var(--ink);height:0}
+
+  /* ---------- ICON NAVBAR (recolhe no scroll) ---------- */
+  #iconnav{
+    position:fixed;top:9px;left:50%;transform:translateX(-50%);z-index:800;
+    background:rgba(244,241,234,.94);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+    border:1px solid rgba(24,20,16,.2);border-radius:999px;
+    display:flex;flex-wrap:wrap;justify-content:center;gap:5px;padding:6px 10px;max-width:96vw;
+    transition:transform .35s ease,box-shadow .35s ease,opacity .35s ease;
+    box-shadow:0 4px 14px rgba(24,20,16,.1);
+  }
+  #iconnav.hidden{transform:translateX(-50%) translateY(-185%);opacity:0}
+  #iconnav a{color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:6px;padding:5px 11px;border:1px solid transparent;border-radius:999px;transition:color .2s ease,border-color .2s ease,background .2s ease}
+  #iconnav a:hover{color:var(--green);border-color:var(--green);background:rgba(27,94,63,.07)}
+  #iconnav a.active{color:var(--green)}
+  #iconnav .lbl{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.12em;font-size:10.5px;font-weight:600;white-space:nowrap}
+  #iconnav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+  @media(max-width:600px){#iconnav{border-radius:18px;gap:3px;padding:6px 8px}#iconnav a{padding:4px 7px;gap:4px}#iconnav .lbl{font-size:8.5px;letter-spacing:.05em}#iconnav svg{width:15px;height:15px}}
+
+  /* ---------- DATELINE ---------- */
+  .dateline{display:grid;grid-template-columns:1fr auto;align-items:center;padding:9px 0}
+  .dateline .mid{text-align:center;font-size:17px;color:var(--ink-soft)}
+  .dateline .r{text-align:right;white-space:nowrap}
+  @media(max-width:600px){.dateline{grid-template-columns:1fr;gap:4px;text-align:center}.dateline .r{text-align:center}}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:26px 0 6px}
+  .hero h2{font-size:58px;line-height:1.07;text-align:center;margin:14px auto 0;max-width:900px;color:var(--ink)}
+  .hero h2 .hl{color:var(--green)}
+  @media(max-width:720px){.hero h2{font-size:34px}}
+  .hero-cta{display:flex;justify-content:center;margin:26px 0 8px}
+  .btn{
+    position:relative;overflow:hidden;isolation:isolate;
+    display:inline-block;font-family:"Playfair Display",serif;text-transform:uppercase;
+    letter-spacing:.14em;font-weight:700;font-size:15px;
+    background:var(--navy);color:var(--gold-bright);
+    padding:16px 34px;text-decoration:none;border:1px solid var(--ink);
+    transition:transform .15s ease,background .2s ease;
+    animation:patriotic 5s linear infinite;
+  }
+  .btn::after{content:"";position:absolute;top:0;left:0;width:70%;height:100%;background:linear-gradient(100deg,transparent 0%,rgba(255,255,255,.8) 50%,transparent 100%);transform:translateX(-160%) skewX(-20deg);animation:shimmer 3s linear infinite;pointer-events:none;z-index:2}
+  .btn:hover{background:#081a34;transform:translateY(-2px)}
+  .btn:active{transform:translateY(0)}
+  .btn-gold{background:var(--gold);color:var(--ink)}
+  .btn-gold:hover{background:var(--gold-bright)}
+  @keyframes patriotic{
+    0%{box-shadow:0 0 0 2px rgba(27,94,63,.55)}
+    25%{box-shadow:0 0 0 2px rgba(224,182,74,.7)}
+    50%{box-shadow:0 0 0 2px rgba(11,37,69,.6)}
+    75%{box-shadow:0 0 0 2px rgba(224,182,74,.7)}
+    100%{box-shadow:0 0 0 2px rgba(27,94,63,.55)}
+  }
+  @keyframes shimmer{0%{transform:translateX(-160%) skewX(-20deg)}40%{transform:translateX(230%) skewX(-20deg)}100%{transform:translateX(230%) skewX(-20deg)}}
+  @media(prefers-reduced-motion:reduce){.btn{animation:none}.btn::after{display:none}}
+  .proof{display:flex;justify-content:center;gap:0;margin:16px 0 4px;flex-wrap:nowrap}
+  .proof div{padding:4px 20px;border-left:1px solid var(--ink);white-space:nowrap}
+  .proof div:first-child{border-left:0}
+  @media(max-width:600px){.proof .smallcaps{font-size:9px;letter-spacing:.1em}.proof div{padding:3px 8px}}
+
+  /* ---------- SECTION HEADER ---------- */
+  .sec{padding:30px 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0}
+  .sec-head .t{font-size:30px;color:var(--navy)}
+  .sec-head .n{color:var(--ink-soft)}
+  @media(max-width:600px){.sec-head{flex-direction:column;gap:4px}.sec-head .t{font-size:24px}}
+
+  /* ---------- MANIFESTO LEDE ---------- */
+  .lede{columns:2;column-gap:42px;column-rule:1px solid var(--ink);max-width:960px;margin:20px auto 0;text-align:justify;hyphens:auto}
+  .lede p{margin-bottom:14px}
+  .lede p:first-of-type::first-letter{
+    font-family:"Playfair Display",serif;font-weight:900;font-size:66px;line-height:.7;
+    float:left;margin:6px 8px 0 0;color:var(--green);
+  }
+  @media(max-width:720px){.lede{columns:1}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{overflow:hidden;white-space:nowrap;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:6px 0;background:var(--navy)}
+  .marquee .track{display:inline-block;animation:scroll 26s linear infinite}
+  .marquee span{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:.08em;color:var(--paper);padding:0 14px}
+  .marquee span .dot{color:var(--gold-bright)}
+  @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+  /* ---------- FIGURE ---------- */
+  figure.fig{margin:18px 0}
+  figure.fig .img{height:360px;background:var(--navy);display:flex;align-items:center;justify-content:center;filter:grayscale(1);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  figure.fig .img span{font-family:"Anton",sans-serif;color:#8ea0b5;font-size:22px;text-transform:uppercase;letter-spacing:.1em}
+  figure.fig figcaption{display:flex;justify-content:space-between;padding:7px 0}
+  @media(max-width:600px){figure.fig .img{height:200px}figure.fig figcaption{flex-direction:column;gap:2px}}
+
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);margin-top:20px}
+  .steps .col{padding:0 22px;border-left:1px solid var(--ink)}
+  .steps .col:first-child{border-left:0;padding-left:0}
+  .steps .num{font-family:"Anton",sans-serif;font-size:40px;color:var(--gold)}
+  .steps h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:20px;margin:6px 0 8px;color:var(--navy)}
+  @media(max-width:720px){.steps{grid-template-columns:1fr 1fr}.steps .col{border-left:0;padding:14px 0;border-top:1px solid #cfc8b8}.steps .col:first-child{border-top:0}}
+  @media(max-width:460px){.steps{grid-template-columns:1fr}}
+
+  /* ---------- EDITORIAS GRID ---------- */
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px}
+  .grid3 .cell{padding:20px 22px;border-left:1px solid var(--ink);border-top:1px solid var(--ink)}
+  .grid3 .cell:nth-child(-n+3){border-top:0}
+  .grid3 .cell:nth-child(3n+1){border-left:0}
+  .grid3 h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:21px;margin-bottom:7px;color:var(--navy)}
+  .grid3 .tag{color:var(--green);font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase}
+  @media(max-width:720px){.grid3{grid-template-columns:1fr}.grid3 .cell{border-left:0!important;border-top:1px solid var(--ink)!important}.grid3 .cell:first-child{border-top:0!important}}
+
+  /* ---------- TWO COLUMNS (pra quem) ---------- */
+  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:20px}
+  .twocol .c{padding:0 30px}
+  .twocol .c:first-child{border-right:1px solid var(--ink);padding-left:0}
+  .twocol h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:22px;margin-bottom:14px}
+  .twocol .yes h4{color:var(--green)}
+  .twocol .no h4{color:var(--red)}
+  .twocol ul{list-style:none}
+  .twocol li{padding:11px 0;border-top:1px solid #d8d1c2;display:flex;gap:12px}
+  .twocol li:first-child{border-top:0}
+  .twocol li .mk{font-family:"Anton",sans-serif;font-size:18px}
+  .yes li .mk{color:var(--green)}
+  .no li .mk{color:var(--red)}
+  @media(max-width:600px){.twocol{grid-template-columns:1fr}.twocol .c{padding:0}.twocol .c:first-child{border-right:0;border-bottom:1px solid var(--ink);padding-bottom:16px;margin-bottom:16px}}
+
+  /* ---------- DIFERENCIAIS ---------- */
+  .diff{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:20px}
+  .diff .d{padding:22px 26px;border-left:1px solid var(--ink);border-top:1px solid var(--ink)}
+  .diff .d:nth-child(-n+2){border-top:0}
+  .diff .d:nth-child(2n+1){border-left:0}
+  .diff .lbl{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px;color:var(--gold)}
+  .diff h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:22px;margin:6px 0 8px;color:var(--navy)}
+  @media(max-width:600px){.diff{grid-template-columns:1fr}.diff .d{border-left:0!important;border-top:1px solid var(--ink)!important}.diff .d:first-child{border-top:0!important}}
+
+  /* ---------- PULL QUOTE ---------- */
+  .pull{text-align:center;padding:34px 20px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);margin-top:8px}
+  .pull q{font-family:"Playfair Display",serif;font-style:italic;font-size:32px;line-height:1.3;max-width:900px;display:inline-block;color:var(--ink)}
+  .pull q::before{content:"“"}.pull q::after{content:"”"}
+  .pull .attr{margin-top:18px;color:var(--ink-soft)}
+  @media(max-width:600px){.pull q{font-size:22px}}
+
+  .tcards{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px}
+  .tcards .t{padding:22px 24px;border-left:1px solid var(--ink);text-align:left}
+  .tcards .t:first-child{border-left:0}
+  .tcards .stars{color:var(--gold);letter-spacing:3px;font-size:14px}
+  .tcards blockquote{font-family:"Playfair Display",serif;font-style:italic;font-size:17px;line-height:1.42;margin:8px 0 12px;color:var(--ink)}
+  .tcards .person{display:flex;align-items:center;gap:12px;margin-top:8px}
+  .tcards .avatar{width:52px;height:52px;border-radius:50%;object-fit:cover;border:1px solid var(--ink);flex-shrink:0;background:var(--paper-edge)}
+  .tcards .who{font-family:"Playfair Display",serif;font-weight:700;font-size:15.5px;color:var(--ink);line-height:1.2}
+  .tcards .who span{display:block;font-family:"Playfair Display",serif;font-weight:600;text-transform:uppercase;letter-spacing:.14em;color:var(--gold);font-size:10.5px;margin-top:3px}
+  @media(max-width:720px){.tcards{grid-template-columns:1fr}.tcards .t{border-left:0;border-top:1px solid #d8d1c2;padding:18px 4px}.tcards .t:first-child{border-top:0}}
+
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);margin-top:20px;text-align:center}
+  .stats .s{padding:18px;border-left:1px solid var(--ink)}
+  .stats .s:first-child{border-left:0}
+  .stats .big{font-family:"Anton",sans-serif;font-size:46px;color:var(--green)}
+  @media(max-width:600px){.stats{grid-template-columns:1fr}.stats .s{border-left:0;border-top:1px solid #d8d1c2}.stats .s:first-child{border-top:0}}
+
+  /* ---------- PLANOS ---------- */
+  #planos{scroll-margin-top:14px}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:22px}
+  .plan{border:1px solid var(--ink);padding:26px;transition:transform .2s ease,box-shadow .2s ease}
+  .plan:hover{transform:translateY(-4px);box-shadow:0 10px 0 rgba(24,20,16,.06)}
+  .plan.best{border:3px double var(--ink);position:relative}
+  .plan .seal{position:absolute;top:-14px;left:26px;background:var(--gold);color:var(--ink);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;padding:5px 14px}
+  .plan h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:26px;color:var(--navy)}
+  .plan .price{font-family:"Anton",sans-serif;font-size:56px;color:var(--green);margin:10px 0 2px}
+  .plan .price small{font-family:"PT Serif";font-size:16px;color:var(--ink-soft)}
+  .plan .pricenote{font-family:"PT Serif",serif;font-style:italic;font-size:13px;color:var(--ink-soft);margin:0 0 6px}
+  .plan ul{list-style:none;margin:16px 0 22px}
+  .plan li{padding:9px 0;border-top:1px solid #d8d1c2;display:flex;gap:10px}
+  .plan li::before{content:"›";color:var(--gold);font-weight:700}
+  .plan .btn{width:100%;text-align:center;font-size:16px;padding:19px 18px;letter-spacing:.16em}
+  .anchor{text-align:center;max-width:640px;margin:0 auto;color:var(--ink-soft);font-style:italic;font-size:15px;line-height:1.45}
+  @media(max-width:720px){.plans{grid-template-columns:1fr}}
+
+  /* ---------- GARANTIA ---------- */
+  .guarantee{border:3px double var(--ink);max-width:820px;margin:24px auto 0;padding:28px;text-align:center}
+  .guarantee h4{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:30px;color:var(--navy);margin-bottom:10px}
+
+  /* ---------- FAQ ---------- */
+  .faq{max-width:900px;margin:20px auto 0}
+  .faq details{border-top:1px solid var(--ink);padding:16px 4px}
+  .faq details:last-child{border-bottom:1px solid var(--ink)}
+  .faq summary{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:19px;color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";color:var(--gold);font-size:26px;line-height:.8}
+  .faq details[open] summary::after{content:"–"}
+  .faq p{margin-top:12px}
+
+  /* ---------- COMMISSION / FINAL CTA ---------- */
+  .commission{text-align:center;max-width:840px;margin:28px auto;padding:34px 20px;border-top:3px double var(--ink);border-bottom:3px double var(--ink)}
+  .commission h3{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:46px;color:var(--ink);margin:10px 0}
+  .commission .note{font-style:italic;color:var(--ink-soft);max-width:560px;margin:0 auto 22px}
+  @media(max-width:600px){.commission h3{font-size:30px}}
+
+  /* ---------- DOWNSELL MODAL ---------- */
+  .modal{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;background:rgba(11,20,35,.74);padding:20px;-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
+  .modal.open{display:flex}
+  .modal-box{position:relative;background:var(--paper);border:3px double var(--ink);max-width:470px;width:100%;padding:36px 30px 26px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.45);animation:pop .35s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+  .modal-x{position:absolute;top:8px;right:13px;background:none;border:0;font-size:30px;line-height:1;color:var(--ink-soft);cursor:pointer}
+  .modal-x:hover{color:var(--red)}
+  .modal-kick{color:var(--red);display:block;margin-bottom:8px}
+  .modal-h{font-size:40px;color:var(--navy);margin-bottom:14px;line-height:1}
+  .modal-p{font-size:16px;color:var(--ink);margin-bottom:14px;line-height:1.5}
+  .modal-econ{font-family:"Anton",sans-serif;text-transform:uppercase;font-size:16px;color:var(--green);letter-spacing:.03em;margin-bottom:20px}
+  .modal-cta{width:100%;justify-content:center;font-size:17px}
+  .modal-decline{display:block;margin-top:15px;font-size:11.5px;color:var(--ink-soft);text-decoration:underline;opacity:.65;transition:opacity .2s}
+  .modal-decline:hover{opacity:1;color:var(--ink)}
+  @media(max-width:600px){.modal-h{font-size:31px}.modal-box{padding:30px 20px 22px}}
+
+  /* ---------- COLOPHON ---------- */
+  .colophon{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--ink)}
+  .colophon .legal{max-width:640px}
+  @media(max-width:600px){.colophon{flex-direction:column;gap:8px;text-align:center}}
+
+</style>
+</head>
+<body>
+
+<!-- ICON NAVBAR (recolhe no scroll) -->
+<nav id="iconnav" aria-label="Navegação do jornal">
+  <a href="#manifesto" aria-label="O Manifesto">
+    <svg viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M15 2v5h5"/><path d="M9 12h7M9 16h7"/></svg>
+    <span class="lbl">Manifesto</span>
+  </a>
+  <a href="#como" aria-label="Como Funciona">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></svg>
+    <span class="lbl">Funciona</span>
+  </a>
+  <a href="#recebe" aria-label="O Que Você Recebe">
+    <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16"/><path d="M3 9h18M9 9v11M15 9v11"/></svg>
+    <span class="lbl">Recebe</span>
+  </a>
+  <a href="#confiar" aria-label="Por Que Confiar">
+    <svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
+    <span class="lbl">Confiar</span>
+  </a>
+  <a href="#planos" aria-label="Assinar">
+    <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 6 9-6"/></svg>
+    <span class="lbl">Assinar</span>
+  </a>
+</nav>
+
+<div class="sheet">
+
+  <!-- EDITION BAR -->
+  <hr class="rule">
+  <div class="edition">
+    <span class="smallcaps">Jornal Digital Independente</span>
+    <span class="fleuron">❧</span>
+    <span class="smallcaps cities">Brasil · Edição Nacional</span>
+  </div>
+  <hr class="rule">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <h1>Jornal da Pátria</h1>
+  </div>
+  <hr class="double">
+
+  <!-- DATELINE -->
+  <div class="dateline">
+    <span class="mid serif-italic">A política do seu lado, sem pedir desculpa</span>
+    <span class="smallcaps r">Edição Nº 001 · <span id="hoje"></span></span>
+  </div>
+  <hr class="rule">
+
+  <!-- HERO -->
+  <section class="hero">
+    <h2 class="anton">Saiba o que a imprensa velha <span class="hl">não te conta</span></h2>
+    <div class="hero-cta">
+      <a class="btn" href="#planos">Quero ficar atualizado</a>
+    </div>
+    <p class="anchor">Os fatos que importam, do seu lado e direto ao ponto. Você lê em cinco minutos e sai na frente da narrativa.</p>
+    <div class="proof">
+      <div class="smallcaps">Direto ao ponto</div>
+      <div class="smallcaps">Fontes cruzadas</div>
+      <div class="smallcaps">5 min de leitura</div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- 01 MANIFESTO -->
+  <section class="sec" id="manifesto">
+    <div class="sec-head">
+      <span class="t anton">/ 01 — O Manifesto</span>
+      <span class="n smallcaps">Por que este jornal existe</span>
+    </div>
+    <hr class="rule">
+    <div class="lede">
+      <p>Você já sabe como é. Abre um portal grande e a manchete já vem torta. Abre outro, mesma narrativa, palavra por palavra. Passa por cinco sites, gasta meia hora e sai mais confuso do que entrou, com a sensação de que alguém decidiu por você o que era importante naquele dia.</p>
+      <p>A imprensa velha não perdeu a mão. Ela escolheu um lado, e não é o seu. O fato que interessa some no rodapé. O que incomoda vira escândalo de capa. E no fim do mês ainda chega a cobrança da assinatura de um jornal que despreza tudo em que você acredita: a família, a fé, a pátria, a liberdade de tocar a própria vida sem o Estado no cangote.</p>
+      <p>O problema nunca foi falta de notícia. É excesso de ruído e falta de quem leia os fatos do seu lado. Enquanto você corre atrás da verdade em dez lugares, quem manda na narrativa já contou a história inteira do jeito dele.</p>
+      <p>Foi por isso que criamos este jornal. Uma edição limpa, com o que de fato aconteceu e o que aquilo significa para quem pensa como você. Sem militância disfarçada de reportagem. Sem susto fabricado. Você lê em cinco minutos e volta a viver o seu dia sabendo exatamente onde o país está pisando.</p>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="track">
+      <span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span><span>Os fatos<span class="dot"> · </span>sem filtro</span>
+    </div>
+  </div>
+
+  <!-- 02 COMO FUNCIONA -->
+  <section class="sec" id="como">
+    <div class="sec-head">
+      <span class="t anton">/ 02 — Como Funciona</span>
+      <span class="n smallcaps">Do fato bruto à sua caixa de entrada</span>
+    </div>
+    <figure class="fig">
+      <div class="img"><span>[ Foto P&B — redação / bandeira / manchete ]</span></div>
+      <figcaption>
+        <span class="smallcaps">Fig. 01 — A edição fechando, na hora que o fato acontece</span>
+        <span class="smallcaps serif-italic">Registro da casa, MMXXVI</span>
+      </figcaption>
+    </figure>
+    <div class="steps">
+      <div class="col"><div class="num">01</div><h4>Coleta</h4><p>Puxamos as notícias do dia direto de fontes confiáveis e verificadas. Nada de boato de grupo de WhatsApp.</p></div>
+      <div class="col"><div class="num">02</div><h4>Cruza</h4><p>Cada fato é conferido em mais de uma fonte antes de virar linha. Se não bate, não entra.</p></div>
+      <div class="col"><div class="num">03</div><h4>Traduz</h4><p>Resumimos direto ao ponto, com a leitura de quem defende os seus valores, sem enrolar.</p></div>
+      <div class="col"><div class="num">04</div><h4>Entrega</h4><p>Cai direto no seu e-mail. Você abre, lê em cinco minutos e segue a vida atualizado.</p></div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- 03 O QUE VOCÊ RECEBE -->
+  <section class="sec" id="recebe">
+    <div class="sec-head">
+      <span class="t anton">/ 03 — O Que Você Recebe</span>
+      <span class="n smallcaps">Todas as editorias que importam</span>
+    </div>
+    <div class="grid3">
+      <div class="cell"><span class="tag">Política</span><h4>Política Nacional</h4><p>O que se move em Brasília todo dia, com a leitura de quem não engole a versão oficial.</p></div>
+      <div class="cell"><span class="tag">Bastidores</span><h4>Os Bastidores</h4><p>O jogo por trás da manchete: quem articula, quem trai, quem manda de verdade.</p></div>
+      <div class="cell"><span class="tag">Economia</span><h4>Bolso &amp; Liberdade</h4><p>Imposto, gasto público e o que cada decisão faz com o seu dinheiro no fim do mês.</p></div>
+      <div class="cell"><span class="tag">Mundo</span><h4>Direita Global</h4><p>Trump, Milei e a virada conservadora lá fora, sem o verniz da imprensa internacional.</p></div>
+      <div class="cell"><span class="tag">Opinião</span><h4>As Colunas</h4><p>Análise firme sobre costumes, fé e família, sem pedir licença pra ninguém.</p></div>
+      <div class="cell"><span class="tag">Urgente</span><h4>Alertas de Última Hora</h4><p>Quando algo grande estoura, você fica sabendo antes do feed te empurrar a versão deles.</p></div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- 04 PRA QUEM É -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="t anton">/ 04 — Pra Quem É</span>
+      <span class="n smallcaps">Franqueza pra poupar o tempo dos dois</span>
+    </div>
+    <div class="twocol">
+      <div class="c yes">
+        <h4>Faz sentido se você</h4>
+        <ul>
+          <li><span class="mk">✓</span> Cansou da mídia militante e quer os fatos sem o viés embutido.</li>
+          <li><span class="mk">✓</span> Quer acompanhar a corrida de 2026 de perto, sem depender do que o algoritmo escolhe te mostrar.</li>
+          <li><span class="mk">✓</span> Não tem tempo pra caçar notícia em dez sites e quer tudo limpo num lugar só.</li>
+          <li><span class="mk">✓</span> Gosta de chegar na conversa com argumento e fato na ponta da língua.</li>
+        </ul>
+      </div>
+      <div class="c no">
+        <h4>Provavelmente não é</h4>
+        <ul>
+          <li><span class="mk">✕</span> Se você confia de olhos fechados na imprensa tradicional e acha que ela é neutra.</li>
+          <li><span class="mk">✕</span> Se política não te interessa e você não liga pro rumo do país.</li>
+          <li><span class="mk">✕</span> Se procura um jornal "sem lado" que finge não ter opinião nenhuma.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <hr class="rule">
+
+  <!-- 05 POR QUE CONFIAR -->
+  <section class="sec" id="confiar">
+    <div class="sec-head">
+      <span class="t anton">/ 05 — Por Que Confiar</span>
+      <span class="n smallcaps">Linha editorial firme, fato checado</span>
+    </div>
+    <div class="diff">
+      <div class="d"><div class="lbl">Regra da casa</div><h4>Fonte cruzada, sempre</h4><p>Nenhuma notícia vira linha sem ser confirmada em mais de uma fonte confiável. Ter lado não é o mesmo que inventar.</p></div>
+      <div class="d"><div class="lbl">Sem susto vendido</div><h4>Zero fake news</h4><p>Se não dá pra provar, não publicamos. Boato queima a marca, e a nossa marca é a sua confiança.</p></div>
+      <div class="d"><div class="lbl">Respeito ao seu tempo</div><h4>Direto ao ponto</h4><p>Nada de texto inflado pra render clique. Você recebe o fato e o que ele significa, sem rodeio.</p></div>
+      <div class="d"><div class="lbl">Fora do cabresto</div><h4>Sem depender do algoritmo</h4><p>Chega direto pra você. Nenhuma big tech decide se a notícia aparece ou some do seu feed.</p></div>
+    </div>
+  </section>
+
+  <!-- 06 PROVA SOCIAL -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="t anton">/ 06 — Cartas ao Editor</span>
+      <span class="n smallcaps">O que dizem os assinantes</span>
+    </div>
+    <div class="tcards">
+      <div class="t">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Em cinco minutos de manhã eu já sei o que importa. Nunca acompanhei a política tão bem informada.”</blockquote>
+        <div class="person">
+          <img class="avatar" src="avatars/claudia.jpg" alt="Cláudia Meireles">
+          <div class="who">Cláudia Meireles<span>Brasília, DF</span></div>
+        </div>
+      </div>
+      <div class="t">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Cansei de abrir dez sites. Agora chega tudo no meu e-mail, checado e direto ao ponto.”</blockquote>
+        <div class="person">
+          <img class="avatar" src="avatars/ronaldo.jpg" alt="Ronaldo Braga">
+          <div class="who">Ronaldo Braga<span>Curitiba, PR</span></div>
+        </div>
+      </div>
+      <div class="t">
+        <div class="stars">★★★★★</div>
+        <blockquote>“Me mantém super informado, sem o viés da imprensa grande. Virou minha primeira leitura do dia.”</blockquote>
+        <div class="person">
+          <img class="avatar" src="avatars/paulo.jpg" alt="Paulo Rezende">
+          <div class="who">Paulo Rezende<span>Belo Horizonte, MG</span></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="rule" style="margin:30px 0 0">
+    <div class="statkicker smallcaps" style="text-align:center;margin-top:16px;color:var(--ink-soft)">O Jornal da Pátria em números</div>
+  <div class="stats" style="margin-top:12px">
+    <div class="s"><div class="big">2.400</div><div class="smallcaps">Assinantes ativos</div></div>
+    <div class="s"><div class="big">40</div><div class="smallcaps">Fontes monitoradas</div></div>
+    <div class="s"><div class="big">100%</div><div class="smallcaps">Fatos checados</div></div>
+  </div>
+  </section>
+  <hr class="rule">
+
+  <!-- 07 PLANOS -->
+  <section class="sec" id="planos">
+    <div class="sec-head">
+      <span class="t anton">/ 07 — Assine o Jornal da Pátria</span>
+      <span class="n smallcaps">Menos que um café por semana</span>
+    </div>
+    <p class="anchor">Um cafezinho na padaria custa mais que isso e some em cinco minutos. Por menos que o preço de uma assinatura de jornal grande que te despreza, você recebe o Jornal da Pátria o ano inteiro, do seu lado.</p>
+    <div class="plans">
+      <div class="plan">
+        <h4>Mensal</h4>
+        <div class="price">R$ 22,22<small>/mês</small></div>
+        <ul>
+          <li>Acesso completo</li>
+          <li>Todas as editorias e alertas de última hora</li>
+          <li>Resumo direto ao ponto, leitura em 5 minutos</li>
+          <li>Acesso no celular e no computador</li>
+          <li>Sem anúncios</li>
+          <li>Cancele quando quiser</li>
+        </ul>
+        <a class="btn" id="btnMensal" href="[LINK DE CHECKOUT MENSAL]">Assinar o mensal</a>
+      </div>
+      <div class="plan best">
+        <span class="seal">Mais escolhido</span>
+        <h4>Anual</h4>
+        <div class="price">R$ 222,22<small>/ano</small></div>
+        <div class="pricenote">equivale a R$ 18,52/mês</div>
+        <ul>
+          <li>Tudo do plano mensal</li>
+          <li>2 meses de desconto no total</li>
+          <li>Acesso ao arquivo completo de edições</li>
+          <li>Prioridade nos alertas de última hora</li>
+          <li>Edições especiais sobre a corrida de 2026</li>
+          <li>Suporte por e-mail com prioridade</li>
+        </ul>
+        <a class="btn btn-gold" href="[LINK DE CHECKOUT ANUAL]">Assinar o anual</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 GARANTIA -->
+  <div class="guarantee">
+    <span class="smallcaps">Risco Zero</span>
+    <h4>Garantia de 7 dias</h4>
+    <p>Assine, leia as edições por 7 dias e sinta a diferença de estar sempre à frente. Se não for pra você, manda um e-mail e devolvemos cada centavo. Sem letra miúda, sem interrogatório. E você cancela quando quiser, com um clique.</p>
+  </div>
+  <hr class="rule">
+
+  <!-- 09 FAQ -->
+  <section class="sec">
+    <div class="sec-head">
+      <span class="t anton">/ 09 — Dúvidas</span>
+      <span class="n smallcaps">O que falta saber antes de assinar</span>
+    </div>
+    <div class="faq">
+      <details><summary>Como eu recebo as edições?</summary><p>Direto no seu e-mail. Assim que você assina, a edição começa a chegar na sua caixa de entrada, pronta pra ler no celular ou no computador.</p></details>
+      <details><summary>Quando sai uma notícia nova?</summary><p>Assim que um fato relevante acontece, a gente já produz e manda a notícia pra você. Você não fica esperando horário fixo: o que importa chega assim que sai.</p></details>
+      <details><summary>De onde vêm as notícias?</summary><p>De fontes confiáveis e verificadas, sempre cruzadas em mais de um lugar antes de virar linha. A leitura é do nosso lado; o fato é conferido.</p></details>
+      <details><summary>Posso cancelar quando quiser?</summary><p>Sim. Sem fidelidade e sem multa. Cancela com um clique e ainda tem a garantia de 7 dias com devolução total.</p></details>
+      <details><summary>É confiável mesmo, ou é só panfleto?</summary><p>Tem linha editorial de direita, e isso é assumido. Mas fato inventado não entra. Todo jornal tem lado; o nosso é o seu, com a informação checada.</p></details>
+      <details><summary>Funciona no celular?</summary><p>Sim, tudo pensado pra ler no celular em cinco minutos, de qualquer lugar.</p></details>
+    </div>
+  </section>
+
+  <!-- COMMISSION / FINAL CTA -->
+  <div class="commission">
+    <span class="smallcaps">2026 já começou. E você?</span>
+    <h3 class="anton">Fique à frente da narrativa</h3>
+    <p class="note serif-italic">Enquanto a imprensa velha decide o que você deve pensar, você já leu os fatos e formou a sua opinião. Os fatos, do seu lado, direto no seu e-mail.</p>
+    <a class="btn" href="#planos">Assinar o Jornal da Pátria agora</a>
+  </div>
+
+  <!-- COLOPHON -->
+  <div class="colophon">
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Todos os direitos reservados. Conteúdo jornalístico e de opinião, com linha editorial declarada.</div>
+    <div class="smallcaps">Página Um de Um</div>
+  </div>
+  <hr class="rule">
+
+</div>
+
+<!-- DOWNSELL: aparece ao clicar em Assinar o mensal -->
+<div id="downsell" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Oferta especial do plano anual">
+    <button class="modal-x" aria-label="Fechar">&times;</button>
+    <span class="smallcaps modal-kick">Espere · Oferta única nesta tela</span>
+    <h3 class="anton modal-h">Leve o ano inteiro por R$ 97</h3>
+    <p class="modal-p">Pagar mês a mês você já ia gastar <b>R$ 266</b> no ano. Agora, só aqui e só agora, leva o Jornal da Pátria o <b>ano inteiro por R$ 97 à vista</b>. É o preço de quatro cafés por mês pra chegar informado até depois da eleição de 2026, sem pagar de novo. Feche esta tela e a oferta some.</p>
+    <div class="modal-econ">Você economiza R$ 169</div>
+    <a class="btn btn-gold modal-cta" href="[LINK CHECKOUT ANUAL R$97]">Quero o ano todo por R$ 97</a>
+    <a class="modal-decline" href="[LINK DE CHECKOUT MENSAL]">Não quero economizar, prefiro pagar R$ 22,22 todo mês</a>
+  </div>
+</div>
+
+<script>
+  // data dinâmica em pt-BR (numérica)
+  (function(){
+    var d = new Date();
+    var dd = String(d.getDate()).padStart(2,"0");
+    var mm = String(d.getMonth()+1).padStart(2,"0");
+    var el = document.getElementById("hoje");
+    if(el) el.textContent = dd + "/" + mm + "/" + d.getFullYear();
+  })();
+
+  // aparecer ao scrollar: marca blocos e revela quando entram na tela
+  (function(){
+    var sel = ".sec-head, .lede, figure.fig, .steps .col, .grid3 .cell, .twocol .c, .diff .d, .tcards .t, .stats .s, .plan, .guarantee, .faq details, .commission";
+    var els = document.querySelectorAll(sel);
+    els.forEach(function(e){ e.classList.add("reveal"); });
+
+    // fallback por scroll/resize: revela o que estiver na tela
+    function revealInView(){
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      els.forEach(function(e){
+        if(e.classList.contains("in")) return;
+        var r = e.getBoundingClientRect();
+        if(r.top < vh * 0.92 && r.bottom > 0) e.classList.add("in");
+      });
+    }
+
+    if("IntersectionObserver" in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+      }, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
+      els.forEach(function(e){ io.observe(e); });
+    }
+    window.addEventListener("scroll", revealInView, {passive:true});
+    window.addEventListener("resize", revealInView);
+    window.addEventListener("load", revealInView);
+    revealInView();
+    // rede de segurança: nada fica invisível pra sempre
+    setTimeout(function(){ els.forEach(function(e){ var r=e.getBoundingClientRect(); if(r.top < (window.innerHeight||800)) e.classList.add("in"); }); }, 1200);
+  })();
+
+  // downsell: clicar em "Assinar o mensal" abre a oferta do anual por R$97
+  (function(){
+    var modal = document.getElementById("downsell");
+    var btn = document.getElementById("btnMensal");
+    if(!modal || !btn) return;
+    var x = modal.querySelector(".modal-x");
+    function open(e){ if(e) e.preventDefault(); modal.classList.add("open"); document.body.style.overflow="hidden"; }
+    function close(){ modal.classList.remove("open"); document.body.style.overflow=""; }
+    btn.addEventListener("click", open);
+    x.addEventListener("click", close);
+    modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
+  })();
+
+  // navbar de ícones: recolhe ao rolar pra baixo, reaparece ao rolar pra cima
+  (function(){
+    var nav = document.getElementById("iconnav");
+    if(!nav) return;
+    var last = 0, ticking = false;
+    window.addEventListener("scroll", function(){
+      if(ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(function(){
+        var y = window.scrollY || document.documentElement.scrollTop;
+        if(y > last && y > 90){ nav.classList.add("hidden"); }
+        else { nav.classList.remove("hidden"); }
+        last = y;
+        ticking = false;
+      });
+    }, {passive:true});
+  })();
+</script>
+</body>
+</html>
