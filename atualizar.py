@@ -28,13 +28,30 @@ import anthropic
 
 # ---------- config ----------
 FEEDS = [
-    # (nome da fonte, url do RSS, categoria)
-    ("G1 Política",     "https://g1.globo.com/rss/g1/politica/",                       "politica"),
-    ("Poder360",        "https://www.poder360.com.br/feed/",                            "politica"),
-    ("Gazeta do Povo",  "https://www.gazetadopovo.com.br/feed/rss/republica.xml",       "politica"),
-    ("CNN Brasil",      "https://admin.cnnbrasil.com.br/feed/",                         "urgente"),
-    ("Agência Brasil",  "https://agenciabrasil.ebc.com.br/rss/ultimasnoticias/feed.xml","politica"),
+    # (nome da fonte, url do RSS, categoria) — FOCO: política e Eleições 2026
+    ("Poder360 Eleições",  "https://www.poder360.com.br/poder-eleicoes-2026/feed/",  "eleicoes"),
+    ("G1 Eleições",        "https://g1.globo.com/rss/g1/politica/eleicoes/2026/",     "eleicoes"),
+    ("G1 Política",        "https://g1.globo.com/rss/g1/politica/",                   "politica"),
+    ("Poder360 Governo",   "https://www.poder360.com.br/poder-governo/feed/",         "politica"),
+    ("Poder360 Congresso", "https://www.poder360.com.br/poder-congresso/feed/",       "politica"),
+    ("Poder360 Justiça",   "https://www.poder360.com.br/poder-justica/feed/",         "politica"),
+    ("Gazeta do Povo",     "https://www.gazetadopovo.com.br/feed/rss/republica.xml",  "politica"),
 ]
+
+# so publica noticia que fale de politica/eleicoes (evita esporte, celebridade, etc.)
+POLITICAL_TERMS = (
+    "eleic", "eleitor", "candidat", "campanha", "urna", "tse", "stf", "tcu",
+    "partido", "coligaç", "coligac", "deputad", "senador", "governador", "prefeit",
+    "presiden", "congress", "senado", "câmara", "camara", "planalto", "ministr",
+    "governo", "oposiç", "oposic", "mandato", "voto", "votaç", "política", "politica",
+    "reforma", "cpi", "cpmi", "impeachment", "lula", "bolsonaro", "pt ", "pl ",
+    "convenç", "convenc", "pauta", "projeto de lei", "medida provisória", "chapa",
+)
+
+
+def is_political(*texts):
+    blob = " ".join(t or "" for t in texts).lower()
+    return any(term in blob for term in POLITICAL_TERMS)
 MODEL = "claude-haiku-4-5"     # o Claude mais barato; troque por claude-opus-5 se quiser mais qualidade
 MAX_NEW_PER_RUN = 6            # limita chamadas de LLM por rodada (controle de custo)
 MAX_ARTICLES = 24             # quantas noticias mantem no feed
@@ -56,6 +73,10 @@ SYSTEM = (
     "editorial de direita (valores conservadores, liberalismo econômico, ceticismo "
     "com a esquerda, defesa da família, do livre mercado e das instituições). Recebe o "
     "título, o resumo e (quando disponível) o TEXTO COMPLETO de uma notícia apurada por terceiros.\n"
+    "CONTEXTO SAZONAL: estamos às vésperas das ELEIÇÕES 2026. Sempre que o fato tiver relação "
+    "com eleições, candidatos, partidos, pesquisas, alianças ou a disputa pelo poder, DÊ DESTAQUE "
+    "a esse ângulo eleitoral e explique o que aquilo significa para o eleitor de direita em 2026. "
+    "Foco total em política e nos políticos.\n"
     "Sua tarefa é REDIGIR UMA MATÉRIA COMPLETA E ORIGINAL do zero, cobrindo os mesmos fatos, "
     "mas com texto totalmente seu — como se a redação do Jornal da Pátria tivesse escrito.\n"
     "Produza:\n"
@@ -76,6 +97,7 @@ SYSTEM = (
 )
 
 CAT_LABEL = {
+    "eleicoes": "Eleições 2026",
     "politica": "Política",
     "economia": "Economia",
     "mundo": "Mundo",
@@ -195,6 +217,8 @@ def collect():
             summary = clean(e.get("summary", ""))[:600]
             if not link or not title:
                 continue
+            if not is_political(title, summary, link):   # foco: so politica/eleicoes
+                continue
             items.append({
                 "link": link, "title": title, "summary": summary,
                 "fonte": fonte, "cat": cat, "published": to_iso(e),
@@ -237,7 +261,7 @@ def article_slug(a):
 def render_article(a, lead=False):
     cat = a["cat"]
     label = CAT_LABEL.get(cat, cat.title())
-    tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo") else "tag"
+    tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo", "eleicoes") else "tag"
     titulo = html.escape(a["titulo"])
     dek = html.escape(a["dek"])
     inner = html.escape(f"/acesso-jornal/noticia/{article_slug(a)}", quote=True)
@@ -280,7 +304,7 @@ def render_body_blocks(corpo):
 def render_article_page(a, template):
     cat = a["cat"]
     label = CAT_LABEL.get(cat, cat.title())
-    tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo") else "tag"
+    tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo", "eleicoes") else "tag"
     titulo = html.escape(a["titulo"])
     dek = html.escape(a["dek"])
     img = a.get("image", "")

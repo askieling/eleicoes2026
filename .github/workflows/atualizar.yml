@@ -2,7 +2,7 @@ name: Atualizar edição
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # a cada ~30 min (o GitHub pode atrasar alguns minutos)
+    - cron: "*/15 * * * *"   # a cada ~15 min (o GitHub pode atrasar alguns minutos)
   workflow_dispatch: {}       # botão "Run workflow" para rodar na hora
 
 permissions:

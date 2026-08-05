@@ -21,8 +21,11 @@
   .serif-italic{font-family:"Playfair Display",serif;font-style:italic}
   .rule{border:0;border-top:1px solid var(--ink)}
   .double{border:0;border-top:3px double var(--ink);height:0}
-  .statusbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
-  @media(max-width:720px){.statusbar{margin:0 -15px}}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px;gap:10px}
+  .statusbar .smallcaps{white-space:nowrap}
+  @media(max-width:720px){.statusbar{margin:0 -15px;padding:7px 12px}
+    .statusbar .smallcaps{letter-spacing:.09em;font-size:9.5px}}
+  @media(max-width:400px){.statusbar{flex-direction:column;align-items:flex-start;gap:2px}}
   .statusbar .live{display:flex;align-items:center;gap:9px}
   .dotlive{width:9px;height:9px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 0 0 rgba(224,182,74,.7);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,182,74,.7)}70%{box-shadow:0 0 0 8px rgba(224,182,74,0)}100%{box-shadow:0 0 0 0 rgba(224,182,74,0)}}
@@ -36,10 +39,12 @@
   .masthead h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:66px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
   .masthead .sub{margin-top:8px;color:var(--green)}
   @media(max-width:720px){.masthead h1{font-size:38px}}
-  nav.rules-row{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;padding:9px 0}
-  nav.rules-row a{color:var(--ink);text-decoration:none;cursor:pointer}
+  nav.rules-row{display:flex;justify-content:center;gap:22px;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;padding:9px 0}
+  nav.rules-row::-webkit-scrollbar{display:none}
+  nav.rules-row{-ms-overflow-style:none;scrollbar-width:none}
+  nav.rules-row a{color:var(--ink);text-decoration:none;cursor:pointer;flex:0 0 auto}
   nav.rules-row a:hover,nav.rules-row a.on{text-decoration:underline;color:var(--green)}
-  @media(max-width:720px){nav.rules-row{gap:14px}}
+  @media(max-width:720px){nav.rules-row{gap:16px;justify-content:flex-start;font-size:10px;letter-spacing:.12em}}
   .main{padding:22px 0 26px}
   .story{padding:18px 0;border-top:1px solid var(--ink)}
   .story .tagrow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
@@ -47,6 +52,7 @@
   .tag.urgente{background:var(--red)}
   .tag.economia{background:var(--navy)}
   .tag.mundo{background:var(--gold);color:var(--ink)}
+  .tag.eleicoes{background:var(--gold);color:var(--ink)}
   .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
   .story h2{font-size:40px;line-height:1.03;color:var(--ink);margin-bottom:10px}
   .story h3{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.12;color:var(--ink);margin-bottom:6px}
@@ -71,7 +77,7 @@
   <div class="statusbar">
     <div class="live">
       <span class="dotlive"></span>
-      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-05T21:47:15.847155+00:00">agora</span></span>
+      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-05T22:28:46.257615+00:00">agora</span></span>
     </div>
     <span class="smallcaps cities" id="fullDate"></span>
   </div>
@@ -91,25 +97,18 @@
 
   <nav class="rules-row smallcaps">
     <a data-filter="todas" class="on">Todas</a>
+    <a data-filter="eleicoes">Eleições 2026</a>
     <a data-filter="politica">Política</a>
-    <a data-filter="economia">Economia</a>
-    <a data-filter="mundo">Mundo</a>
     <a data-filter="urgente">Última Hora</a>
   </nav>
   <hr class="rule">
 
   <div class="main" id="feed">
-<article class="story lead" data-cat="politica" data-published="2026-08-05T21:44:46+00:00" style="border-top:0;padding-top:0">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story lead" data-cat="eleicoes" data-published="2026-08-05T21:44:46+00:00" style="border-top:0;padding-top:0">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/renan-santos-faz-campanha-com-slogan-de-desafio-2544fb"><h2>Renan Santos faz campanha com slogan de desafio ao STF: &quot;Decisão ilegal não se cumpre&quot;</h2></a>
   <p class="dek">Pré-candidato presidencial do Movimento Brasil Livre reafirma em entrevista à GloboNews disposição de desobedecer decisões do Supremo que considere contrárias ao Congresso Nacional.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/renan-santos-faz-campanha-com-slogan-de-desafio-2544fb">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T21:42:03+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/corte-da-selic-nao-garante-credito-mais-barato-561028"><h3>Corte da Selic não garante crédito mais barato; empresas precisam renegociar ativamente</h3></a>
-  <p class="dek">Redução para 14% ao ano abre oportunidade, mas bancos não repassam automaticamente as menores taxas. Especialistas alertam que gestão financeira estratégica é fundamental para aproveitar o novo cenário.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/corte-da-selic-nao-garante-credito-mais-barato-561028">Ler matéria completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T21:39:53+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
@@ -117,83 +116,17 @@
   <p class="dek">Presidente da Comissão de Relações Exteriores atribui decisão dos EUA à orientação ideológica do Itamaraty e alerta para isolamento internacional do Brasil.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/revogacao-de-visto-de-embaixadora-revela-crise-diplomatica-2413fb">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="urgente" data-published="2026-08-05T21:39:15+00:00">
-  <div class="tagrow"><span class="tag urgente">Última Hora</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/jbs-eleva-linha-de-credito-global-para-us-281a1a"><h3>JBS eleva linha de crédito global para US$ 4,2 bilhões e reforça posição financeira</h3></a>
-  <p class="dek">Gigante da proteína amplia em US$ 650 milhões sua capacidade de financiamento de curto e médio prazo, consolidando estratégia de liquidez e flexibilidade operacional até 2031.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/jbs-eleva-linha-de-credito-global-para-us-281a1a">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="urgente" data-published="2026-08-05T21:36:54+00:00">
-  <div class="tagrow"><span class="tag urgente">Última Hora</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/paraguai-abre-portas-para-suinos-brasileiros-e-reacende-241c8d"><h3>Paraguai abre portas para suínos brasileiros e reacende esperança na exportação</h3></a>
-  <p class="dek">Aprovação do certificado sanitário internacional pelo país vizinho cria nova oportunidade para produtores nacionais escoarem rebanho e sustentar preços em mercado competitivo.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/paraguai-abre-portas-para-suinos-brasileiros-e-reacende-241c8d">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="urgente" data-published="2026-08-05T21:35:47+00:00">
-  <div class="tagrow"><span class="tag urgente">Última Hora</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/banco-central-reduz-selic-para-14-e-muda-776859"><h3>Banco Central reduz Selic para 14% e muda o jogo dos investimentos: veja quanto rende seu dinheiro</h3></a>
-  <p class="dek">Com o quarto corte consecutivo da taxa básica, CDBs de bancos médios mantêm-se como melhor opção de renda fixa, enquanto poupança segue oferecendo retornos modestos.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/banco-central-reduz-selic-para-14-e-muda-776859">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T20:07:30+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-05T20:07:30+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/federacao-uniao-progressista-e-pl-dominam-tempo-de-060b33"><h3>Federação União Progressista e PL dominam tempo de campanha na TV e rádio com bancadas maiores na Câmara</h3></a>
   <p class="dek">TSE divulga critérios proporcionais ao tamanho das representações eleitas. Partidos neutros ganham vantagem enquanto Lula e Flávio Bolsonaro enfrentam restrições pela filiação.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/federacao-uniao-progressista-e-pl-dominam-tempo-de-060b33">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T20:00:24+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/educacao-brasileira-atinge-melhor-desempenho-em-20-anos-271779"><h3>Educação brasileira atinge melhor desempenho em 20 anos, mas dois terços do ensino ainda ficam aquém das metas</h3></a>
-  <p class="dek">Ideb registra avanço em 2025, com recuperação superior às expectativas internacionais pós-pandemia, porém anos finais e ensino médio persistem abaixo das projeções estabelecidas.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/educacao-brasileira-atinge-melhor-desempenho-em-20-anos-271779">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T20:00:02+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/matematica-no-ensino-medio-segue-longe-do-pre-402cce"><h3>Matemática no ensino médio segue longe do pré-pandemia, apesar de avanço em 2025</h3></a>
-  <p class="dek">Dados do Saeb mostram melhora nas notas, mas desempenho permanece abaixo dos níveis anteriores à covid-19. Português, porém, já recuperou o patamar pré-crise.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/matematica-no-ensino-medio-segue-longe-do-pre-402cce">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T20:00:01+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/parana-consolida-lideranca-na-educacao-estado-domina-ranking-1e7747"><h3>Paraná consolida liderança na educação: estado domina ranking do Ideb em todas as etapas</h3></a>
-  <p class="dek">Gestão PSD colhe resultados com foco em tempo integral e tecnologia. Dados do MEC mostram desempenho superior no Sul e Sudeste, mas ensino médio nacional segue aquém das metas.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/parana-consolida-lideranca-na-educacao-estado-domina-ranking-1e7747">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="urgente" data-published="2026-08-05T19:52:32+00:00">
-  <div class="tagrow"><span class="tag urgente">Última Hora</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/mais-de-metade-das-embaixadas-americanas-no-mundo-038fde"><h3>Mais de metade das embaixadas americanas no mundo funciona sem representante oficial</h3></a>
-  <p class="dek">Levantamento mostra que 107 de 195 postos diplomáticos dos EUA estão vagos, incluindo Brasil em crise com Washington. Apenas 32 vagas têm nomes indicados aguardando aprovação.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/mais-de-metade-das-embaixadas-americanas-no-mundo-038fde">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T19:51:18+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/drone-com-detonador-causa-colisao-com-cargueiro-da-aec56d"><h3>Drone com detonador causa colisão com cargueiro da DHL na Alemanha; Rússia é suspeita</h3></a>
-  <p class="dek">Aeronave fez pouso de emergência em Hannover após impacto durante decolagem de Leipzig. Artefato explosivo encontrado próximo à pista reacende suspeitas de sabotagem coordenada contra infraestrutura europeia.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/drone-com-detonador-causa-colisao-com-cargueiro-da-aec56d">Ler matéria completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T19:44:01+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/pgr-denuncia-blogueiro-bolsonarista-oswaldo-eustaquio-por-trama-123376"><h3>PGR denuncia blogueiro bolsonarista Oswaldo Eustáquio por trama golpista; ele se esconde na Espanha</h3></a>
   <p class="dek">A Procuradoria-Geral da República formalizou denúncia contra o apoiador de Bolsonaro por associação criminosa em atos contra a democracia. Foragido desde 2023, Eustáquio está na Espanha, que já negou sua extradição ao Brasil.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/pgr-denuncia-blogueiro-bolsonarista-oswaldo-eustaquio-por-trama-123376">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T19:43:50+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/brasil-e-bid-selam-investimento-de-r-5-c006cf"><h3>Brasil e BID selam investimento de R$ 5 bilhões contra crime organizado até 2030</h3></a>
-  <p class="dek">Ministério da Justiça e banco internacional assinam memorando para qualificar investigações de homicídios, fortalecer sistema prisional e estrangular financeiramente as facções. Recursos serão distribuídos aos Estados conforme apresentação de projetos.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/brasil-e-bid-selam-investimento-de-r-5-c006cf">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T19:29:21+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/stjd-investiga-neymar-por-confusao-com-torcedores-apos-bdee75"><h3>STJD investiga Neymar por confusão com torcedores após vitória do Santos na Copa do Brasil</h3></a>
-  <p class="dek">Procuradoria analisa vídeos de tumulto no Mangueirão e pode denunciar atacante por conduta antidisciplinar, com pena de até 6 jogos de suspensão.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/stjd-investiga-neymar-por-confusao-com-torcedores-apos-bdee75">Ler matéria completa →</a></div>
-</article>
-<article class="story" data-cat="politica" data-published="2026-08-05T19:28:45+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
-  <a class="headline" href="/acesso-jornal/noticia/princesa-britanica-da-a-luz-em-lisboa-e-186cec"><h3>Princesa britânica dá à luz em Lisboa e quebra tradição de séculos da realeza</h3></a>
-  <p class="dek">Filha da Princesa Eugenie nasce em hospital português e marca primeiro nascimento de membro da realeza britânica em solo luso neste século, ocupando a 15ª posição na linha de sucessão.</p>
-  <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/princesa-britanica-da-a-luz-em-lisboa-e-186cec">Ler matéria completa →</a></div>
 </article>
 <article class="story" data-cat="politica" data-published="2026-08-05T19:23:34+00:00">
   <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>

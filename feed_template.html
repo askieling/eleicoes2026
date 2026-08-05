@@ -21,8 +21,11 @@
   .serif-italic{font-family:"Playfair Display",serif;font-style:italic}
   .rule{border:0;border-top:1px solid var(--ink)}
   .double{border:0;border-top:3px double var(--ink);height:0}
-  .statusbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
-  @media(max-width:720px){.statusbar{margin:0 -15px}}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px;gap:10px}
+  .statusbar .smallcaps{white-space:nowrap}
+  @media(max-width:720px){.statusbar{margin:0 -15px;padding:7px 12px}
+    .statusbar .smallcaps{letter-spacing:.09em;font-size:9.5px}}
+  @media(max-width:400px){.statusbar{flex-direction:column;align-items:flex-start;gap:2px}}
   .statusbar .live{display:flex;align-items:center;gap:9px}
   .dotlive{width:9px;height:9px;border-radius:50%;background:var(--gold-bright);box-shadow:0 0 0 0 rgba(224,182,74,.7);animation:pulse 1.8s infinite}
   @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(224,182,74,.7)}70%{box-shadow:0 0 0 8px rgba(224,182,74,0)}100%{box-shadow:0 0 0 0 rgba(224,182,74,0)}}
@@ -36,10 +39,12 @@
   .masthead h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:66px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
   .masthead .sub{margin-top:8px;color:var(--green)}
   @media(max-width:720px){.masthead h1{font-size:38px}}
-  nav.rules-row{display:flex;justify-content:center;gap:26px;flex-wrap:wrap;padding:9px 0}
-  nav.rules-row a{color:var(--ink);text-decoration:none;cursor:pointer}
+  nav.rules-row{display:flex;justify-content:center;gap:22px;flex-wrap:nowrap;white-space:nowrap;overflow-x:auto;padding:9px 0}
+  nav.rules-row::-webkit-scrollbar{display:none}
+  nav.rules-row{-ms-overflow-style:none;scrollbar-width:none}
+  nav.rules-row a{color:var(--ink);text-decoration:none;cursor:pointer;flex:0 0 auto}
   nav.rules-row a:hover,nav.rules-row a.on{text-decoration:underline;color:var(--green)}
-  @media(max-width:720px){nav.rules-row{gap:14px}}
+  @media(max-width:720px){nav.rules-row{gap:16px;justify-content:flex-start;font-size:10px;letter-spacing:.12em}}
   .main{padding:22px 0 26px}
   .story{padding:18px 0;border-top:1px solid var(--ink)}
   .story .tagrow{display:flex;align-items:center;gap:12px;margin-bottom:8px}
@@ -47,6 +52,7 @@
   .tag.urgente{background:var(--red)}
   .tag.economia{background:var(--navy)}
   .tag.mundo{background:var(--gold);color:var(--ink)}
+  .tag.eleicoes{background:var(--gold);color:var(--ink)}
   .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
   .story h2{font-size:40px;line-height:1.03;color:var(--ink);margin-bottom:10px}
   .story h3{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.12;color:var(--ink);margin-bottom:6px}
@@ -91,9 +97,8 @@
 
   <nav class="rules-row smallcaps">
     <a data-filter="todas" class="on">Todas</a>
+    <a data-filter="eleicoes">Eleições 2026</a>
     <a data-filter="politica">Política</a>
-    <a data-filter="economia">Economia</a>
-    <a data-filter="mundo">Mundo</a>
     <a data-filter="urgente">Última Hora</a>
   </nav>
   <hr class="rule">
