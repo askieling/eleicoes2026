@@ -19,6 +19,7 @@ import re
 import hashlib
 import unicodedata
 import pathlib
+import urllib.request
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 
@@ -38,6 +39,8 @@ MODEL = "claude-haiku-4-5"     # o Claude mais barato; troque por claude-opus-5 
 MAX_NEW_PER_RUN = 6            # limita chamadas de LLM por rodada (controle de custo)
 MAX_ARTICLES = 24             # quantas noticias mantem no feed
 ENTRIES_PER_FEED = 12         # quantos itens ler de cada RSS
+FETCH_FULLTEXT = True         # baixa o texto completo da materia p/ dar mais contexto ao rewrite
+USE_SOURCE_IMAGES = False     # NAO copiar imagens dos noticiarios (direito autoral). Ver imagens seguras.
 
 ROOT = pathlib.Path(__file__).parent
 DATA = ROOT / "data"
@@ -49,23 +52,27 @@ OUTPUT = ROOT / "acesso-jornal" / "index.html"
 NOTICIAS_DIR = ROOT / "acesso-jornal" / "noticia"
 
 SYSTEM = (
-    "Você é editor do Jornal da Pátria, um jornal digital brasileiro com linha "
+    "Você é redator do Jornal da Pátria, um jornal digital brasileiro com linha "
     "editorial de direita (valores conservadores, liberalismo econômico, ceticismo "
-    "com a esquerda). Recebe o título e o resumo de uma notícia de uma fonte externa.\n"
-    "Tarefa:\n"
-    "1) Reescreva um TÍTULO original, forte, estilo manchete de jornal, sem copiar o título da fonte.\n"
-    "2) Escreva um RESUMO (dek) ORIGINAL de 1 a 2 frases, com suas próprias palavras, "
-    "mantendo os FATOS exatos (quem, o quê, quando, números, declarações).\n"
-    "3) Escreva o CORPO da matéria (campo 'corpo'): uma lista de 3 a 5 parágrafos ORIGINAIS, "
-    "com suas próprias palavras. Os primeiros parágrafos apresentam os FATOS apurados (apenas os "
-    "que estão no material recebido). O último parágrafo pode ser análise/comentário editorial de "
-    "direita, deixando claro que é interpretação. Cada parágrafo tem 2 a 4 frases.\n"
-    "Regras invioláveis: aplique o enquadramento editorial de direita, mas NUNCA invente "
-    "fato, número, data, nome ou declaração que não esteja no material recebido; não copie frases da "
-    "fonte (reescreva tudo); não exagere nem distorça o fato. Se o material for curto, escreva um corpo "
-    "mais curto em vez de inventar. Português do Brasil, direto ao ponto.\n"
-    'Responda SOMENTE com um objeto JSON, sem nenhum texto fora dele, no formato exato: '
-    '{"titulo": "...", "dek": "...", "corpo": ["parágrafo 1", "parágrafo 2", "parágrafo 3"]}'
+    "com a esquerda, defesa da família, do livre mercado e das instituições). Recebe o "
+    "título, o resumo e (quando disponível) o TEXTO COMPLETO de uma notícia apurada por terceiros.\n"
+    "Sua tarefa é REDIGIR UMA MATÉRIA COMPLETA E ORIGINAL do zero, cobrindo os mesmos fatos, "
+    "mas com texto totalmente seu — como se a redação do Jornal da Pátria tivesse escrito.\n"
+    "Produza:\n"
+    "1) 'titulo': manchete forte e original, estilo jornal, sem copiar o título da fonte.\n"
+    "2) 'dek': linha-fina original de 1 a 2 frases resumindo o fato principal.\n"
+    "3) 'corpo': lista de 6 a 10 parágrafos ORIGINAIS, texto encorpado e bem informado. "
+    "Estruture como reportagem: abertura com o fato central; parágrafos de contexto, dados, nomes, "
+    "números e declarações (todos apenas os que aparecem no material); e ao menos um parágrafo de "
+    "ANÁLISE editorial de direita, deixando claro que é interpretação. "
+    "Você PODE usar subtítulos (um item começando com '## ') e uma citação de destaque "
+    "(um item começando com '> ') para dar ritmo de jornal. Cada parágrafo com 3 a 5 frases.\n"
+    "Regras invioláveis: escreva com riqueza e profundidade, mas NUNCA invente fato, número, data, "
+    "nome ou declaração que não esteja no material recebido. NÃO copie frases da fonte — reescreva "
+    "tudo com suas palavras. Não distorça os fatos. Se o material for curto, aprofunde com contexto "
+    "verdadeiro e análise, sem fabricar dados. Português do Brasil.\n"
+    'Responda SOMENTE com um objeto JSON válido, sem texto fora dele, no formato exato: '
+    '{"titulo": "...", "dek": "...", "corpo": ["parágrafo 1", "## Subtítulo", "parágrafo 2", "> citação", "..."]}'
 )
 
 CAT_LABEL = {
@@ -144,6 +151,36 @@ def get_image(entry):
     return m.group(1) if m else ""
 
 
+def fetch_fulltext(url):
+    """Baixa a pagina da noticia e extrai o texto dos paragrafos (best-effort).
+    Serve so para dar mais CONTEXTO ao rewrite; nada da fonte e publicado literalmente."""
+    if not FETCH_FULLTEXT or not url:
+        return ""
+    try:
+        req = urllib.request.Request(url, headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                          "(KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+            "Accept-Language": "pt-BR,pt;q=0.9",
+        })
+        with urllib.request.urlopen(req, timeout=12) as r:
+            raw = r.read(500000)
+            charset = r.headers.get_content_charset() or "utf-8"
+        htmltxt = raw.decode(charset, "replace")
+    except Exception as e:
+        print(f"[fulltext falhou] {url[:60]} -> {e}")
+        return ""
+    # remove script/style, pega o conteudo das tags <p>
+    htmltxt = re.sub(r"(?is)<(script|style|figure|figcaption)[^>]*>.*?</\1>", " ", htmltxt)
+    paras = re.findall(r"(?is)<p[^>]*>(.*?)</p>", htmltxt)
+    out = []
+    for p in paras:
+        t = clean(p)
+        if len(t) >= 60:          # descarta legendas/curtos
+            out.append(t)
+    text = "\n".join(out)
+    return text[:6000]            # limite p/ controlar custo de token
+
+
 def collect():
     items = []
     for fonte, url, cat in FEEDS:
@@ -161,7 +198,7 @@ def collect():
             items.append({
                 "link": link, "title": title, "summary": summary,
                 "fonte": fonte, "cat": cat, "published": to_iso(e),
-                "image": get_image(e),
+                "image": get_image(e) if USE_SOURCE_IMAGES else "",
             })
     # mais recentes primeiro
     items.sort(key=lambda x: x["published"], reverse=True)
@@ -169,14 +206,15 @@ def collect():
 
 
 def rewrite(client, item):
+    fulltext = fetch_fulltext(item.get("link", ""))
     user = (
-        f"Fonte: {item['fonte']}\n"
         f"Título original: {item['title']}\n"
-        f"Resumo original: {item['summary'] or '(sem resumo)'}"
+        f"Resumo original: {item['summary'] or '(sem resumo)'}\n"
+        f"Texto completo apurado:\n{fulltext or '(não disponível — use apenas o resumo acima)'}"
     )
     resp = client.messages.create(
         model=MODEL,
-        max_tokens=600,
+        max_tokens=2000,
         system=SYSTEM,
         messages=[{"role": "user", "content": user}],
     )
@@ -202,7 +240,6 @@ def render_article(a, lead=False):
     tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo") else "tag"
     titulo = html.escape(a["titulo"])
     dek = html.escape(a["dek"])
-    fonte = html.escape(a["fonte"])
     inner = html.escape(f"/acesso-jornal/noticia/{article_slug(a)}", quote=True)
     img = a.get("image", "")
     htag = "h2" if lead else "h3"
@@ -218,10 +255,26 @@ def render_article(a, lead=False):
         f'  <div class="tagrow"><span class="{tagclass}">{label}</span><span class="ago"></span></div>\n'
         f'  <a class="headline" href="{inner}"><{htag}>{titulo}</{htag}></a>{imghtml}\n'
         f'  <p class="dek">{dek}</p>\n'
-        f'  <div class="src smallcaps">Fonte: {fonte} · '
-        f'<a class="readmore" href="{inner}">Ler matéria completa →</a></div>\n'
+        f'  <div class="src smallcaps"><a class="readmore" href="{inner}">Ler matéria completa →</a></div>\n'
         f'</article>'
     )
+
+
+def render_body_blocks(corpo):
+    """Converte a lista 'corpo' em HTML. Itens iniciados por '## ' viram subtítulo,
+    por '> ' viram citação de destaque; o resto vira parágrafo."""
+    blocks = []
+    for raw in corpo:
+        p = (raw or "").strip()
+        if not p:
+            continue
+        if p.startswith("## "):
+            blocks.append(f'      <h2 class="sub">{html.escape(p[3:].strip())}</h2>')
+        elif p.startswith("> "):
+            blocks.append(f'      <blockquote>{html.escape(p[2:].strip())}</blockquote>')
+        else:
+            blocks.append(f'      <p>{html.escape(p)}</p>')
+    return "\n".join(blocks)
 
 
 def render_article_page(a, template):
@@ -230,21 +283,17 @@ def render_article_page(a, template):
     tagclass = f"tag {cat}" if cat in ("urgente", "economia", "mundo") else "tag"
     titulo = html.escape(a["titulo"])
     dek = html.escape(a["dek"])
-    fonte = html.escape(a["fonte"])
-    url = html.escape(a["link"], quote=True)
     img = a.get("image", "")
     corpo = a.get("corpo") or []
     if corpo:
-        body_html = "\n".join(f"      <p>{html.escape(p)}</p>" for p in corpo)
+        body_html = render_body_blocks(corpo)
     else:
-        # notícia antiga sem corpo gerado: mostra só o resumo, sem repetir
         body_html = ('      <p class="smallcaps" style="color:var(--ink-soft)">'
-                     'Matéria completa em atualização. Confira o resumo acima e a apuração da fonte abaixo.</p>')
+                     'Matéria completa em atualização.</p>')
     hero_html = ""
-    if img:
+    if img:  # so entra se USE_SOURCE_IMAGES estiver ligado
         safe_img = html.escape(img, quote=True)
-        hero_html = (f'    <img class="hero" src="{safe_img}" alt="" loading="lazy">\n'
-                     f'    <div class="caption smallcaps">Imagem: {fonte}</div>')
+        hero_html = f'    <img class="hero" src="{safe_img}" alt="" loading="lazy">'
     out = template
     out = out.replace("<!--TITLE-->", titulo)
     out = out.replace("<!--DEK-->", dek)
@@ -253,8 +302,6 @@ def render_article_page(a, template):
     out = out.replace("<!--PUBLISHED-->", a["published"])
     out = out.replace("<!--HERO-->", hero_html)
     out = out.replace("<!--BODY-->", body_html)
-    out = out.replace("<!--URL-->", url)
-    out = out.replace("<!--FONTE-->", fonte)
     return out
 
 
