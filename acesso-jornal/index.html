@@ -69,15 +69,60 @@
   .colophon{display:flex;justify-content:space-between;padding:16px 0;border-top:1px solid var(--ink);gap:12px}
   .colophon .legal{max-width:680px}
   @media(max-width:600px){.colophon{flex-direction:column;text-align:center}}
+  /* ---- portão de acesso ---- */
+  body:not(.unlocked) .sheet{display:none}
+  body.unlocked .gate{display:none}
+  .gate{position:fixed;inset:0;z-index:10000;background:var(--paper-edge);display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:44px 18px}
+  .gate .g-mast{text-align:center;margin-top:14px}
+  .gate .g-mast h1{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:54px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
+  @media(max-width:720px){.gate .g-mast h1{font-size:34px}}
+  .gate .g-mast .sub{margin-top:8px;color:var(--green)}
+  .gate hr.double{width:100%;max-width:440px;margin:18px 0}
+  .gate .g-box{width:100%;max-width:380px;margin-top:2px}
+  .gate label{display:block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--ink-soft);margin:14px 0 5px}
+  .gate input{width:100%;padding:12px 14px;font-family:"PT Serif",serif;font-size:16px;background:#fff;border:1px solid var(--ink);color:var(--ink)}
+  .gate input:focus{outline:2px solid var(--gold)}
+  .gate .g-btn{width:100%;margin-top:20px;padding:14px;background:var(--navy);color:var(--paper);border:1px solid var(--ink);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;cursor:pointer}
+  .gate .g-btn:hover{background:var(--green)}
+  .gate .g-auto{width:100%;margin-top:10px;padding:12px;background:transparent;color:var(--navy);border:1px dashed var(--navy);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;cursor:pointer}
+  .gate .g-auto:hover{background:var(--paper)}
+  .gate .g-err{display:none;margin-top:14px;color:var(--red);font-weight:700;text-align:center;font-family:"Playfair Display",serif;letter-spacing:.04em}
+  .gate .g-card{width:100%;max-width:380px;margin-top:26px;border:1px solid var(--ink);background:var(--paper);padding:15px 17px}
+  .gate .g-card .t{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--green);margin-bottom:9px}
+  .gate .g-card .row{display:flex;justify-content:space-between;gap:10px;font-size:15px;padding:4px 0;border-top:1px dotted var(--paper-edge)}
+  .gate .g-card .row b{font-family:"Playfair Display",serif;color:var(--navy)}
 </style>
 </head>
 <body>
+
+<div class="gate" id="gate">
+  <div class="g-mast">
+    <h1>Jornal da Pátria</h1>
+    <div class="smallcaps sub">Os fatos, sem filtro · Edição do dia</div>
+  </div>
+  <hr class="double">
+  <form class="g-box" id="loginForm" autocomplete="off">
+    <label for="u">Usuário</label>
+    <input id="u" type="text" placeholder="seu usuário">
+    <label for="p">Senha</label>
+    <input id="p" type="password" placeholder="sua senha">
+    <button type="submit" class="g-btn">Entrar</button>
+    <button type="button" class="g-auto" id="autoBtn">Entrar automaticamente</button>
+    <div class="g-err" id="err">Credenciais Incorretas</div>
+  </form>
+  <div class="g-card">
+    <div class="t">Seu Acesso</div>
+    <div class="row"><span>Usuário:</span> <b>usuario2026</b></div>
+    <div class="row"><span>Senha:</span> <b>patria2026</b></div>
+  </div>
+</div>
+
 <div class="sheet">
 
   <div class="statusbar">
     <div class="live">
       <span class="dotlive"></span>
-      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-06T22:16:08.272099+00:00">agora</span></span>
+      <span class="smallcaps">Edição atualizada <span id="lastUpdate" data-updated="2026-08-06T23:57:06.247412+00:00">agora</span></span>
     </div>
     <span class="smallcaps cities" id="fullDate"></span>
   </div>
@@ -110,8 +155,8 @@
   <p class="dek">Filho do presidente será ouvido nos próximos dias sobre suspeitas de articulação para facilitar negócios de aliados do governo. Defesa assegura que investigado comprovará inocência.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/pf-prepara-convocacao-de-lulinha-para-depor-em-c5534c">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T21:40:46+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T21:40:46+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/flavio-bolsonaro-escolhe-alfredo-gaspar-como-vice-em-f7d41c"><h3>Flávio Bolsonaro escolhe Alfredo Gaspar como vice em estratégia para vincular escândalo do INSS a Lula nas eleições de 2026</h3></a>
   <p class="dek">O senador e candidato à Presidência aposta no relator da CPI do INSS para reforçar narrativa contra o governo petista. Movimento também beneficia Arthur Lira ao tirar Gaspar da disputa pelo Senado em Alagoas.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/flavio-bolsonaro-escolhe-alfredo-gaspar-como-vice-em-f7d41c">Ler matéria completa →</a></div>
@@ -128,8 +173,8 @@
   <p class="dek">Ministro da Fazenda nega inércia federal no acordo de R$ 6,6 bilhões e aponta que responsabilidade pelos dados pendentes é do governo Celina Leão. Ministro Luiz Fux marcou nova audiência para a próxima semana.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/durigan-rebate-governo-do-df-e-acusa-reclamacao-bc90ed">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T21:23:33+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T21:23:33+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/stf-obriga-lindbergh-e-soraya-a-comprovarem-denuncia-cbe006"><h3>STF obriga Lindbergh e Soraya a comprovarem denúncia contra vice de Flávio em prazo de 15 dias</h3></a>
   <p class="dek">Gilmar Mendes intimou os parlamentares petistas a esclarecerem acusações de estupro contra Alfredo Gaspar, escolhido por Flávio Bolsonaro como companheiro de chapa. O caso reaparece em momento crítico da pré-campanha presidencial.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/stf-obriga-lindbergh-e-soraya-a-comprovarem-denuncia-cbe006">Ler matéria completa →</a></div>
@@ -146,8 +191,8 @@
   <p class="dek">Tramitam no Congresso mais de cem propostas de pisos salariais com impacto estimado de R$ 49,5 bilhões nos municípios. Enquanto prefeituras enfrentam déficit recorde, governo federal recomenda vetos e CNM alerta para risco de colapso das contas públicas locais.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/bomba-fiscal-mais-de-cem-projetos-de-piso-78c715">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T14:21:40+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T14:21:40+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/apos-convencoes-bastidores-definem-os-nomes-que-faltam-1ffc37"><h3>Após convenções, bastidores definem os nomes que faltam e redesenham alianças para 2026</h3></a>
   <p class="dek">Com o encerramento das convenções partidárias nesta semana, partidos continuam negociando ajustes nas chapas presidenciais e estaduais. Flávio Bolsonaro terá Alfredo Gaspar como vice, enquanto indefinições persistem em estados-chave como Minas Gerais e Rio de Janeiro.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/apos-convencoes-bastidores-definem-os-nomes-que-faltam-1ffc37">Ler matéria completa →</a></div>
@@ -158,8 +203,8 @@
   <p class="dek">Ministro da Fazenda admite que dívida pública chegou ao maior nível desde 2021 e anuncia que governo buscará reduzir benefícios e controlar gastos em eventual novo mandato. Juros reais de 8% dificultam rolagem da dívida.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/durigan-reconhece-crise-fiscal-e-promete-cortes-se-198cf5">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T13:52:32+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T13:52:32+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/lula-tera-quase-dobro-de-tempo-que-flavio-f6ae0b"><h3>Lula terá quase dobro de tempo que Flávio no horário eleitoral 2026; vantagem da coligação petista é esmagadora</h3></a>
   <p class="dek">TSE define divisão de propaganda televisiva para presidência em 2026. Lula leva 5 minutos e 32 segundos contra 4 minutos e 20 segundos de Flávio Bolsonaro, numa vantagem que reflete a fragilidade da direita nas alianças nacionais.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/lula-tera-quase-dobro-de-tempo-que-flavio-f6ae0b">Ler matéria completa →</a></div>
@@ -170,8 +215,8 @@
   <p class="dek">Procuradoria arquiva denúncia de Lindbergh Farias sobre emendas de Alfredo Gaspar em Alagoas, concluindo falta de indícios concretos. Decisão reforça que PT segue apostando em acusações frágeis contra aliados de direita.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/pgr-desmancha-acusacao-petista-nao-ha-provas-contra-785ba8">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T13:09:47+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T13:09:47+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/alfredo-gaspar-assume-vice-de-flavio-com-promessa-b6cfd3"><h3>Alfredo Gaspar assume vice de Flávio com promessa de combate implacável à corrupção e ao crime</h3></a>
   <p class="dek">Deputado federal alagoano reafirma trajetória de 30 anos no Ministério Público e segurança ao integrar chapa bolsonarista para 2026, posicionando-se como adversário declarado da esquerda e da impunidade.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/alfredo-gaspar-assume-vice-de-flavio-com-promessa-b6cfd3">Ler matéria completa →</a></div>
@@ -188,8 +233,8 @@
   <p class="dek">Comitê de estados projeta imposto 8,6 pontos percentuais acima da média da OCDE. Exceções aprovadas no Congresso e população de baixa renda sofrem o bônus da fatura.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/reforma-tributaria-dispara-aliquota-sobre-consumo-chegara-a-c05766">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T10:55:17+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T10:55:17+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/cinco-candidatos-confirmados-na-disputa-pelo-palacio-antenor-d39339"><h3>Cinco candidatos confirmados na disputa pelo Palácio Antenor Bom Firme: direita tem nomes fortes em 2026</h3></a>
   <p class="dek">Com convenções finalizadas, Espírito Santo já tem seus postulantes ao governo confirmados. Ricardo Ferraço lidera como governador incumbente, enquanto direita e esquerda montam suas estratégias para outubro.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/cinco-candidatos-confirmados-na-disputa-pelo-palacio-antenor-d39339">Ler matéria completa →</a></div>
@@ -200,8 +245,8 @@
   <p class="dek">Com convenções fechadas, MDB, PT, Republicanos, Missão e UP lançam seus nomes para o Palácio Anchieta. Ricardo Ferraço, atual governador, é o favorito da direita moderada, enquanto PT tenta voltar ao poder.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/cinco-candidatos-disputam-o-governo-capixaba-em-2026-d39339">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T10:48:46+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T10:48:46+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/flavio-aposta-em-gaspar-como-arma-contra-corrupcao-22904b"><h3>Flávio aposta em Gaspar como arma contra corrupção petista e apela ao voto conservador em 2026</h3></a>
   <p class="dek">Pré-candidato à Presidência intensifica defesa de Alfredo Gaspar como vice, destacando investigações sobre o filho de Lula e o escândalo do INSS para mobilizar eleitor conservador rumo às eleições de 2026.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/flavio-aposta-em-gaspar-como-arma-contra-corrupcao-22904b">Ler matéria completa →</a></div>
@@ -212,8 +257,8 @@
   <p class="dek">Investigação aponta esquema de falsificação de laudos de fisioterapia com prejuízo superior a R$ 8 milhões. Polícia Federal cumpre 21 mandados em operação realizada com a CGU.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/pf-deflagra-operacao-contra-fraude-milionaria-no-plano-44a032">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T08:02:08+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T08:02:08+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/amazonas-tera-disputa-acirrada-por-duas-vagas-no-9781f6"><h3>Amazonas terá disputa acirrada por duas vagas no Senado em 2026; veja os oito candidatos</h3></a>
   <p class="dek">Com prazos finais de inscrição fechando nesta semana, ex-governador, senadores em busca de reeleição e nomes novos disputam as duas cadeiras federais pelo estado na próxima eleição.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/amazonas-tera-disputa-acirrada-por-duas-vagas-no-9781f6">Ler matéria completa →</a></div>
@@ -224,14 +269,14 @@
   <p class="dek">Disputando as duas vagas disponíveis no estado, candidatos vão de ex-governador a estreantes na política. Inscrições terminam no dia 15 de agosto e campanha começa logo depois.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/amazonas-tem-sete-candidatos-ao-senado-em-2026-9781f6">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T08:02:07+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T08:02:07+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/sete-nomes-disputam-vice-governanca-do-amazonas-em-cc5bde"><h3>Sete nomes disputam vice-governança do Amazonas em 2026; Serafim Corrêa busca reeleição</h3></a>
   <p class="dek">Com prazo de registro até 15 de agosto, candidatos de diferentes espectros políticos se posicionam para a chapa de número dois no estado. Atual vice tenta se manter no cargo.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/sete-nomes-disputam-vice-governanca-do-amazonas-em-cc5bde">Ler matéria completa →</a></div>
 </article>
-<article class="story" data-cat="politica" data-published="2026-08-06T08:02:06+00:00">
-  <div class="tagrow"><span class="tag">Política</span><span class="ago"></span></div>
+<article class="story" data-cat="eleicoes" data-published="2026-08-06T08:02:06+00:00">
+  <div class="tagrow"><span class="tag eleicoes">Eleições 2026</span><span class="ago"></span></div>
   <a class="headline" href="/acesso-jornal/noticia/sete-candidatos-disputam-governo-do-amazonas-em-2026-b65f50"><h3>Sete candidatos disputam governo do Amazonas em 2026: conservadores, esquerdistas e figuras da política local</h3></a>
   <p class="dek">David Almeida, Omar Aziz, Roberto Cidade e Maria do Carmo lideram a corrida pela governança do estado; candidatos de esquerda, indígena e policial completam o cenário eleitoral.</p>
   <div class="src smallcaps"><a class="readmore" href="/acesso-jornal/noticia/sete-candidatos-disputam-governo-do-amazonas-em-2026-b65f50">Ler matéria completa →</a></div>
@@ -259,6 +304,31 @@
 </div>
 
 <script>
+  // ---- portão de acesso (login fixo, cosmético) ----
+  var JP_USER="usuario2026", JP_PASS="patria2026";
+  function jpUnlock(){document.body.classList.add("unlocked");}
+  (function(){
+    if(localStorage.getItem("jp_auth")==="1"){jpUnlock();}
+    var f=document.getElementById("loginForm");
+    var err=document.getElementById("err");
+    function entra(u,p){
+      if(u===JP_USER && p===JP_PASS){localStorage.setItem("jp_auth","1");err.style.display="none";jpUnlock();return true;}
+      err.style.display="block";return false;
+    }
+    if(f){
+      f.addEventListener("submit",function(ev){
+        ev.preventDefault();
+        entra(document.getElementById("u").value.trim(), document.getElementById("p").value);
+      });
+      var ab=document.getElementById("autoBtn");
+      if(ab) ab.addEventListener("click",function(){
+        document.getElementById("u").value=JP_USER;
+        document.getElementById("p").value=JP_PASS;
+        entra(JP_USER, JP_PASS);
+      });
+    }
+  })();
+
   function ha(iso){
     var t = new Date(iso).getTime();
     if(isNaN(t)) return "";
