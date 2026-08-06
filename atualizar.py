@@ -17,6 +17,7 @@ import json
 import html
 import re
 import hashlib
+import socket
 import unicodedata
 import pathlib
 import urllib.request
@@ -25,6 +26,9 @@ from email.utils import parsedate_to_datetime
 
 import feedparser
 import anthropic
+
+# rede nunca pode pendurar o job: qualquer socket (feedparser/urllib) corta em 20s
+socket.setdefaulttimeout(20)
 
 # ---------- config ----------
 FEEDS = [
@@ -338,7 +342,7 @@ def main():
     print(f"{len(items)} itens coletados, {len(novos)} novos para reescrever.")
 
     if novos:
-        client = anthropic.Anthropic()  # usa ANTHROPIC_API_KEY do ambiente
+        client = anthropic.Anthropic(timeout=90, max_retries=2)  # usa ANTHROPIC_API_KEY do ambiente
         for it in novos:
             try:
                 titulo, dek, corpo = rewrite(client, it)
