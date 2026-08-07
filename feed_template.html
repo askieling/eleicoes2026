@@ -107,13 +107,13 @@
     <label for="p">Senha</label>
     <input id="p" type="password" placeholder="sua senha">
     <button type="submit" class="g-btn">Entrar</button>
-    <button type="button" class="g-auto" id="autoBtn">Entrar automaticamente</button>
+    <button type="button" class="g-auto" id="autoBtn">Preencher meu acesso</button>
     <div class="g-err" id="err">Credenciais Incorretas</div>
   </form>
   <div class="g-card">
     <div class="t">Seu Acesso</div>
-    <div class="row"><span>Usuário:</span> <b>usuario2026</b></div>
-    <div class="row"><span>Senha:</span> <b>patria2026</b></div>
+    <div class="row"><span>Usuário:</span> <b>assinante.jp2026</b></div>
+    <div class="row"><span>Senha:</span> <b>P@triaLivre2026#</b></div>
   </div>
 </div>
 
@@ -162,14 +162,15 @@
 
 <script>
   // ---- portão de acesso (login fixo, cosmético) ----
-  var JP_USER="usuario2026", JP_PASS="patria2026";
+  var JP_USER="assinante.jp2026", JP_PASS="P@triaLivre2026#";
   function jpUnlock(){document.body.classList.add("unlocked");}
   (function(){
-    if(localStorage.getItem("jp_auth")==="1"){jpUnlock();}
+    // sessionStorage: pede login a cada nova visita ao site (não memoriza pra sempre)
+    if(sessionStorage.getItem("jp_auth")==="1"){jpUnlock();}
     var f=document.getElementById("loginForm");
     var err=document.getElementById("err");
     function entra(u,p){
-      if(u===JP_USER && p===JP_PASS){localStorage.setItem("jp_auth","1");err.style.display="none";jpUnlock();return true;}
+      if(u===JP_USER && p===JP_PASS){sessionStorage.setItem("jp_auth","1");err.style.display="none";jpUnlock();return true;}
       err.style.display="block";return false;
     }
     if(f){
@@ -177,11 +178,13 @@
         ev.preventDefault();
         entra(document.getElementById("u").value.trim(), document.getElementById("p").value);
       });
+      // botão só PREENCHE os campos; a pessoa ainda precisa clicar em "Entrar"
       var ab=document.getElementById("autoBtn");
       if(ab) ab.addEventListener("click",function(){
         document.getElementById("u").value=JP_USER;
         document.getElementById("p").value=JP_PASS;
-        entra(JP_USER, JP_PASS);
+        err.style.display="none";
+        document.getElementById("p").focus();
       });
     }
   })();
