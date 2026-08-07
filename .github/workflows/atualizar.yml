@@ -43,3 +43,13 @@ jobs:
             git commit -m "Atualiza edição"
             git push
           fi
+
+      - name: Forçar deploy na Vercel (via Deploy Hook)
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+        run: |
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            curl -s -X POST "$VERCEL_DEPLOY_HOOK" > /dev/null && echo "Deploy Vercel disparado." || echo "Falha ao disparar deploy."
+          else
+            echo "Secret VERCEL_DEPLOY_HOOK nao configurado; pulando disparo manual."
+          fi
