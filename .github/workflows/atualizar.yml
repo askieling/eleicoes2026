@@ -49,7 +49,14 @@ jobs:
           VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
         run: |
           if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
-            curl -s -X POST "$VERCEL_DEPLOY_HOOK" > /dev/null && echo "Deploy Vercel disparado." || echo "Falha ao disparar deploy."
+            url=$(printf '%s' "$VERCEL_DEPLOY_HOOK" | tr -d '[:space:]')
+            code=$(curl -s -o resp.txt -w "%{http_code}" -X POST "$url")
+            echo "HTTP $code"
+            echo "Resposta Vercel: $(head -c 400 resp.txt)"
+            case "$code" in
+              200|201) echo "OK: deploy aceito pela Vercel." ;;
+              *) echo "ERRO: Vercel recusou (HTTP $code). Confira a URL no secret VERCEL_DEPLOY_HOOK." ;;
+            esac
           else
             echo "Secret VERCEL_DEPLOY_HOOK nao configurado; pulando disparo manual."
           fi
