@@ -1,5 +1,30 @@
 [
   {
+    "titulo": "Novos impostos sobre consumo começam em 2027: CBS chega com alíquota de até 9,43% e IBS arranca marginal",
+    "dek": "Reforma tributária entra em vigor em 2027 com a cobrança efetiva da CBS federal e do IBS estadual-municipal. Alíquotas ainda estão sendo definidas, mas projeções apontam para CBS de 9,43%, enquanto IBS inicia marginal em 0,1%.",
+    "corpo": [
+      "A reforma tributária sobre o consumo, que vem sendo implementada gradualmente desde 2024, alcança seu ponto de inflexão em 2027. A partir do próximo ano, o governo federal, os estados e os municípios cobrarão, de forma efetiva, os dois novos tributos que substituirão cinco impostos históricos: a Contribuição sobre Bens e Serviços (CBS) em âmbito federal e o Imposto sobre Bens e Serviços (IBS) nos níveis estadual e municipal. Após período de testes, essa será a cobrança com força completa.",
+      "A alíquota da CBS ainda está sendo calculada pela Receita Federal em parceria com o Tribunal de Contas da União (TCU), com definição prevista para dezembro deste ano, por resolução do Senado. O cenário econômico mudou desde as primeiras estimativas: em 2024, o governo calculava 8,8%, mas novas exceções e desoneração de setores elevaram a projeção. A consultoria Roit agora aponta para 9,43% em 2027, enquanto estimativas do Comitê Gestor do IBS, divulgadas em julho, sugerem taxa de 9,2%.",
+      "O IBS estadual e municipal seguirá cronograma mais gradual. Em 2027 e 2028, a alíquota será marginal, de apenas 0,1%. Entre 2029 e 2032, haverá fase de transição, com aumentos graduais, até que a cobrança integral comece em 2033. Essa abordagem busca reduzir o impacto imediato nos orçamentos municipais e permitir adaptação dos contribuintes.",
+      "## A unificação tributária: fim de cinco impostos antigos",
+      "A reforma tributária sobre consumo extinguirá, gradualmente nos próximos anos, cinco tributos tradicionais: o PIS e a Cofins federais, o IPI federal (para maioria dos produtos), o ICMS estadual e o ISS municipal. Esses serão substituídos pelos dois novos impostos, que funcionarão no modelo de Imposto sobre Valor Agregado (IVA), adotado internacionalmente.",
+      "> O IVA funcionará de forma não cumulativa: ao longo da cadeia de produção, o imposto é cobrado em cada etapa, mas os contribuintes podem descontar o tributo pago anteriormente, evitando a tributação em cascata que caracterizava o sistema anterior.",
+      "Outra mudança estrutural é que os impostos sobre consumo passarão a ser cobrados no 'destino' — local onde os produtos são consumidos — e não mais na 'origem', onde são produzidos. Essa migração, que ocorrerá gradualmente durante décadas, visa combater a chamada 'guerra fiscal', a disputa entre estados que oferecem incentivos para atrair empresas. Com a cobrança no destino, esse mecanismo perde efetividade.",
+      "Desde o início deste ano, a Receita Federal exige que as empresas 'destaquem' os valores dos novos impostos nas notas fiscais eletrônicas, indicando quanto será pago em CBS e IBS. Embora a legislação tenha previsto alíquota de 1% no período de adaptação, não há recolhimento efetivo. Desde agosto, essa indicação tornou-se obrigatória, mas notas sem os novos campos não estão sendo automaticamente rejeitadas enquanto os sistemas se adaptam.",
+      "## O cronograma de implementação e os desafios para as empresas",
+      "Em novembro passado, a Receita Federal informou que penalidades para empresas que não preencherem corretamente os campos de CBS e IBS nas notas fiscais eletrônicas começarão apenas em 2027. Até lá, há prazo para adequação. Dados de agosto mostram que 88% dos documentos já são transmitidos com essas informações, sinalizando preparação adequada da maioria dos contribuintes.",
+      "O governo também adiou, para janeiro de 2027, a obrigatoriedade de pessoas físicas e produtores rurais terem o 'CNPJ técnico' — inscrição cadastral vinculada ao CPF de contribuintes dos novos impostos. Esse cadastro facilita a emissão de documentos fiscais nos sistemas da Receita Federal e do Comitê Gestor do IBS, sem transformar pessoas físicas em jurídicas.",
+      "## Análise: Os riscos fiscais de uma reforma com alíquotas crescentes",
+      "Do ponto de vista conservador, a reforma tributária apresenta paradoxos inquietantes. Embora prometa simplificar e desonerar, as alíquotas reais pós-reforma — particularmente a CBS que deve alcançar 9,43% — evidenciam um padrão recorrente: o Estado brasileiro não reduz a carga tributária, apenas a rearranja. O que parecia ser desonerações setoriais terminou em elevação das alíquotas previstas. A sucessão de exceções criadas durante os testes sinalizaram lobby político vencendo o objetivo de simplificação. Para o eleitor de direita em 2026, importa questionar: quem realmente arcará com esses novos impostos? Histórico sugere que, como sempre, será o consumidor final e as micro e pequenas empresas que não têm poder de negociação política."
+    ],
+    "cat": "politica",
+    "fonte": "G1 Política",
+    "link": "https://g1.globo.com/economia/noticia/2026/08/08/reforma-tributaria-cobranca-de-novos-impostos-sobre-consumo-comeca-em-2027-veja-como-vai-funcionar-e-o-que-falta-definir.ghtml",
+    "published": "2026-08-08T07:01:15+00:00",
+    "image": "",
+    "slug": "novos-impostos-sobre-consumo-comecam-em-2027-cbs-865ff6"
+  },
+  {
     "titulo": "Direita fragmentada abre caminho para recorde de chapas monolíticas em 2026",
     "dek": "Com 92% das candidaturas presidenciais formadas por presidente e vice do mesmo partido, eleição de 2026 bate recorde desde redemocratização. Desunião da direita contrasta com coesão petista e estratégia de partidos de blindar recursos para eleições legislativas.",
     "corpo": [
@@ -523,28 +548,5 @@
     "published": "2026-08-07T20:05:08+00:00",
     "image": "",
     "slug": "caiado-promete-anistiar-condenados-do-8-de-janeiro-2f6595"
-  },
-  {
-    "titulo": "Caiado promete anistia a condenados do 8 de janeiro e reforma tributária acelerada caso eleito em 2026",
-    "dek": "O candidato presidencial do PSD afirmou que pacificará o país anistiando envolvidos nos atos golpistas, enquanto promete reformas já no primeiro dia de governo. Aos 76 anos, disputa segunda candidatura à Presidência.",
-    "corpo": [
-      "Ronaldo Caiado, pré-candidato pelo PSD à Presidência em 2026, apresentou em entrevista ao podcast O Assunto propostas que marcam seu posicionamento na campanha que se aproxima. Em conversa com as jornalistas Natuza Nery e Andréia Sadi, o ex-governador de Goiás defendeu a anistia de pessoas condenadas pelos eventos de 8 de janeiro de 2023, enquadrando a medida como essencial para a pacificação nacional. A declaração coloca Caiado em linha com setores da direita que buscam encerrar divisões institucionais geradas pelos atos golpistas.",
-      "Na avaliação de Caiado, o país atravessa momento de urgência que demanda ações rápidas e decisivas. Ele se comprometeu a encaminhar ao Congresso propostas de reformas administrativa e política logo no primeiro dia de um eventual mandato, sinalizando intenção de dar velocidade a mudanças estruturais no Estado. Além disso, o candidato indicou disposição em revisar pontos específicos da reforma tributária aprovada recentemente, sugerindo que o texto atual contém inconsistências que precisam correção.",
-      "## Agenda ambiciosa de reformas estruturais",
-      "Caiado prometeu também discussão sobre a necessidade de uma nova reforma da Previdência, tema que permanece controverso no espectro político brasileiro. A iniciativa reforça o compromisso do PSD com o ajuste fiscal e a modernização das instituições públicas, pilares do discurso liberal-conservador que o partido busca consolidar na campanha de 2026.",
-      "> \"É uma medida que tem o sentido de pacificar o país\", afirmou Caiado sobre a anistia aos condenados pelos atos de janeiro de 2023.",
-      "No tocante à segurança pública, o candidato propôs a criação de uma polícia comum com países da América do Sul, visando combater o crime organizado transnacional. Caiado citou o modelo europeu como referência, sugerindo que uma instituição policial com capacidade de atuar nos dez países que fazem fronteira com o Brasil seria fundamental para enfrentar organizações criminosas que operam sem limites territoriais. A proposta, ainda que ambiciosa, busca responder a preocupações de setores conservadores com a segurança.",
-      "## Posicionamento na disputa de 2026",
-      "Aos 76 anos, Caiado concorre à Presidência pela segunda vez, reforçando sua presença no tabuleiro eleitoral. Sua participação na série de entrevistas do jornalismo da Globo coloca-o entre os cinco candidatos com melhor desempenho nas pesquisas mais recentes. A entrevista foi transmitida ao vivo pelo g1 e GloboNews na sexta-feira (7), com publicação integral como episódio especial do podcast O Assunto.",
-      "A série de entrevistas promovida pela Globo incluiu ainda o candidato Renan Santos (Missão), entrevistado na quarta-feira (6), e Romeu Zema (Novo), na quinta-feira (6). Flávio Bolsonaro (PL) tem entrevista agendada para segunda-feira (10), embora ainda não tenha confirmado presença. O presidente Lula foi convidado para participar, mas sua assessoria informou recusa em comparecer.",
-      "## Análise editorial: sinais para o eleitorado de direita",
-      "As posições apresentadas por Caiado revelam estratégia clara de centração política. A anistia aos condenados de janeiro busca construir narrativa de reconciliação que agrada tanto conservadores descontentes com perseguições quanto setores que desejam virar a página. A agenda de reformas fiscais e previdenciárias dialoga com eleitorado liberal que vê no PSD alternativa ao bolsonarismo sem abrir mão da agenda econômica ortodoxa. Porém, para a base mais dura da direita, especialmente apoiadores de Flávio Bolsonaro, tais posições podem soar como capitulação ideológica. Em 2026, a disputa pela preferência do voto conservador será acirrada, e Caiado tenta se posicionar como opção realizável que não abandona convicções de mercado, mesmo que articule gestos de apaziguamento político que nem todos aceitarão."
-    ],
-    "cat": "eleicoes",
-    "fonte": "G1 Eleições",
-    "link": "https://g1.globo.com/podcast/o-assunto/noticia/2026/08/07/especial-natuza-nery-e-andreia-sadi-entrevistam-ronaldo-caiado-o-assunto-1778.ghtml",
-    "published": "2026-08-07T20:05:08+00:00",
-    "image": "",
-    "slug": "caiado-promete-anistia-a-condenados-do-8-de-2f6595"
   }
 ]
