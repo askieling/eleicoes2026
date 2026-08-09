@@ -1,5 +1,28 @@
 [
   {
+    "titulo": "O colapso dos centros urbanos brasileiros: como décadas de planejamento falho esvaziaram nossas cidades",
+    "dek": "Expansão desordenada, priorização do carro e abandono estatal transformaram regiões que eram o coração das metrópoles em áreas vazias e inseguras. O fracasso do planejamento urbano brasileiro expõe a falta de visão dos gestores.",
+    "corpo": [
+      "Os centros das grandes cidades brasileiras vivem uma morte lenta e visível. Onde havia vida, movimento e segurança até meados do século 20 — com transeuntes circulando à noite, bares lotados e teatros cheios — hoje reina o vazio, a sensação de perigo e o abandono. São Paulo, Rio de Janeiro, Porto Alegre, Recife e Belém enfrentam o mesmo problema: suas regiões centrais se tornaram carcaças urbanas enquanto as metrópoles incham para os lados, criando uma expansão urbana caótica que ninguém consegue controlar.",
+      "O diagnóstico é claro: tudo começou a partir de 1950, quando a industrialização acelerada e a migração massiva do campo para a cidade provocaram um crescimento demográfico explosivo. São Paulo é o exemplo mais gritante. Em 1950, tinha 2 milhões de habitantes; em 1970, quase triplicou para 5,9 milhões; hoje são 11,5 milhões. Esse crescimento vertiginoso forçou a criação emergencial de novos bairros, mas sem planejamento coerente, sem políticas de centralidade, sem coordenação entre as esferas de governo.",
+      "A culpa, segundo especialistas, tem raízes profundas na estrutura fundiária e política brasileira. Éber Marzulo, professor da Faculdade de Arquitetura e Urbanismo da UFRGS, é direto: desde a colonização, o proprietário fundiário teve poder econômico e político desproporcional, moldando as cidades conforme seus interesses particulares, não o bem comum. Em São Paulo, foi a iniciativa privada que ocupou desordenadamente a cidade através de loteamentos irregulares, enquanto o Estado ficava para trás, tentando suprir uma demanda que nunca conseguiu acompanhar completamente.",
+      "## As escolhas que destruíram os centros",
+      "Duas decisões estruturais condenaram os centros urbanos ao abandono. Primeira: a priorização absoluta do transporte rodoviário a partir dos anos 1950. Os bondes elétricos foram desativados, as avenidas foram expandidas para conectar bairros distantes, e o automóvel virou sinônimo de status e mobilidade. Gerações inteiras foram criadas acreditando que o carro era essencial para viver bem na cidade. Segunda: a criação de novos bairros com infraestrutura moderna e espaços atrativos para a classe média emergente, sempre longe do centro, sempre mais baratos de construir nas periferias.",
+      "> \"Sem uma política de priorização da centralidade urbana, esse movimento levou gradualmente mais pessoas para longe dos centros. Em algumas cidades, até mesmo prédios da administração pública foram movidos para bairros afastados.\" A pesquisadora Ariadne Natal, do Núcleo de Estudos da Violência da USP, explica que o Estado fracassou em sua responsabilidade básica: não construiu infraestrutura nas novas áreas — faltam transporte público, saneamento, postos de saúde. Decades depois, o problema persiste. Enquanto isso, os centros históricos, outrora vibrantes, esvaziaram-se de moradores e de economia.",
+      "O fenômeno urbano conhecido como fragmentação socioespacial transformou as cidades brasileiras em mosaicos de desigualdade. Conforme explica Maria Beltrão Sposito, geógrafa urbana da Unesp, esse modelo de expansão incluiu condomínios fechados e shopping centers como substitutos da vida pública, criando uma nova forma de os citadinos se relacionarem com a metrópole. A classe média e alta fugiram para enclaves seguros e modernos, deixando os centros à própria sorte. Outros países experimentaram urbanização difusa semelhante, mas no Brasil a disparidade é muito mais marcante porque está combinada com uma desigualdade social colossal.",
+      "## Análise: o custo eleitoral da incompetência urbana",
+      "Do ponto de vista conservador e de gestão pública eficiente, o colapso dos centros urbanos representa um fracasso monumental de administração. Décadas de gestores esquerdistas e de centro-esquerda dominaram as prefeituras brasileiras sem conseguir (ou sem querer) reverter esse processo. Não é obra da mão invisível do mercado: é obra de decisões políticas ruins, de falta de visão, de incompetência administrativa crônica. A expansão desordenada beneficiou especuladores imobiliários enquanto prejudicava o bem comum. O resultado é insegurança, esvazias mortas e serviços públicos precários espalhados por toda a periferia.",
+      "Para 2026, o eleitor de direita precisa cobrar dos candidatos uma agenda clara de revitalização dos centros, não com gastos públicos ineficientes, mas com redução de burocracia, incentivos claros ao setor privado, segurança pública rigorosa e fim da ocupação irregular. Cidades como Rio e São Paulo tentam projetos de revitalização, mas faltam consistência e coragem política. O conservador que defende instituições sólidas e ordem também deve defender cidades funcionais, seguras e com vida urbana real — não enclaves para ricos cercados de caos.",
+      "O vazio nos centros das cidades brasileiras é também vazio de liderança política. Enquanto isso, a periferia cresce selvagem, os serviços públicos se esgarçam, e a desigualdade se aprofunda. Não é um problema de esquerda ou direita: é um problema de competência. E em 2026, competência importa."
+    ],
+    "cat": "politica",
+    "fonte": "G1 Política",
+    "link": "https://g1.globo.com/politica/noticia/2026/08/09/por-que-os-centros-das-cidades-brasileiras-se-tornaram-tao-vazios-e-inseguros.ghtml",
+    "published": "2026-08-09T10:21:57+00:00",
+    "image": "",
+    "slug": "o-colapso-dos-centros-urbanos-brasileiros-como-decadas-ac13f8"
+  },
+  {
     "titulo": "Lula intensifica diplomacia com adversários de Trump antes de 2026 enquanto aliados de Bolsonaro ganham espaço internacional",
     "dek": "Com crise diplomática com EUA e Argentina, governo petista reforça diálogo com China e Rússia em estratégia que expõe polarização eleitoral e questionamentos sobre eficácia da política externa brasileira.",
     "corpo": [
@@ -542,28 +565,5 @@
     "published": "2026-08-08T15:16:12+00:00",
     "image": "",
     "slug": "moraes-nega-visita-dos-filhos-a-bolsonaro-no-f1ea37"
-  },
-  {
-    "titulo": "Lula tenta negociar com Trump usando 'números de sucesso' da Amazônia, mas tarifa de 25% segue em pé",
-    "dek": "Presidente petista chama americano de 'amigo' e promete enviar dados sobre redução do desmatamento, mas tensão diplomática persiste após revogação de visto de embaixadora brasileira.",
-    "corpo": [
-      "O presidente Luiz Inácio Lula da Silva partiu neste sábado para a estratégia de tentar reverter ou amenizar as tarifas de 25% impostas pelo governo Donald Trump aos produtos brasileiros usando um argumento que considera seu maior trunfo diplomático: os números de queda do desmatamento na Amazônia. Durante evento do Movimento dos Trabalhadores Sem Teto em Taboão da Serra, na Grande São Paulo, Lula afirmou que pretende enviar dados atualizados sobre o tema ao presidente americano, referindo-se a ele como 'meu amigo Trump'.",
-      "A estratégia revela a aposta petista de que reduzir a pressão ambiental internacional poderia ser uma porta de entrada para negociações comerciais com Washington. O governo brasileiro contesta que o desmatamento ilegal tenha sido uma justificativa legítima para as novas tarifas, argumentando que a administração Trump recebeu 'informações que não correspondem à realidade'. Lula destacou, em tom de crítica, que o órgão americano responsável pela investigação não teria considerado dados suficientemente atualizados.",
-      "## Os números que Lula quer usar como moeda de troca",
-      "De acordo com dados do Instituto Nacional de Pesquisas Espaciais (Inpe), a área sob alertas de desmatamento na Amazônia foi de 2.874,38 km² entre agosto de 2025 e julho de 2026. O resultado representa uma queda de 36% em relação ao período anterior e é apresentado como o menor da série histórica iniciada em 2016. Lula mencionou especificamente a ex-ministra do Meio Ambiente Marina Silva, que estava presente no evento, pedindo para que ela 'ficasse orgulhosa' dos números alcançados.",
-      "> 'Um dos motivos era que a gente não cuidava do desmatamento. Eu quero preparar os números e mandar para o meu amigo Trump. Para ele saber que quem informou ele não informou sobre a verdade', afirmou Lula.",
-      "A Casa Branca imposição das tarifas em julho foi precedida de investigação conduzida pelo Escritório do Representante de Comércio dos Estados Unidos (USTR). Entre as práticas brasileiras classificadas como prejudiciais ao comércio americano estavam questões ligadas ao comércio digital, tarifas preferenciais, combate à corrupção, proteção da propriedade intelectual, acesso ao mercado de etanol e desmatamento ilegal. O órgão americano reconheceu que o Brasil possui estrutura legal para combater o desmatamento, mas argumentou que historicamente não aplicaria essas regras de forma eficaz.",
-      "## Contexto: tensão diplomática em novo patamar",
-      "A retórica conciliadora de Lula contrasta com o deterioramento das relações bilaterais. Nesta mesma semana, os Estados Unidos revogaram o visto da embaixadora do Brasil em Washington, Maria Luiza Ribeiro Viotti, em meio a impasse diplomático envolvendo a indicação do novo embaixador americano em Brasília. O gesto marca uma escalada rara na história diplomática entre os dois países e sugere que negociações comerciais enfrentam obstáculos além da simples apresentação de dados.",
-      "## Análise: o fracasso da cartada progressista diante de Trump",
-      "Do ponto de vista da política externa conservadora, a abordagem petista revela uma fragilidade estratégica: Lula aposta que dados de desempenho ambiental funcionarão como moeda de troca com Trump, mas ignora que a administração republicana americana opera por lógica distinta. O presidente americano prioriza déficit comercial, reciprocidade e vantagem industrial — não apelos à sustentabilidade ou ao cumprimento de metas ambientais abstratas. Oferecer 'números de sucesso' na Amazônia a um negociador que vê o Brasil sobretudo como concorrente comercial é estratégia fadada ao fracasso. Além disso, a crise diplomática envolvendo vistos de embaixadores sinaliza que as relações já transpuseram o campo comercial e entraram numa dimensão política mais profunda, onde palavras gentis e estatísticas dificilmente surtirão efeito.",
-      "O contexto eleitoral de 2026 coloca pressão adicional sobre Lula. Uma escalada na guerra comercial com os Estados Unidos afetaria a economia brasileira em ano de campanha presidencial, prejudicando a narrativa de recuperação econômica que o PT pretende vender ao eleitor. Nesse cenário, a frivolidade de chamar Trump de 'amigo' enquanto sofre golpes tarifários sucessivos reforça a percepção de um governo impotente diante de desafios reais da geopolítica internacional."
-    ],
-    "cat": "politica",
-    "fonte": "G1 Política",
-    "link": "https://g1.globo.com/politica/noticia/2026/08/08/lula-trump-dados-desmatamento-amazonia-tarifas.ghtml",
-    "published": "2026-08-08T15:12:41+00:00",
-    "image": "",
-    "slug": "lula-tenta-negociar-com-trump-usando-numeros-de-7e2599"
   }
 ]
