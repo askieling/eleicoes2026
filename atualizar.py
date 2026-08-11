@@ -128,6 +128,16 @@ def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+def no_dash(text):
+    """Troca travessao (—) e meia-risca (–) por virgula. Nao mexe em hifen comum
+    (pre-candidato, e-mail). Tira a 'cara de IA' do texto."""
+    if not text:
+        return text
+    text = re.sub(r"\s*[—–]\s*", ", ", text)
+    text = re.sub(r",\s*,", ",", text)   # evita virgula dupla
+    return re.sub(r"\s+", " ", text).strip()
+
+
 def slugify(titulo, link):
     base = unicodedata.normalize("NFKD", titulo or "")
     base = base.encode("ascii", "ignore").decode("ascii").lower()
@@ -254,8 +264,8 @@ def rewrite(client, item):
     corpo = data.get("corpo") or []
     if isinstance(corpo, str):
         corpo = [p.strip() for p in corpo.split("\n") if p.strip()]
-    corpo = [clean(p) for p in corpo if clean(p)]
-    return data["titulo"].strip(), data["dek"].strip(), corpo
+    corpo = [no_dash(clean(p)) for p in corpo if clean(p)]
+    return no_dash(data["titulo"].strip()), no_dash(data["dek"].strip()), corpo
 
 
 def article_slug(a):
