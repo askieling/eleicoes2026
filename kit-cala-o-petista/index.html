@@ -26,14 +26,16 @@
   .lede{font-size:20px;font-style:italic;font-family:"Playfair Display",serif;color:var(--ink-soft);margin-bottom:10px}
   .intro{margin-bottom:8px}
   h2{font-family:"Anton",sans-serif;text-transform:uppercase;letter-spacing:.02em;font-size:24px;color:var(--navy);margin:30px 0 6px;padding-top:14px;border-top:2px solid var(--ink)}
-  .card{border:1px solid var(--ink);background:#fbfaf5;padding:14px 16px;margin:12px 0}
-  .card .they{font-family:"Playfair Display",serif;font-style:italic;color:var(--red);margin-bottom:6px}
-  .card .they::before{content:"“Eles dizem: ”";font-style:normal;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--ink-soft);display:block;margin-bottom:3px}
-  .card .you{font-weight:700;color:var(--ink)}
-  .card .you::before{content:"Você responde:";display:block;font-family:"Playfair Display",serif;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:10px;color:var(--green);margin-bottom:3px}
-  .facts{list-style:none;margin:8px 0}
-  .facts li{padding:7px 0 7px 26px;position:relative;border-top:1px dotted var(--paper-edge)}
-  .facts li::before{content:"➤";position:absolute;left:0;top:7px;color:var(--gold);font-size:12px}
+  .legend{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 2px}
+  .legend span{font-family:"Playfair Display",serif;font-size:12px;font-weight:700;padding:5px 11px;border:1px solid var(--ink)}
+  .legend .l-af{color:var(--red)} .legend .l-hu{color:var(--gold)} .legend .l-ce{color:var(--green)}
+  .they{font-family:"Playfair Display",serif;font-style:italic;font-size:19px;color:var(--red);margin:16px 0 8px}
+  .they b{font-style:normal;font-weight:700;text-transform:uppercase;letter-spacing:.1em;font-size:11px;color:var(--ink-soft);display:block;margin-bottom:3px}
+  .resp{border-left:4px solid var(--ink);background:#fbfaf5;padding:11px 15px;margin:9px 0}
+  .resp .lbl{display:block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.1em;font-size:11px;font-weight:700;margin-bottom:4px}
+  .resp.afiada{border-color:var(--red)} .resp.afiada .lbl{color:var(--red)}
+  .resp.humor{border-color:var(--gold)} .resp.humor .lbl{color:var(--gold)}
+  .resp.certeira{border-color:var(--green)} .resp.certeira .lbl{color:var(--green)}
   .how{background:var(--paper-edge);border:1px solid var(--ink);padding:14px 16px;margin:22px 0}
   .cta{display:block;text-align:center;margin:26px 0 6px}
   .cta a{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;padding:15px 34px;border:1px solid var(--ink)}
@@ -98,57 +100,57 @@
   <hr class="double">
 
   <span class="tag">Munição</span>
-  <h1>Kit Cala o Petista — Munição pro Debate</h1>
-  <p class="lede">Chegou a hora de parar de perder discussão no grupo da família.</p>
-  <p class="intro">Aqui estão os argumentos, os princípios e as respostas prontas para você defender o que acredita — com firmeza e sem gaguejar. Guarde no favorito e volte sempre que precisar calar a esquerda com clareza.</p>
-
-  <h2>1 · Economia & o seu bolso</h2>
-  <div class="card">
-    <div class="they">"O governo tem que gastar mais para ajudar o povo."</div>
-    <div class="you">O Estado não tem dinheiro próprio: cada real que ele gasta saiu do seu bolso, hoje ou amanhã. Quando o governo gasta mais do que arrecada, a conta volta em forma de imposto, dívida e inflação — e quem paga é sempre o trabalhador.</div>
+  <h1>Kit Cala o Petista</h1>
+  <p class="lede">Munição pra debate. Chega de perder discussão no grupo da família.</p>
+  <p class="intro">Cada tema vem com 3 munições. Você escolhe a que combina com o momento: a <b style="color:var(--red)">Afiada</b> pra calar na hora, a <b style="color:var(--gold)">Com humor</b> pra desarmar rindo, e a <b style="color:var(--green)">Certeira</b> pra fechar com fato e princípio.</p>
+  <div class="legend">
+    <span class="l-af">💥 Afiada</span>
+    <span class="l-hu">😂 Com humor</span>
+    <span class="l-ce">✅ Certeira</span>
   </div>
-  <ul class="facts">
-    <li>Imposto alto não é sinal de país rico; é sinal de governo grande. Quanto mais o Estado tira, menos sobra pra família investir na própria vida.</li>
-    <li>Emprego de verdade vem de empresa que prospera, não de programa eleitoreiro. Liberdade pra empreender gera mais renda que qualquer bolsa.</li>
-    <li>Controle de gastos não é maldade — é respeito com quem acorda cedo pra trabalhar e sustentar o país.</li>
-  </ul>
 
-  <h2>2 · Segurança & ordem</h2>
-  <div class="card">
-    <div class="they">"Bandido também é vítima da sociedade."</div>
-    <div class="you">Vítima é o trabalhador que não pode voltar pra casa em paz. Quem escolhe o crime tem que responder por ele. Defender a autoridade da polícia e leis firmes não é ódio — é proteção de quem cumpre a lei.</div>
-  </div>
-  <ul class="facts">
-    <li>Cidadão de bem quer o direito de se sentir seguro na própria rua. Isso não é radicalismo, é o mínimo.</li>
-    <li>Passar a mão na cabeça de criminoso só encoraja mais crime. Ordem e consequência protegem o inocente.</li>
-  </ul>
+  <h2>1 · Economia &amp; o seu bolso</h2>
+  <p class="they"><b>Eles dizem:</b> "O governo tem que gastar mais pra ajudar o povo."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>Gastar o dinheiro de quem? O Estado não produz nada. Cada real que ele torra saiu do seu bolso. Generosidade com dinheiro dos outros é fácil.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Ótimo, começa gastando o seu. Quando o governo fala em "investir", esconde a carteira: a conta chega com o seu nome.</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Quando o governo gasta mais do que arrecada, a diferença volta em imposto, dívida e inflação. Quem paga é sempre o trabalhador.</div>
 
-  <h2>3 · Corrupção & transparência</h2>
-  <div class="card">
-    <div class="they">"Todo político rouba, tanto faz em quem votar."</div>
-    <div class="you">"Tanto faz" é exatamente o que o corrupto quer que você pense pra continuar no poder. Faz diferença, sim: cobrar transparência, apoiar quem investiga e punir o desvio é o que muda o jogo. Desistir é entregar o país de bandeja.</div>
-  </div>
-  <ul class="facts">
-    <li>Dinheiro público é dinheiro do povo. Exigir prestação de contas não é perseguição — é dever de cidadão.</li>
-    <li>Quem não deve, não teme fiscalização. Transparência é amiga do honesto e inimiga do ladrão.</li>
-  </ul>
+  <h2>2 · Segurança &amp; ordem</h2>
+  <p class="they"><b>Eles dizem:</b> "Bandido também é vítima da sociedade."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>Vítima é o trabalhador que levou tiro voltando pra casa. Coitadismo com criminoso é deboche com quem cumpre a lei.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Que nobre. Então deixa a porta de casa aberta pra "acolher a vítima". Não vai deixar? Pois é.</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Quem escolhe o crime responde por ele. Lei firme e polícia respeitada protegem o inocente, não oprimem o cidadão de bem.</div>
 
-  <h2>4 · Liberdade & valores</h2>
-  <div class="card">
-    <div class="they">"Vocês são atrasados por defender família e fé."</div>
-    <div class="you">Defender a família, a fé e a liberdade não é atraso — é a base que sustenta qualquer sociedade que deu certo. Respeitar a sua crença e a sua forma de criar os filhos é liberdade. Quem quer calar isso é que é autoritário.</div>
-  </div>
-  <ul class="facts">
-    <li>Liberdade de expressão vale pra todo mundo — inclusive pra quem pensa diferente da esquerda.</li>
-    <li>O Estado não é dono da sua família nem da sua consciência. Menos Estado no seu cangote é mais liberdade pra viver.</li>
-  </ul>
+  <h2>3 · Corrupção &amp; transparência</h2>
+  <p class="they"><b>Eles dizem:</b> "Todo político rouba, tanto faz em quem votar."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>"Tanto faz" é o hino do corrupto. É exatamente o que ele quer que você pense pra continuar roubando em paz.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Tanto faz? Então me passa o seu salário, tanto faz mesmo. Ah, no seu bolso importa, né?</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Faz diferença cobrar conta, apoiar quem investiga e punir desvio. Desistir é entregar o país de bandeja pra quem rouba.</div>
+
+  <h2>4 · Família, fé &amp; valores</h2>
+  <p class="they"><b>Eles dizem:</b> "Vocês são atrasados por defender família e religião."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>Atrasado é quem despreza a base que sustenta todo país que deu certo. Respeitar a minha fé não te obriga a nada.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Atrasado eu, que crio meus filhos com valor? Tá bom, professor. Segue aí ensinando o mundo pelo Twitter.</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Defender família, fé e liberdade não impõe nada a ninguém. É ter o direito de viver segundo a própria consciência.</div>
+
+  <h2>5 · Imprensa &amp; narrativa</h2>
+  <p class="they"><b>Eles dizem:</b> "Isso é fake news, só a grande imprensa fala a verdade."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>A mesma imprensa que errou em tudo que você viu com os próprios olhos? Verdade que muda conforme o lado não é verdade, é narrativa.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Fake news é tudo que contraria o seu lado, né? Que controle remoto confortável você tem da realidade.</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Notícia boa aguenta ser checada em várias fontes. Desconfie de quem manda você só confiar e nunca perguntar.</div>
+
+  <h2>6 · Trabalho &amp; mérito</h2>
+  <p class="they"><b>Eles dizem:</b> "Quem venceu na vida só teve privilégio."</p>
+  <div class="resp afiada"><span class="lbl">💥 Afiada</span>Privilégio é achar que o mundo te deve algo sem você levantar da cama. Tem gente ralando enquanto outros só procuram culpado.</div>
+  <div class="resp humor"><span class="lbl">😂 Com humor</span>Privilégio total: acordar 5h, pegar dois ônibus e trabalhar o mês inteiro. Quero menos desse "privilégio", obrigado.</div>
+  <div class="resp certeira"><span class="lbl">✅ Certeira</span>Mérito não nega que a vida é dura pra muitos. Ele diz que esforço e responsabilidade ainda são o caminho mais honesto pra subir.</div>
 
   <div class="how">
     <div class="smallcaps">Como usar</div>
     <p style="margin-top:6px">Salve esta página nos favoritos. Antes do próximo almoço de família ou discussão nas redes, dê uma passada de olho. Argumento na ponta da língua vence gritaria toda vez.</p>
   </div>
 
-  <p class="disc">Este material é conteúdo de opinião e argumentação política, com linha editorial declarada. Serve para embasar o seu debate com princípios e bom senso — a palavra final é sempre sua.</p>
+  <p class="disc">Este material é conteúdo de opinião e argumentação política, com linha editorial declarada. Serve pra embasar o seu debate com princípios e bom senso. A palavra final é sempre sua.</p>
 
   <div class="cta"><a href="/acesso-jornal">← Ir para o Jornal</a></div>
   <hr class="rule">
