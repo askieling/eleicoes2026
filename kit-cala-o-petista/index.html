@@ -53,6 +53,11 @@
   .gate label{display:block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--ink-soft);margin:14px 0 5px}
   .gate input{width:100%;padding:12px 14px;font-family:"PT Serif",serif;font-size:16px;background:#fff;border:1px solid var(--ink);color:var(--ink)}
   .gate input:focus{outline:2px solid var(--gold)}
+  .gate .pwrap{position:relative}
+  .gate .pwrap input{padding-right:46px}
+  .gate .peye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:transparent;border:0;cursor:pointer;padding:6px;line-height:0;color:var(--ink-soft)}
+  .gate .peye:hover{color:var(--navy)}
+  .gate .peye svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
   .gate .g-btn{width:100%;margin-top:20px;padding:14px;background:var(--navy);color:var(--paper);border:1px solid var(--ink);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;cursor:pointer}
   .gate .g-btn:hover{background:var(--green)}
   .gate .g-auto{width:100%;margin-top:10px;padding:12px;background:transparent;color:var(--navy);border:1px dashed var(--navy);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;cursor:pointer}
@@ -73,7 +78,10 @@
     <label for="u">Usuário</label>
     <input id="u" type="text" placeholder="seu usuário">
     <label for="p">Senha</label>
-    <input id="p" type="password" placeholder="sua senha">
+    <div class="pwrap">
+      <input id="p" type="password" placeholder="sua senha">
+      <button type="button" class="peye" id="peye" aria-label="Mostrar senha" title="Mostrar senha"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </div>
     <button type="submit" class="g-btn">Entrar</button>
     <button type="button" class="g-auto" id="autoBtn">Preencher meu acesso</button>
     <div class="g-err" id="err">Credenciais Incorretas</div>
@@ -158,6 +166,14 @@
       var ab=document.getElementById("autoBtn");
       if(ab)ab.addEventListener("click",function(){document.getElementById("u").value=JP_USER;document.getElementById("p").value=JP_PASS;err.style.display="none";document.getElementById("p").focus();});
     }
+    var pe=document.getElementById("peye"), pin=document.getElementById("p");
+    if(pe&&pin) pe.addEventListener("click",function(){
+      var hidden=pin.type==="password"; pin.type=hidden?"text":"password";
+      pe.innerHTML=hidden
+        ? '<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C5 20 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22"/><path d="M9.5 9.5a3 3 0 0 0 4 4"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+      pin.focus();
+    });
   })();
 </script>
 </body>
