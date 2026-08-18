@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Combo Completo · Jornal da Pátria</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d;--tg:#2AABEE}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .sheet{max-width:820px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px 30px}
+  @media(max-width:720px){.sheet{padding:0 16px 24px}}
+  .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:600}
+  .double{border:0;border-top:3px double var(--ink);height:0}
+  .rule{border:0;border-top:1px solid var(--ink)}
+  .brand{text-align:center;padding:16px 0 6px}
+  .brand a{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:26px;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+  .tag{display:inline-block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:700;color:var(--ink);background:var(--gold);padding:4px 12px;margin-top:22px}
+  h1{font-family:"Playfair Display",serif;font-weight:900;font-size:42px;line-height:1.05;color:var(--navy);margin:10px 0 8px}
+  @media(max-width:720px){h1{font-size:30px}}
+  .lede{font-size:20px;font-style:italic;font-family:"Playfair Display",serif;color:var(--ink-soft);margin-bottom:22px}
+  /* cards de produto */
+  .prod{display:flex;gap:16px;align-items:flex-start;border:1px solid var(--ink);border-left:6px solid var(--navy);background:#fbfaf5;padding:16px 18px;margin:14px 0}
+  .prod.gold{border-left-color:var(--gold)}
+  .prod.green{border-left-color:var(--green)}
+  .prod.tg{border-left-color:var(--tg)}
+  .prod .ico{font-size:34px;line-height:1;flex-shrink:0;margin-top:2px}
+  .prod .body{flex:1}
+  .prod .kick{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:10px;color:var(--ink-soft)}
+  .prod h3{font-family:"Playfair Display",serif;font-weight:800;font-size:21px;color:var(--ink);margin:2px 0 5px}
+  .prod p{font-size:15.5px;color:var(--ink-soft);margin-bottom:12px}
+  .prod a.btn{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700;padding:11px 22px;border:1px solid var(--ink);transition:background .15s}
+  .prod a.btn:hover{background:var(--green)}
+  .prod.tg a.btn{background:var(--tg);color:#fff}
+  .prod.tg a.btn:hover{background:#1b8fce}
+  .note{background:var(--paper-edge);border:1px solid var(--ink);padding:13px 15px;margin:20px 0 6px;font-size:14.5px;color:var(--ink-soft)}
+  .backrow{padding:22px 0 6px;text-align:center}
+  .backrow a{color:var(--ink-soft);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;font-weight:600}
+  .backrow a:hover{color:var(--green);text-decoration:underline}
+  .foot{text-align:center;color:var(--ink-soft);margin-top:14px}
+  /* ---- portão de acesso ---- */
+  body:not(.unlocked) .sheet{display:none}
+  body.unlocked .gate{display:none}
+  .gate{position:fixed;inset:0;z-index:10000;background:var(--paper-edge);display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:44px 18px}
+  .gate .g-mast{text-align:center;margin-top:14px}
+  .gate .g-mast b{display:block;font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:44px;letter-spacing:.03em;line-height:.92;color:var(--navy)}
+  @media(max-width:720px){.gate .g-mast b{font-size:30px}}
+  .gate .g-mast em{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.2em;font-size:10px;font-style:normal;color:var(--green)}
+  .gate hr{width:100%;max-width:440px;margin:18px 0;border:0;border-top:3px double var(--ink)}
+  .gate form{width:100%;max-width:380px}
+  .gate label{display:block;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:11px;color:var(--ink-soft);margin:14px 0 5px}
+  .gate input{width:100%;padding:12px 14px;font-family:"PT Serif",serif;font-size:16px;background:#fff;border:1px solid var(--ink);color:var(--ink)}
+  .gate input:focus{outline:2px solid var(--gold)}
+  .gate .pwrap{position:relative}
+  .gate .pwrap input{padding-right:46px}
+  .gate .peye{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:transparent;border:0;cursor:pointer;padding:6px;line-height:0;color:var(--ink-soft)}
+  .gate .peye:hover{color:var(--navy)}
+  .gate .peye svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .gate .g-btn{width:100%;margin-top:20px;padding:14px;background:var(--navy);color:var(--paper);border:1px solid var(--ink);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;cursor:pointer}
+  .gate .g-btn:hover{background:var(--green)}
+  .gate .g-auto{width:100%;margin-top:10px;padding:12px;background:transparent;color:var(--navy);border:1px dashed var(--navy);font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;cursor:pointer}
+  .gate .g-auto:hover{background:var(--paper)}
+  .gate .g-err{display:none;margin-top:14px;color:var(--red);font-weight:700;text-align:center;font-family:"Playfair Display",serif;letter-spacing:.04em}
+  .gate .g-card{width:100%;max-width:380px;margin-top:26px;border:1px solid var(--ink);background:var(--paper);padding:15px 17px}
+  .gate .g-card .t{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.18em;font-size:11px;color:var(--green);margin-bottom:9px}
+  .gate .g-card .row{display:flex;justify-content:space-between;gap:10px;font-size:15px;padding:4px 0}
+  .gate .g-card .row b{font-family:"Playfair Display",serif;color:var(--navy)}
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <div class="g-mast"><b>Jornal da Pátria</b><em>Área do Assinante</em></div>
+  <hr>
+  <form id="loginForm" autocomplete="off">
+    <label for="u">Usuário</label>
+    <input id="u" type="text" placeholder="seu usuário">
+    <label for="p">Senha</label>
+    <div class="pwrap">
+      <input id="p" type="password" placeholder="sua senha">
+      <button type="button" class="peye" id="peye" aria-label="Mostrar senha" title="Mostrar senha"><svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button>
+    </div>
+    <button type="submit" class="g-btn">Entrar</button>
+    <button type="button" class="g-auto" id="autoBtn">Preencher meu acesso</button>
+    <div class="g-err" id="err">Credenciais Incorretas</div>
+  </form>
+  <div class="g-card">
+    <div class="t">Seu Acesso</div>
+    <div class="row"><span>Usuário:</span> <b>membro_7K42X9</b></div>
+    <div class="row"><span>Senha:</span> <b>9Kx#pR2m$Qv7</b></div>
+  </div>
+</div>
+
+<div class="sheet">
+  <div class="brand"><a href="/acesso-jornal">Jornal da Pátria</a></div>
+  <hr class="double">
+
+  <span class="tag">Combo Completo</span>
+  <h1>Seu Combo Completo está liberado</h1>
+  <p class="lede">Tudo num lugar só, patriota. Acesse cada produto abaixo pela seção correspondente.</p>
+
+  <div class="prod navy">
+    <div class="ico">🗞️</div>
+    <div class="body">
+      <div class="kick">Produto Principal</div>
+      <h3>Jornal da Pátria</h3>
+      <p>As notícias de política sem o filtro da mídia velha, atualizadas todo dia. Foco total nas Eleições 2026.</p>
+      <a class="btn" href="/acesso-jornal">Acessar o Jornal</a>
+    </div>
+  </div>
+
+  <div class="prod gold">
+    <div class="ico">🎫</div>
+    <div class="body">
+      <div class="kick">Bônus 1</div>
+      <h3>Passe Eleições 2026</h3>
+      <p>Seu preço travado e acesso garantido até a posse de 2027, sem mensalidade. Confira os detalhes do seu passe.</p>
+      <a class="btn" href="/passe-eleicoes">Ver meu Passe</a>
+    </div>
+  </div>
+
+  <div class="prod green">
+    <div class="ico">🎯</div>
+    <div class="body">
+      <div class="kick">Bônus 2</div>
+      <h3>Kit Cala o Petista</h3>
+      <p>Munição pro debate: argumentos e respostas prontas em 3 estilos pra você nunca mais perder discussão.</p>
+      <a class="btn" href="/kit-cala-o-petista">Abrir o Kit</a>
+    </div>
+  </div>
+
+  <div class="prod tg">
+    <div class="ico">📲</div>
+    <div class="body">
+      <div class="kick">Bônus 3</div>
+      <h3>Grupo VIP no Telegram</h3>
+      <p>Alertas de última hora da política direto no seu Telegram, na hora que estouram, antes de todo mundo.</p>
+      <a class="btn" href="https://t.me/SEU_GRUPO_AQUI" target="_blank" rel="noopener">Entrar no Grupo VIP</a>
+    </div>
+  </div>
+
+  <div class="note smallcaps">Guarde este link nos favoritos. Um único login libera todos os produtos acima.</div>
+
+  <div class="backrow"><a href="/acesso-jornal">← Ir para o Jornal</a></div>
+  <hr class="rule">
+  <div class="foot smallcaps">© MMXXVI Jornal da Pátria · Combo Completo</div>
+</div>
+
+<script>
+  var JP_USER="membro_7K42X9", JP_PASS="9Kx#pR2m$Qv7";
+  function jpUnlock(){document.body.classList.add("unlocked");}
+  (function(){
+    if(sessionStorage.getItem("jp_auth")==="1"){jpUnlock();}
+    var f=document.getElementById("loginForm"), err=document.getElementById("err");
+    function entra(u,p){if(u===JP_USER&&p===JP_PASS){sessionStorage.setItem("jp_auth","1");err.style.display="none";jpUnlock();return true;}err.style.display="block";return false;}
+    if(f){
+      f.addEventListener("submit",function(e){e.preventDefault();entra(document.getElementById("u").value.trim(),document.getElementById("p").value);});
+      var ab=document.getElementById("autoBtn");
+      if(ab)ab.addEventListener("click",function(){document.getElementById("u").value=JP_USER;document.getElementById("p").value=JP_PASS;err.style.display="none";document.getElementById("p").focus();});
+    }
+    var pe=document.getElementById("peye"), pin=document.getElementById("p");
+    if(pe&&pin) pe.addEventListener("click",function(){
+      var hidden=pin.type==="password"; pin.type=hidden?"text":"password";
+      pe.innerHTML=hidden
+        ? '<svg viewBox="0 0 24 24"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20C5 20 1 12 1 12a18.5 18.5 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M1 1l22 22"/><path d="M9.5 9.5a3 3 0 0 0 4 4"/></svg>'
+        : '<svg viewBox="0 0 24 24"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>';
+      pin.focus();
+    });
+  })();
+</script>
+</body>
+</html>
