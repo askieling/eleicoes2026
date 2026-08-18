@@ -589,7 +589,7 @@
           <li>Sem anúncios</li>
           <li>Cancele quando quiser</li>
         </ul>
-        <a class="btn" href="https://ggcheckout.app/checkout/v5/xIXVwPuAEG7CFfsHsFBn">Assinar o mensal</a>
+        <a class="btn" id="btnMensal" href="https://ggcheckout.app/checkout/v5/xIXVwPuAEG7CFfsHsFBn">Assinar o mensal</a>
       </div>
       <div class="plan best">
         <span class="seal">Mais escolhido</span>
@@ -650,6 +650,19 @@
 
 </div>
 
+<!-- DOWNSELL: aparece ao clicar em Assinar o mensal -->
+<div id="downsell" class="modal" aria-hidden="true">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Oferta especial do plano anual">
+    <button class="modal-x" aria-label="Fechar">&times;</button>
+    <span class="smallcaps modal-kick">Espere · Oferta única nesta tela</span>
+    <h3 class="anton modal-h">Leve o ano inteiro por R$ 97</h3>
+    <p class="modal-p">No mês a mês você gasta <b class="hl-old">R$ 266</b> no ano. Aqui, só agora, o ano inteiro sai por <b class="hl-new">R$ 97</b> à vista. Fechou esta tela, a oferta some.</p>
+    <div class="modal-econ">Você economiza <span>R$ 169</span></div>
+    <a class="btn btn-gold modal-cta" href="https://ggcheckout.app/checkout/v5/q4tGpMhQX3cHTgivpeBm">Quero o ano todo por R$ 97</a>
+    <a class="modal-decline" href="https://ggcheckout.app/checkout/v5/xIXVwPuAEG7CFfsHsFBn">Não quero economizar, prefiro pagar R$ 22,22 todo mês</a>
+  </div>
+</div>
+
 <script>
   // data dinâmica em pt-BR (numérica)
   (function(){
@@ -688,6 +701,20 @@
     revealInView();
     // rede de segurança: nada fica invisível pra sempre
     setTimeout(function(){ els.forEach(function(e){ var r=e.getBoundingClientRect(); if(r.top < (window.innerHeight||800)) e.classList.add("in"); }); }, 1200);
+  })();
+
+  // downsell: clicar em "Assinar o mensal" abre a oferta do anual por R$97
+  (function(){
+    var modal = document.getElementById("downsell");
+    var btn = document.getElementById("btnMensal");
+    if(!modal || !btn) return;
+    var x = modal.querySelector(".modal-x");
+    function open(e){ if(e) e.preventDefault(); modal.classList.add("open"); document.body.style.overflow="hidden"; }
+    function close(){ modal.classList.remove("open"); document.body.style.overflow=""; }
+    btn.addEventListener("click", open);
+    x.addEventListener("click", close);
+    modal.addEventListener("click", function(e){ if(e.target === modal) close(); });
+    document.addEventListener("keydown", function(e){ if(e.key === "Escape") close(); });
   })();
 
   // navbar de ícones: recolhe ao rolar pra baixo, reaparece ao rolar pra cima
