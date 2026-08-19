@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script>if(sessionStorage.getItem('jp_auth')!=='1'){location.replace('/acesso-jornal');}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Entenda como as pesquisas calculam votos válidos nas eleições 2026: a diferença entre o que vota e o que importa · Jornal da Pátria</title>
+<meta name="description" content="Datafolha e Quaest explicam por que o cálculo de votos válidos ganha destaque na reta final. Veja como institutos reorganizam dados para alinhar resultados com o TSE.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .sheet{max-width:820px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
+  @media(max-width:720px){.sheet{padding:0 15px}}
+  .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600}
+  .rule{border:0;border-top:1px solid var(--ink)}
+  .double{border:0;border-top:3px double var(--ink);height:0}
+  .topbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
+  @media(max-width:720px){.topbar{margin:0 -15px}}
+  .topbar a{color:var(--paper);text-decoration:none}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .smallcaps{color:var(--paper)}
+  .brandline{text-align:center;padding:10px 0 4px}
+  .brandline a{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+  .tagrow{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
+  .tag{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--paper);background:var(--green);padding:3px 9px}
+  .tag.urgente{background:var(--red)}
+  .tag.economia{background:var(--navy)}
+  .tag.mundo{background:var(--gold);color:var(--ink)}
+  .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
+  h1.title{font-family:"Playfair Display",serif;font-weight:900;font-size:42px;line-height:1.05;color:var(--ink);margin:6px 0 12px}
+  @media(max-width:720px){h1.title{font-size:30px}}
+  .dek{font-size:20px;color:var(--ink-soft);font-style:italic;font-family:"Playfair Display",serif;margin-bottom:16px}
+  .hero{display:block;width:100%;max-height:420px;object-fit:cover;border:1px solid var(--ink);margin:6px 0 8px;background:var(--paper-edge)}
+  .caption{font-size:12px;color:var(--ink-soft);margin-bottom:18px}
+  .body{padding:10px 0 8px;font-size:19px;line-height:1.72}
+  .body p{margin-bottom:20px}
+  .body h2.sub{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.2;color:var(--ink);margin:26px 0 10px}
+  .body blockquote{border-left:3px solid var(--green);margin:22px 0;padding:4px 0 4px 18px;font-style:italic;font-family:"Playfair Display",serif;font-size:22px;color:var(--ink)}
+  @media(max-width:720px){.body{font-size:18px}}
+  .backrow{padding:26px 0 10px;text-align:center}
+  .backrow a{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;padding:14px 34px;border:1px solid var(--ink);transition:background .15s}
+  .backrow a:hover{background:var(--green);color:var(--paper)}
+  .colophon{padding:16px 0;border-top:1px solid var(--ink);text-align:center}
+  .colophon .legal{color:var(--ink-soft);max-width:680px;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brandline">
+    <a href="/acesso-jornal">Jornal da Pátria</a>
+  </div>
+  <hr class="double">
+
+  <article>
+    <div class="tagrow">
+      <span class="tag eleicoes">Eleições 2026</span>
+      <span class="ago" data-published="2026-08-19T08:04:06+00:00"></span>
+    </div>
+    <h1 class="title">Entenda como as pesquisas calculam votos válidos nas eleições 2026: a diferença entre o que vota e o que importa</h1>
+    <p class="dek">Datafolha e Quaest explicam por que o cálculo de votos válidos ganha destaque na reta final. Veja como institutos reorganizam dados para alinhar resultados com o TSE.</p>
+
+    <div class="body">
+      <p>As pesquisas eleitorais são um retrato do momento, não uma profecia. Essa é a principal lição que Luciana Chong, diretora do Datafolha, busca transmitir ao explicar um conceito fundamental para quem acompanha a corrida presidencial de 2026: a diferença entre votos totais e votos válidos. Enquanto as primeiras sondagens do ano mostram o panorama geral, incluindo indecisos, votos brancos e nulos, à medida que outubro se aproxima, o foco muda para um cálculo que reflete melhor como a Justiça Eleitoral divulgará o resultado final.</p>
+      <h2 class="sub">O que são votos válidos e por que importam</h2>
+      <p>Votos válidos são simplesmente aqueles registrados para candidatos específicos. O cálculo do Datafolha exclui brancos, nulos e eleitores que ainda não decidiram o voto, reorganizando os mesmos dados coletados para alinhar-se ao modelo que o Tribunal Superior Eleitoral (TSE) utiliza na divulgação oficial. Não se trata de criar um novo cenário, mas de apresentar a mesma realidade sob a perspectiva pela qual ela será contabilizada na apuração final. Dessa forma, os números mostrados pelas pesquisas ficam comparáveis com o resultado que será anunciado no dia 4 de outubro de 2026.</p>
+      <blockquote>&quot;As pesquisas eleitorais são um retrato do momento, como fotografias tiradas ao longo do período eleitoral&quot;, Luciana Chong, Datafolha</blockquote>
+      <p>Nas primeiras rodadas de levantamentos, quando faltam meses para a votação, o percentual de indecisos costuma ser alto, assim como brancos e nulos. Mostrar votos totais nesse período é estratégico para compreender como o eleitor está se movimentando no universo completo. Mas na reta final, quando a decisão se aproxima e essas categorias diminuem naturalmente, focar em votos válidos oferece uma perspectiva mais próxima do resultado que efetivamente será apurado.</p>
+      <h2 class="sub">Diferenças entre institutos: Datafolha e Quaest</h2>
+      <p>Embora ambos os institutos trabalhem com o conceito de votos válidos, existe uma diferença metodológica importante. A Quaest utiliza o modelo de &#x27;likely voters&#x27;, eleitores mais propensos a votar, enquanto o Datafolha aplica seu próprio cálculo, que exclui as categorias de branco, nulo e indeciso. Essas metodologias distintas podem gerar pequenas variações nos percentuais, refletindo abordagens diferentes sobre quem realmente comparecerá às urnas e em quem votará.</p>
+      <h2 class="sub">Cobertura massiva de pesquisas em 2026</h2>
+      <p>A Globo, o g1 e afiliadas publicarão 130 pesquisas conjuntas de Datafolha e Quaest durante o primeiro turno de 2026. Esse volume de levantamentos abrangerá não apenas a disputa presidencial, mas também as eleições para Senado, governadores de todos os estados e do Distrito Federal. Uma cobertura tão ampla permite que o eleitor acompanhe, rodada a rodada, como está a corrida em diferentes níveis da federação.</p>
+      <h2 class="sub">Análise: por que isso importa para o eleitor de direita em 2026</h2>
+      <p>Para o eleitor conservador que busca entender as pesquisas com rigor, esse conhecimento é essencial. Muitas vezes, a esquerda exploratória usa números de votos totais, onde indecisos inflacionam porcentagens, para argumentar que seus candidatos estão mais competitivos do que realmente estão. Compreender que votos válidos representam a verdadeira disputa, alinhada com como o TSE apurará o resultado, é uma ferramenta para não cair em narrativas distorcidas. Além disso, ao saber quando e por que os cálculos mudam de metodologia, o eleitor de direita consegue fazer sua própria leitura das pesquisas e não depender apenas de interpretações tendenciosas da mídia tradicional.</p>
+      <p>A série de 50 vídeos publicados pelo g1 até o primeiro turno inclui explicações sobre pesquisas, uso de redes sociais, regras de campanha com inteligência artificial, funcionamento do Congresso e orientações para votação. Iniciada esta semana, a iniciativa promete cobrir os principais temas da eleição 2026 de forma didática, oferecendo ao eleitor brasileiro ferramentas para entender melhor o processo eleitoral e tomar decisões informadas.</p>
+    </div>
+  </article>
+
+  <div class="backrow">
+    <a href="/acesso-jornal">← Voltar ao jornal</a>
+  </div>
+
+  <div class="colophon">
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada.</div>
+  </div>
+
+</div>
+
+<script>
+  function ha(iso){
+    var t=new Date(iso).getTime();
+    if(isNaN(t))return"";
+    var min=Math.floor((Date.now()-t)/60000);
+    if(min<1)return"agora mesmo";
+    if(min<60)return"há "+min+" min";
+    var h=Math.floor(min/60);
+    if(h<24)return"há "+h+(h===1?" hora":" horas");
+    var d=Math.floor(h/24);
+    return"há "+d+(d===1?" dia":" dias");
+  }
+  document.querySelectorAll("[data-published]").forEach(function(el){
+    el.textContent=ha(el.getAttribute("data-published"));
+  });
+</script>
+</body>
+</html>
