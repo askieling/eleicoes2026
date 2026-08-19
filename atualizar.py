@@ -57,7 +57,7 @@ def is_political(*texts):
     blob = " ".join(t or "" for t in texts).lower()
     return any(term in blob for term in POLITICAL_TERMS)
 MODEL = "claude-haiku-4-5"     # o Claude mais barato; troque por claude-opus-5 se quiser mais qualidade
-MAX_NEW_PER_RUN = 6            # limita chamadas de LLM por rodada (controle de custo)
+MAX_NEW_PER_RUN = 3            # limita chamadas de LLM por rodada (controle de custo)
 MAX_ARTICLES = 24             # quantas noticias mantem no feed
 ENTRIES_PER_FEED = 12         # quantos itens ler de cada RSS
 FETCH_FULLTEXT = True         # baixa o texto completo da materia p/ dar mais contexto ao rewrite

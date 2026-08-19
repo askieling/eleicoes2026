@@ -2,7 +2,7 @@ name: Atualizar edição
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # a cada ~30 min (economiza cota de Actions do repo privado)
+    - cron: "0 */3 * * *"   # a cada 3h (economiza credito da API)
   workflow_dispatch: {}       # botão "Run workflow" para rodar na hora
 
 permissions:
