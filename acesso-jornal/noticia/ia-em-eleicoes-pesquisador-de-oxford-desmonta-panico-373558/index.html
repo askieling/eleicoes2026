@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script>if(sessionStorage.getItem('jp_auth')!=='1'){location.replace('/acesso-jornal');}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>IA em eleições: pesquisador de Oxford desmonta pânico sobre deepfakes e conclui que impacto é muito menor que prometido · Jornal da Pátria</title>
+<meta name="description" content="Estudo de Felix Simon revela que, apesar do alarde, inteligência artificial gerou menos desinformação eleitoral do que se temia. Fatores políticos tradicionais e a disputa por atenção continuam sendo muito mais decisivos.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .sheet{max-width:820px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
+  @media(max-width:720px){.sheet{padding:0 15px}}
+  .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600}
+  .rule{border:0;border-top:1px solid var(--ink)}
+  .double{border:0;border-top:3px double var(--ink);height:0}
+  .topbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
+  @media(max-width:720px){.topbar{margin:0 -15px}}
+  .topbar a{color:var(--paper);text-decoration:none}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .smallcaps{color:var(--paper)}
+  .brandline{text-align:center;padding:10px 0 4px}
+  .brandline a{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+  .tagrow{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
+  .tag{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--paper);background:var(--green);padding:3px 9px}
+  .tag.urgente{background:var(--red)}
+  .tag.economia{background:var(--navy)}
+  .tag.mundo{background:var(--gold);color:var(--ink)}
+  .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
+  h1.title{font-family:"Playfair Display",serif;font-weight:900;font-size:42px;line-height:1.05;color:var(--ink);margin:6px 0 12px}
+  @media(max-width:720px){h1.title{font-size:30px}}
+  .dek{font-size:20px;color:var(--ink-soft);font-style:italic;font-family:"Playfair Display",serif;margin-bottom:16px}
+  .hero{display:block;width:100%;max-height:420px;object-fit:cover;border:1px solid var(--ink);margin:6px 0 8px;background:var(--paper-edge)}
+  .caption{font-size:12px;color:var(--ink-soft);margin-bottom:18px}
+  .body{padding:10px 0 8px;font-size:19px;line-height:1.72}
+  .body p{margin-bottom:20px}
+  .body h2.sub{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.2;color:var(--ink);margin:26px 0 10px}
+  .body blockquote{border-left:3px solid var(--green);margin:22px 0;padding:4px 0 4px 18px;font-style:italic;font-family:"Playfair Display",serif;font-size:22px;color:var(--ink)}
+  @media(max-width:720px){.body{font-size:18px}}
+  .backrow{padding:26px 0 10px;text-align:center}
+  .backrow a{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;padding:14px 34px;border:1px solid var(--ink);transition:background .15s}
+  .backrow a:hover{background:var(--green);color:var(--paper)}
+  .colophon{padding:16px 0;border-top:1px solid var(--ink);text-align:center}
+  .colophon .legal{color:var(--ink-soft);max-width:680px;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brandline">
+    <a href="/acesso-jornal">Jornal da Pátria</a>
+  </div>
+  <hr class="double">
+
+  <article>
+    <div class="tagrow">
+      <span class="tag eleicoes">Eleições 2026</span>
+      <span class="ago" data-published="2026-08-20T08:43:34+00:00"></span>
+    </div>
+    <h1 class="title">IA em eleições: pesquisador de Oxford desmonta pânico sobre deepfakes e conclui que impacto é muito menor que prometido</h1>
+    <p class="dek">Estudo de Felix Simon revela que, apesar do alarde, inteligência artificial gerou menos desinformação eleitoral do que se temia. Fatores políticos tradicionais e a disputa por atenção continuam sendo muito mais decisivos.</p>
+
+    <div class="body">
+      <p>Nos últimos anos, a inteligência artificial generativa se tornou o vilão favorito de autoridades eleitorais, pesquisadores e empresas de tecnologia ao redor do mundo. A possibilidade de criar áudios e vídeos ultra-realistas alimentou previsões apocalípticas de que as democracias enfrentariam uma avalanche de deepfakes e desinformação orquestrada por máquinas. Mas um estudo conduzido por Felix Simon, pesquisador da Universidade de Oxford, sugere que boa parte desse alarde pode estar completamente desproporcionada em relação à realidade.</p>
+      <p>Simon, que integra o Instituto Reuters para o Estudo do Jornalismo e o Instituto de Internet de Oxford, argumenta que as evidências empíricas até agora indicam algo bem diferente do cenário catastrofista previsto. Sua análise de eleições entre 2023 e 2024, justamente o período em que o temor sobre IA generativa estava no auge, revelou que os impactos devastadores simplesmente não se materializaram na escala esperada. Os resultados eleitorais continuaram sendo determinados, predominantemente, por fatores econômicos, culturais, sociais, partidários e pelo papel de líderes políticos e mídia tradicional.</p>
+      <h2 class="sub">O argumento central: a internet já está saturada de mentira</h2>
+      <p>Para Simon, o erro fundamental reside em pressupor uma demanda insaciável por desinformação. &quot;Para ser eficaz, seria necessário que houvesse algum tipo de demanda não atendida por mais desinformação, e isso não existe&quot;, afirma o pesquisador. A internet, segundo ele, já transborda de conteúdo falso há anos. Adicionar mais desinformação, mesmo que tecnicamente sofisticada, não gera necessariamente maior impacto nas escolhas dos eleitores.</p>
+      <p>O pesquisador também destaca um fator crucial frequentemente ignorado no debate: a disputa pela atenção. &quot;O principal desafio para influenciar o voto das pessoas é conseguir que elas prestem atenção, e isso é muito, muito difícil&quot;, diz Simon à BBC News Brasil. Considerando que passamos 8 horas dormindo, muitas trabalhando, restam apenas cerca de 4 horas diárias para entretenimento e consumo de conteúdo. Essa escassez de tempo significa competição gigantesca por um espaço mental finito.</p>
+      <blockquote>&quot;A desinformação funciona porque existem pessoas receptivas a ela, geralmente pessoas que querem algo que confirme sua visão de mundo. Mas a internet já está lotada de desinformação e embora seja possível criar mais, isso não significa um efeito maior.&quot;</blockquote>
+      <h2 class="sub">Filtros ideológicos e a confirmação de vieses</h2>
+      <p>Outro ponto central na análise de Simon é que a maioria dos conteúdos eleitorais compartilhados nas redes sociais, seja um deepfake ou uma fake news tradicional, serve primariamente para confirmar opiniões já cristalizadas. Quem consome esses materiais já escolheu seu candidato e busca validação de suas crenças preexistentes. Os eleitores, portanto, não chegam como &quot;folhas em branco&quot; esperando serem persuadidos, mas como indivíduos moldados por predisposições de longa data.</p>
+      <p>Estudos clássicos de comportamento eleitoral indicam que a filiação partidária, frequentemente formada ainda na adolescência, funciona como um filtro primário através do qual as pessoas processam informações políticas. Vínculos com grupos sociais e orientações ideológicas interagem com propaganda e conteúdo consumido, moldando impressões sobre candidatos. Nesse contexto, um deepfake sofisticado terá impacto limitado, talvez até menor, do que uma declaração controversa de um político tradicional ou uma mudança na economia.</p>
+      <h2 class="sub">Análise editorial: o pânico precedente à razão</h2>
+      <p>Do ponto de vista conservador e cético com o alarmismo progressista, há mérito significativo no trabalho de Simon. A esquerda frequentemente utiliza o &quot;pânico tecnológico&quot; como estratégia para demandar regulação governamental da internet, controle de plataformas e restrição à liberdade de expressão, tudo em nome de combater desinformação. Quando a IA generativa ganhou força, era previsível que o coro alarmista ressurgisse com intensidade amplificada. Se a pesquisa de Simon estiver correta, e tudo indica que está bem fundamentada, a narrativa do &quot;caos eleitoral causado por IA&quot; perde sua urgência retórica.</p>
+      <p>Para o eleitor de direita em 2026, essa conclusão importa muito. Significa que candidatos alarmistas que prometem &quot;salvar a democracia&quot; através de censura digital e regulação estrita devem ser questionados. Significa que a principal ameaça às eleições não vem de máquinas criando imagens falsas, mas de fatores políticos convencionais, economia, políticas públicas, liderança e comunicação tradicional. As campanhas ainda serão decididas por mensagens simples, repetidas, capazes de atingir a atenção disputada do eleitor comum. E, como Simon observa, o fator humano na desinformação segue sendo mais potente que a IA: políticos mentindo explicitamente continuam sendo a verdadeira arma de destruição em massa eleitoral.</p>
+      <p>Simon e seu colega Sacha Altay concluem que, embora a IA generativa possa auxiliar campanhas em eficiência operacional futura, seu papel como agente transformador de eleições foi largamente exagerado. A demanda real está em campanha tradicional bem executada, não em deepfakes sofisticados. Isso deverá tranquilizar aqueles que temem pela saúde democrática, não por ingenuidade, mas porque a realidade empírica sugere resiliência maior do que o pânico mediático supõe.</p>
+    </div>
+  </article>
+
+  <div class="backrow">
+    <a href="/acesso-jornal">← Voltar ao jornal</a>
+  </div>
+
+  <div class="colophon">
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada.</div>
+  </div>
+
+</div>
+
+<script>
+  function ha(iso){
+    var t=new Date(iso).getTime();
+    if(isNaN(t))return"";
+    var min=Math.floor((Date.now()-t)/60000);
+    if(min<1)return"agora mesmo";
+    if(min<60)return"há "+min+" min";
+    var h=Math.floor(min/60);
+    if(h<24)return"há "+h+(h===1?" hora":" horas");
+    var d=Math.floor(h/24);
+    return"há "+d+(d===1?" dia":" dias");
+  }
+  document.querySelectorAll("[data-published]").forEach(function(el){
+    el.textContent=ha(el.getAttribute("data-published"));
+  });
+</script>
+</body>
+</html>
