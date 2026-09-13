@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script>if(sessionStorage.getItem('jp_auth')!=='1'){location.replace('/acesso-jornal');}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>Eleições 2026: Como preparar sua colinha e dominar a urna eletrônica antes de 4 de outubro · Jornal da Pátria</title>
+<meta name="description" content="Com menos de três semanas para o primeiro turno, eleitores podem se preparar com anotações em papel e simulador do TSE. Saiba a ordem exata dos seis votos e evite erros, especialmente nas duas vagas para Senado.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .sheet{max-width:820px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
+  @media(max-width:720px){.sheet{padding:0 15px}}
+  .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600}
+  .rule{border:0;border-top:1px solid var(--ink)}
+  .double{border:0;border-top:3px double var(--ink);height:0}
+  .topbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
+  @media(max-width:720px){.topbar{margin:0 -15px}}
+  .topbar a{color:var(--paper);text-decoration:none}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .smallcaps{color:var(--paper)}
+  .brandline{text-align:center;padding:10px 0 4px}
+  .brandline a{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+  .tagrow{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
+  .tag{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--paper);background:var(--green);padding:3px 9px}
+  .tag.urgente{background:var(--red)}
+  .tag.economia{background:var(--navy)}
+  .tag.mundo{background:var(--gold);color:var(--ink)}
+  .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
+  h1.title{font-family:"Playfair Display",serif;font-weight:900;font-size:42px;line-height:1.05;color:var(--ink);margin:6px 0 12px}
+  @media(max-width:720px){h1.title{font-size:30px}}
+  .dek{font-size:20px;color:var(--ink-soft);font-style:italic;font-family:"Playfair Display",serif;margin-bottom:16px}
+  .hero{display:block;width:100%;max-height:420px;object-fit:cover;border:1px solid var(--ink);margin:6px 0 8px;background:var(--paper-edge)}
+  .caption{font-size:12px;color:var(--ink-soft);margin-bottom:18px}
+  .body{padding:10px 0 8px;font-size:19px;line-height:1.72}
+  .body p{margin-bottom:20px}
+  .body h2.sub{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.2;color:var(--ink);margin:26px 0 10px}
+  .body blockquote{border-left:3px solid var(--green);margin:22px 0;padding:4px 0 4px 18px;font-style:italic;font-family:"Playfair Display",serif;font-size:22px;color:var(--ink)}
+  @media(max-width:720px){.body{font-size:18px}}
+  .backrow{padding:26px 0 10px;text-align:center}
+  .backrow a{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;padding:14px 34px;border:1px solid var(--ink);transition:background .15s}
+  .backrow a:hover{background:var(--green);color:var(--paper)}
+  .colophon{padding:16px 0;border-top:1px solid var(--ink);text-align:center}
+  .colophon .legal{color:var(--ink-soft);max-width:680px;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brandline">
+    <a href="/acesso-jornal">Jornal da Pátria</a>
+  </div>
+  <hr class="double">
+
+  <article>
+    <div class="tagrow">
+      <span class="tag eleicoes">Eleições 2026</span>
+      <span class="ago" data-published="2026-09-13T03:00:02+00:00"></span>
+    </div>
+    <h1 class="title">Eleições 2026: Como preparar sua colinha e dominar a urna eletrônica antes de 4 de outubro</h1>
+    <p class="dek">Com menos de três semanas para o primeiro turno, eleitores podem se preparar com anotações em papel e simulador do TSE. Saiba a ordem exata dos seis votos e evite erros, especialmente nas duas vagas para Senado.</p>
+
+    <div class="body">
+      <p>Faltando pouco mais de 20 dias para o primeiro turno das eleições de 2026, marcado para 4 de outubro, é hora do eleitor se preparar para uma votação complexa. Na urna eletrônica, serão seis escolhas sucessivas, começando com deputado federal e terminando com presidente da República. Essa sequência inclui dois votos para senador, um após o outro, aspecto que exige atenção especial para evitar nulidade.</p>
+      <p>A ordem correta de votação segue esta sequência: primeiro, deputado federal (quatro dígitos); depois, deputado estadual ou distrital para quem mora no Distrito Federal (cinco dígitos); em seguida, senador primeira vaga (três dígitos); senador segunda vaga (três dígitos novamente); governador (dois dígitos); e, por fim, presidente da República (dois dígitos). Cada etapa exige digitação do número do candidato, confirmação dos dados na tela e posterior avanço para a próxima escolha.</p>
+      <p>Para não correr risco de votos em branco ou erros de digitação, a estratégia tradicional da colinha de papel permanece válida e recomendada. O eleitor deve anotar os números dos candidatos escolhidos em uma folha, respeitando rigorosamente a sequência da urna. A Justiça Eleitoral disponibiliza até um modelo oficial para impressão, com campos já organizados para cada cargo.</p>
+      <h2 class="sub">Cuidado com o segundo voto para Senado</h2>
+      <blockquote>Se o eleitor repetir e confirmar o mesmo candidato nas duas vagas de Senado, o segundo voto será considerado nulo.</blockquote>
+      <p>Uma armadilha frequente aguarda quem vota para as duas cadeiras do Senado: não é permitido votar duas vezes no mesmo candidato. Em 2026, estarão em disputa duas das três cadeiras do Senado em cada estado e no Distrito Federal, totalizando 54 vagas. Por isso a urna apresenta duas etapas seguidas para esse cargo. Se o eleitor escolher o mesmo nome para ambas as vagas e confirmar, a segunda votação será automaticamente anulada. Necessário, portanto, selecionar dois candidatos diferentes.</p>
+      <p>Antes da eleição, o eleitor pode treinar usando o simulador oficial da Justiça Eleitoral, disponível na internet. A ferramenta permite escolher o cenário da votação, montar uma colinha fictícia com candidatos de treinamento, selecionar recursos de acessibilidade e simular todo o processo de votação. O treinamento pode ser repetido quantas vezes o eleitor desejar, com a possibilidade de praticar também as teclas &#x27;Corrige&#x27; e &#x27;Branco&#x27;.</p>
+      <h2 class="sub">Segundo turno em 25 de outubro, se necessário</h2>
+      <p>O segundo turno está marcado para 25 de outubro, mas só ocorrerá para os cargos cuja disputa não for definida no primeiro turno. Se apenas um cargo precisar de novo escrutínio, o eleitor votará somente naquele cargo naquela data. A quantidade de escolhas no segundo turno dependerá de quantas disputas chegarem a essa etapa.</p>
+      <p>**Análise editorial:** O complexo sistema de votação de 2026 reflete a necessidade de uma eleição abrangente, mas coloca responsabilidade sobre cada cidadão para votar corretamente. Para o eleitor de direita, que reconhece a importância de escolhas bem informadas no cenário político nacional, o uso das ferramentas disponibilizadas pela Justiça Eleitoral, colinha de papel e simulador, é uma oportunidade de se preparar adequadamente. Com uma composição fragmentada do Congresso e disputas presidenciais acirradas à vista, erros de votação não podem ser desculpa. A preparação antecipada é dever cívico.</p>
+      <p>Reforça-se: a colinha para o dia 4 de outubro deve ser apenas de papel. Celular é proibido na cabine de votação e deve ser entregue aos mesários. Dessa forma, o eleitor chega à urna com informação segura, evita dúvidas na hora e garante que sua vontade política seja fielmente traduzida em votos válidos.</p>
+    </div>
+  </article>
+
+  <div class="backrow">
+    <a href="/acesso-jornal">← Voltar ao jornal</a>
+  </div>
+
+  <div class="colophon">
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada.</div>
+  </div>
+
+</div>
+
+<script>
+  function ha(iso){
+    var t=new Date(iso).getTime();
+    if(isNaN(t))return"";
+    var min=Math.floor((Date.now()-t)/60000);
+    if(min<1)return"agora mesmo";
+    if(min<60)return"há "+min+" min";
+    var h=Math.floor(min/60);
+    if(h<24)return"há "+h+(h===1?" hora":" horas");
+    var d=Math.floor(h/24);
+    return"há "+d+(d===1?" dia":" dias");
+  }
+  document.querySelectorAll("[data-published]").forEach(function(el){
+    el.textContent=ha(el.getAttribute("data-published"));
+  });
+</script>
+</body>
+</html>
