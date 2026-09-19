@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<script>if(sessionStorage.getItem('jp_auth')!=='1'){location.replace('/acesso-jornal');}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>São Paulo vota pouco em mulheres: apenas 4 locais escolheram deputadas em 2022 · Jornal da Pátria</title>
+<meta name="description" content="Levantamento revela que candidatas ultrapassaram 50% dos votos em apenas 4 dos 2.048 locais de votação da capital paulista nas eleições de 2022. Concentração de votos femininos ocorre em bairros ricos da Zona Oeste, enquanto sul da cidade privilegia candidatos homens.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 14'%3E%3Crect width='20' height='14' fill='%23009c3b'/%3E%3Cpolygon points='10,1 19,7 10,13 1,7' fill='%23ffdf00'/%3E%3Ccircle cx='10' cy='7' r='3' fill='%23002776'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Playfair+Display:ital,wght@0,600;0,800;0,900;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#f4f1ea;--paper-edge:#e7e2d6;--ink:#181410;--ink-soft:#3a352c;--navy:#0b2545;--green:#1b5e3f;--gold:#b5892a;--gold-bright:#e0b64a;--red:#8f2d2d}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--paper-edge);color:var(--ink);font-family:"PT Serif",Georgia,serif;font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased}
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.05;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .sheet{max-width:820px;margin:0 auto;background:var(--paper);border:1px solid var(--ink);padding:0 34px}
+  @media(max-width:720px){.sheet{padding:0 15px}}
+  .smallcaps{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.22em;font-size:11.5px;font-weight:600}
+  .rule{border:0;border-top:1px solid var(--ink)}
+  .double{border:0;border-top:3px double var(--ink);height:0}
+  .topbar{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:var(--paper);padding:8px 14px;margin:0 -34px}
+  @media(max-width:720px){.topbar{margin:0 -15px}}
+  .topbar a{color:var(--paper);text-decoration:none}
+  .topbar a:hover{text-decoration:underline}
+  .topbar .smallcaps{color:var(--paper)}
+  .brandline{text-align:center;padding:10px 0 4px}
+  .brandline a{font-family:"Playfair Display",serif;font-weight:900;text-transform:uppercase;font-size:24px;letter-spacing:.04em;color:var(--navy);text-decoration:none}
+  .tagrow{display:flex;align-items:center;gap:12px;padding:16px 0 4px}
+  .tag{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:700;color:var(--paper);background:var(--green);padding:3px 9px}
+  .tag.urgente{background:var(--red)}
+  .tag.economia{background:var(--navy)}
+  .tag.mundo{background:var(--gold);color:var(--ink)}
+  .ago{font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.14em;font-size:11px;color:var(--ink-soft)}
+  h1.title{font-family:"Playfair Display",serif;font-weight:900;font-size:42px;line-height:1.05;color:var(--ink);margin:6px 0 12px}
+  @media(max-width:720px){h1.title{font-size:30px}}
+  .dek{font-size:20px;color:var(--ink-soft);font-style:italic;font-family:"Playfair Display",serif;margin-bottom:16px}
+  .hero{display:block;width:100%;max-height:420px;object-fit:cover;border:1px solid var(--ink);margin:6px 0 8px;background:var(--paper-edge)}
+  .caption{font-size:12px;color:var(--ink-soft);margin-bottom:18px}
+  .body{padding:10px 0 8px;font-size:19px;line-height:1.72}
+  .body p{margin-bottom:20px}
+  .body h2.sub{font-family:"Playfair Display",serif;font-weight:800;font-size:24px;line-height:1.2;color:var(--ink);margin:26px 0 10px}
+  .body blockquote{border-left:3px solid var(--green);margin:22px 0;padding:4px 0 4px 18px;font-style:italic;font-family:"Playfair Display",serif;font-size:22px;color:var(--ink)}
+  @media(max-width:720px){.body{font-size:18px}}
+  .backrow{padding:26px 0 10px;text-align:center}
+  .backrow a{display:inline-block;background:var(--navy);color:var(--paper);text-decoration:none;font-family:"Playfair Display",serif;text-transform:uppercase;letter-spacing:.16em;font-size:14px;font-weight:700;padding:14px 34px;border:1px solid var(--ink);transition:background .15s}
+  .backrow a:hover{background:var(--green);color:var(--paper)}
+  .colophon{padding:16px 0;border-top:1px solid var(--ink);text-align:center}
+  .colophon .legal{color:var(--ink-soft);max-width:680px;margin:0 auto}
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <div class="brandline">
+    <a href="/acesso-jornal">Jornal da Pátria</a>
+  </div>
+  <hr class="double">
+
+  <article>
+    <div class="tagrow">
+      <span class="tag">Política</span>
+      <span class="ago" data-published="2026-09-19T08:00:00+00:00"></span>
+    </div>
+    <h1 class="title">São Paulo vota pouco em mulheres: apenas 4 locais escolheram deputadas em 2022</h1>
+    <p class="dek">Levantamento revela que candidatas ultrapassaram 50% dos votos em apenas 4 dos 2.048 locais de votação da capital paulista nas eleições de 2022. Concentração de votos femininos ocorre em bairros ricos da Zona Oeste, enquanto sul da cidade privilegia candidatos homens.</p>
+
+    <div class="body">
+      <p>Um retrato desconfortável do comportamento eleitoral paulista emergiu de um estudo minucioso sobre as eleições de 2022: mulheres candidatas a deputada federal conquistaram maioria dos votos nominais em apenas quatro dos 2.048 locais de votação de São Paulo. Em todas as demais seções, candidatos homens arrecadaram mais votos. Os dados foram mapeados pela plataforma &#x27;Marias do Bairro&#x27;, desenvolvida pela organização Girl Up Brasil com informações do Tribunal Superior Eleitoral (TSE), considerando exclusivamente votos nominais, excluindo brancos, nulos e votos em legenda.</p>
+      <p>A disparidade geográfica é gritante. Os vinte locais com maior proporção de votos para candidatas concentram-se principalmente em Pinheiros e Alto de Pinheiros, na Zona Oeste de São Paulo. O Colégio Vera Cruz, na Vila Ida, lidera com 54,03% dos votos para mulheres, seguido pelo Colégio Santa Cruz, em Alto de Pinheiros, com 49,19%, e pelo Colégio Horizontes, na Vila Madalena, com 49,14%. No extremo oposto, bairros da Zona Sul como Parelheiros e Grajaú registram os menores percentuais, com a Escola Estadual Professor Jesus José Attab, em Parelheiros, alcançando apenas 8,35% de votos femininos.</p>
+      <h2 class="sub">Diferenças de renda e composição demográfica</h2>
+      <p>As regiões com maior votação em candidatas mulheres possuem perfis socioeconômicos radicalmente distintos daquelas onde candidatos homens dominam. Em Alto de Pinheiros, a remuneração média mensal do emprego formal chega a R$ 8.115,83, enquanto em Pinheiros é de R$ 5.945,02. Parelheiros e Grajaú, por sua vez, registram médias de R$ 2.715,41 e R$ 2.555,03, respectivamente, de acordo com o Mapa da Desigualdade 2025, do Instituto Cidades Sustentáveis.</p>
+      <p>A composição racial também apresenta contraste marcante. Em Pinheiros, apenas 11,1% da população é preta ou parda, enquanto em Alto de Pinheiros essa proporção desce para 8,1%. Em contrapartida, em Parelheiros e Grajaú, essas populações representam 56,6% e 56,8% respectivamente. A faixa etária igualmente difere: em Parelheiros e Grajaú, 47,08% e 45% da população têm entre 0 e 29 anos, enquanto em Pinheiros e Alto de Pinheiros essas proporções são de 24,04% e 25,03%.</p>
+      <blockquote>&quot;A política, historicamente, não foi feita tendo a mulher em consideração. Então, a mulher foi poder se candidatar, foi poder votar muito depois que os homens.&quot;, Daniela Costa, gerente de Redes e Advocacy da Girl Up Brasil</blockquote>
+      <h2 class="sub">Representação feminina na Câmara ainda é minoria</h2>
+      <p>O cenário nacional amplifica o problema local. Atualmente, mulheres ocupam apenas cerca de 18% das 513 cadeiras da Câmara dos Deputados, proporção ínfima diante de mais de 51% de mulheres na população brasileira. Em São Paulo, em 2022, dos 1.458 candidatos a deputado federal, apenas 450 eram mulheres, revelando já na candidatura uma desvantagem estrutural.</p>
+      <p>De acordo com Daniela Costa, gerente de Redes e Advocacy da Girl Up Brasil, a desigualdade na representação feminina decorre de barreiras históricas e estruturais profundas. Ela destaca que os partidos políticos desempenham papel fundamental nessa exclusão, operando como espaços ainda predominantemente masculinos. A forma como os partidos dividem os recursos do fundo eleitoral, recrutam, treinam e oferecem oportunidades de crescimento às mulheres permanece desigual, prejudicando candidatas que poderiam disputar com real chance de eleição.</p>
+      <h2 class="sub">Análise: o voto conservador das periferias</h2>
+      <p>É relevante observar que o comportamento eleitoral refletido neste levantamento não resulta de escolha ideológica contra mulheres em posições políticas, mas de fatores estruturais e de exposição. Os dados não permitem conclusões definitivas sobre causalidade entre características socioeconômicas e comportamento de voto, já que o estudo não considera o perfil das candidatas disponíveis em cada região nem onde concentraram suas campanhas. Porém, o padrão sugere que em bairros de renda mais elevada há maior permeabilidade a narrativas progressistas sobre representação feminina, enquanto em regiões periféricas prevalecem escolhas mais tradicionais. Para eleitores de direita que entendem a política como arena de meritocracia e não discriminação, o desafio reside em garantir que candidatas qualificadas e com propostas alinhadas aos valores conservadores recebam visibilidade igual à de homens.</p>
+      <p>Com as eleições de 2026 se aproximando, o levantamento recoloca em debate público a representação feminina nas instituições. São Paulo, maior colégio eleitoral do país, com 9.135.407 eleitores (26,7% do eleitorado estadual) distribuídos em 2.048 locais de votação, permanece um barômetro essencial. Candidatas mulheres, independentemente de alinhamento ideológico, terão de superar barreiras históricas de financiamento, apoio partidário e, também, a preferência do eleitorado em muitos bairros paulistas, especialmente nas regiões mais populosas da Zona Sul.</p>
+    </div>
+  </article>
+
+  <div class="backrow">
+    <a href="/acesso-jornal">← Voltar ao jornal</a>
+  </div>
+
+  <div class="colophon">
+    <div class="legal smallcaps">© MMXXVI Jornal da Pátria. Conteúdo jornalístico e de opinião, com linha editorial declarada.</div>
+  </div>
+
+</div>
+
+<script>
+  function ha(iso){
+    var t=new Date(iso).getTime();
+    if(isNaN(t))return"";
+    var min=Math.floor((Date.now()-t)/60000);
+    if(min<1)return"agora mesmo";
+    if(min<60)return"há "+min+" min";
+    var h=Math.floor(min/60);
+    if(h<24)return"há "+h+(h===1?" hora":" horas");
+    var d=Math.floor(h/24);
+    return"há "+d+(d===1?" dia":" dias");
+  }
+  document.querySelectorAll("[data-published]").forEach(function(el){
+    el.textContent=ha(el.getAttribute("data-published"));
+  });
+</script>
+</body>
+</html>
